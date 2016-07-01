@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_height="fill_parent" 
+        android:layout_width="fill_parent" 
+        android:layout_weight="5.0" 
+        android:paddingTop="8.0dip" 
+        android:background="@drawable/maintab_toolbar_bg"> 
+        
+        <ImageButton 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:background="@android:color/transparent" 
+            android:layout_centerVertical="true" 
+            android:layout_alignParentLeft="true" 
+            android:src="@drawable/reply_btn_normal" 
+            android:id="@+id/control_back"/> 
+            
+        <TextView 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:id="@+id/control_title_view" 
+            android:layout_centerInParent="true" 
+            android:textColor="#ffffffff" 
+            android:textSize="17.0dip"/> 
+            
+        <ProgressBar 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:layout_centerVertical="true" 
+            android:id="@+id/control_refresjing" 
+            style="?android:attr/progressBarStyleSmall" 
+            android:layout_alignParentRight="true" 
+            android:indeterminate="true" 
+            android:layout_marginRight="20.0dip" 
+            android:layout_marginTop="10.0dip" 
+            android:layout_marginLeft="30.0dip" 
+            android:visibility="gone"/> 
+            
+        <ImageButton 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:background="@android:color/transparent" 
+            android:layout_centerVertical="true" 
+            android:src="@drawable/refresh_btn_normal" 
+            android:id="@+id/control_refresh" 
+            android:layout_alignParentRight="true"/> 
+    </RelativeLayout> 
+    <RelativeLayout 
+        android:layout_height="fill_parent" 
+        android:layout_width="fill_parent" 
+        android:layout_weight="1.0" 
+        android:background="#ff222222"> 
+        
+        <TextView 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:id="@+id/control_notice_time" 
+            android:textColor="#ffaaaaaa" 
+            android:layout_marginTop="4.0dip" 
+            android:visibility="gone" 
+            android:layout_centerHorizontal="true" 
+            android:layout_alignParentTop="true" 
+            android:text="time:"/> 
+            
+        <TextView 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:id="@+id/control_notice_delay" 
+            android:textColor="#ffaaaaaa" 
+            android:layout_marginTop="4.0dip" 
+            android:visibility="gone" 
+            android:layout_centerHorizontal="true" 
+            android:text="delay:" 
+            android:layout_below="@+id/control_notice_time"/> 
+            
+        <ImageButton 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:background="@android:color/transparent" 
+            android:src="@drawable/set_cfg_normal" 
+            android:id="@+id/control_set_status" 
+            android:layout_centerInParent="true"/> 
+    </RelativeLayout> 
+    <RelativeLayout 
+        android:layout_height="fill_parent" 
+        android:layout_width="fill_parent" 
+        android:layout_weight="5.0" 
+        android:paddingTop="8.0dip" 
+        android:background="@drawable/home_btn_bg_d" 
+        android:id="@+id/control_bom_bar_button"> 
+        
+        <ImageView 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:paddingTop="3.0dip" 
+            android:background="@android:color/transparent" 
+            android:src="@drawable/tab_settings_pressed" 
+            android:layout_centerInParent="true" 
+            android:paddingBottom="3.0dip" 
+            android:paddingRight="12.0dip" 
+            android:paddingLeft="12.0dip"/> 
+            
+    </RelativeLayout>
+
+</LinearLayout>

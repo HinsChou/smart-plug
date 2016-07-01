@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/config"
+    android:background="#ffffffff"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_height="fill_parent" 
+        android:layout_width="fill_parent" 
+        android:background="@drawable/headbg" 
+        android:layout_weight="9.0" 
+        android:paddingTop="8.0dip"> 
+        
+        <ImageButton 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:background="@android:color/transparent" 
+            android:id="@+id/config_help" 
+            android:layout_centerVertical="true" 
+            android:layout_alignParentLeft="true" 
+            android:src="@drawable/back2" 
+            android:paddingLeft="12.0dip"/> 
+            
+        <TextView 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:id="@+id/config_title_view" 
+            android:layout_centerInParent="true" 
+            android:text="@string/config_title" 
+            android:textColor="#ffffffff" 
+            android:textSize="17.0dip"/> 
+            
+        <ImageButton 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:background="@android:color/transparent" 
+            android:id="@+id/config_refresh" 
+            android:layout_centerVertical="true" 
+            android:layout_alignParentRight="true"/> 
+            
+    </RelativeLayout> 
+    <LinearLayout 
+        android:layout_height="fill_parent" 
+        android:layout_width="fill_parent" 
+        android:orientation="vertical" 
+        android:layout_weight="1.0" 
+        android:padding="10.0dip"> 
+        
+        
+        <TextView 
+            android:layout_height="wrap_content" 
+            android:layout_width="fill_parent" 
+            android:id="@+id/config_errorWifi" 
+            android:text="@string/errorConnWifi" 
+            android:textColor="#ff000000" 
+            android:visibility="gone"
+            android:gravity="center"/> 
+            
+    	<LinearLayout 
+    	    android:layout_height="fill_parent" 
+    	    android:layout_width="fill_parent" 
+    	    android:id="@+id/config_body_layout" 
+    	    android:orientation="vertical"> 
+    	    
+    	    <RelativeLayout 
+    	        android:layout_height="wrap_content" 
+    	        android:layout_width="fill_parent" 
+    	        android:id="@+id/config_ssid_lay"> 
+    	        
+    	        <TextView 
+    	            android:layout_height="wrap_content" 
+    	            android:layout_width="50.0dip" 
+    	            android:id="@+id/config_ssid_title" 
+    	            android:layout_centerVertical="true" 
+    	            android:layout_alignParentLeft="true" 
+    	            android:text="WIFI:" 
+    	            android:textColor="#ff000000" 
+    	            android:textStyle="bold"/> 
+    	            
+    	        <EditText android:layout_height="40.0dip" 
+    	            android:layout_width="230.0dip" 
+    	            android:id="@+id/config_ssid_value" 
+    	            android:layout_centerVertical="true" 
+    	            android:textColor="#ff000000" 
+    	            android:layout_toRightOf="@+id/config_ssid_title" 
+    	            android:singleLine="true"/> 
+    	    </RelativeLayout> 
+    	    <RelativeLayout android:layout_height="wrap_content" 
+    	        android:layout_width="fill_parent" 
+    	        android:id="@+id/config_pass_lay" 
+    	        android:layout_marginTop="10.0dip"> 
+    	        
+    	        <TextView android:layout_height="wrap_content" 
+    	            android:layout_width="50.0dip" 
+    	            android:id="@+id/config_pass_t" 
+    	            android:layout_centerVertical="true" 
+    	            android:layout_alignParentLeft="true" 
+    	            android:text="@string/pwd" 
+    	            android:textColor="#ff000000" 
+    	            android:textStyle="bold"/> 
+    	            
+    	        <EditText android:layout_height="40.0dip" 
+    	            android:layout_width="230.0dip" 
+    	            android:id="@+id/config_pass" 
+    	            android:layout_centerVertical="true" 
+    	            android:textColor="#ff000000" 
+    	            android:layout_toRightOf="@+id/config_pass_t" 
+    	            android:inputType="textPassword"/> 
+    	    </RelativeLayout> 
+    	    <RelativeLayout android:layout_height="wrap_content" 
+    	        android:layout_width="fill_parent" 
+    	        android:id="@+id/config_pass_show_lay"> 
+    	        <CheckBox android:layout_height="wrap_content" 
+    	            android:layout_width="wrap_content" 
+    	            android:id="@+id/config_pass_show" 
+    	            android:layout_alignParentLeft="true" 
+    	            android:background="@drawable/pwdcheck"
+    	            android:checked="true"/> 
+    	        <TextView android:layout_height="wrap_content" 
+    	            android:layout_width="wrap_content" 
+    	            android:layout_centerVertical="true" 
+    	            android:text="@string/show_pass" 
+    	            android:textColor="#ff000000" 
+    	            android:layout_toRightOf="@+id/config_pass_show"/> 
+    	    </RelativeLayout> 
+    	    <Button android:layout_height="wrap_content" 
+    	        android:layout_width="wrap_content" 
+    	        android:id="@+id/config_submit" 
+    	        android:layout_marginTop="50dp"
+    	        android:layout_gravity="center_horizontal"
+    	        android:background="@drawable/startconfig"/> 
+    	</LinearLayout> 
+ 	</LinearLayout>
+
+</LinearLayout>

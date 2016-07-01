@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/plugbg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/headbg"
+        android:paddingTop="8.0dip" >
+
+        <ImageButton
+            android:id="@+id/sockettaskdays_back"
+            android:layout_width="20.0dip"
+            android:layout_height="30.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10.0dip"
+            android:background="@drawable/back2" />
+
+        <TextView
+            android:id="@+id/socketnewtask_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:text="@string/repeat_circle"
+            android:textSize="17.0dip" />
+
+        <ImageButton
+            android:id="@+id/sockettaskdays_save"
+            android:layout_width="30.0dip"
+            android:layout_height="30.0dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip"
+            android:visibility="gone"
+            android:background="@drawable/setmenu" />
+    </RelativeLayout>
+
+       <ListView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="50dip"
+            android:background="@color/transprent"
+            android:id="@+id/socketdetaildays_task"
+            android:scrollbars="vertical"
+            />
+</LinearLayout>

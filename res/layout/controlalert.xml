@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ff313237"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:background="#ff92b524"> 
+        
+        <TextView android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:layout_centerHorizontal="true" 
+            android:text="@string/setTime" 
+            android:padding="8.0dip" 
+            android:textColor="#ffffffff"/> 
+    </RelativeLayout> 
+    
+    <RelativeLayout android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:padding="5.0dip"> 
+        
+        <LinearLayout android:layout_height="wrap_content" 
+            android:layout_width="fill_parent" 
+            android:id="@+id/controlalert_time_layout" 
+            android:layout_gravity="center_horizontal"> 
+            
+            <kankan.wheel.widget.WheelView android:layout_height="wrap_content" 
+                android:layout_width="fill_parent" 
+                android:id="@+id/controlalert_hour" 
+                android:layout_weight="1.0"/> 
+                
+            <kankan.wheel.widget.WheelView android:layout_height="wrap_content" 
+                android:layout_width="fill_parent" 
+                android:id="@+id/controlalert_mins"
+                 android:layout_weight="1.0"/> 
+         </LinearLayout> 
+    </RelativeLayout> 
+    <LinearLayout android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:orientation="horizontal" 
+        android:padding="5.0dip" 
+        android:layout_marginTop="1.0dip"> 
+        
+        <Button android:layout_height="wrap_content" 
+            android:layout_width="fill_parent" 
+            android:text="@string/yes" 
+            android:id="@+id/controlalert_save" 
+            android:layout_weight="5.0"/> 
+            
+        <Button android:layout_height="wrap_content" 
+            android:layout_width="fill_parent" 
+            android:text="@string/no" 
+            android:id="@+id/controlalert_cancel" 
+            android:layout_weight="5.0"/> 
+            
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/info_setting_circle"
+    android:layout_marginLeft="20.0dip"
+    android:layout_marginRight="20.0dip"
+    
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:id="@+id/languagedialog_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:textSize="30.0dip"
+        />
+    
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:background="#ffb5b2b5"
+        />
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        
+        <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        	<TextView 
+        	    android:layout_gravity="center_vertical"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:text="中文"
+        	    android:layout_weight="1"
+        	    android:paddingLeft="10.0dip"
+        	    />
+        	
+        	<RadioButton 
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:id="@+id/languagedialog_chinese"
+        	    android:paddingRight="10.0dip"
+        	    />
+        </LinearLayout>
+        <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        	<TextView 
+        	    android:layout_gravity="center_vertical"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:text="english"
+        	    android:layout_weight="1"
+        	    android:paddingLeft="10.0dip"
+        	    />
+        	
+        	<RadioButton 
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:id="@+id/languagedialog_english"
+        	    android:paddingRight="10.0dip"
+        	    />
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:background="#ffb5b2b5"
+        />
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        >
+        <Button 
+            android:id="@+id/languagedialog_yes"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"
+            android:layout_weight="1"
+            android:background="@drawable/exit_button"
+            android:paddingTop="10.0dip"
+            android:paddingBottom="10.0dip"
+            />
+        <TextView 
+            android:layout_width="1.0dip"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:background="#ffb5b2b5"
+            android:paddingTop="0.0dip"
+            android:paddingBottom="0.0dip"
+            />
+        <Button 
+            android:id="@+id/languagedialog_no"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@drawable/exit_button"
+			android:paddingTop="10.0dip"
+            android:paddingBottom="10.0dip"
+            android:text="@string/no"/>
+    </LinearLayout>
+
+</LinearLayout>

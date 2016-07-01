@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <RelativeLayout android:paddingLeft="8.0dip" 
+        android:paddingTop="8.0dip" 
+        android:paddingRight="1.0dip" 
+        android:paddingBottom="8.0dip" 
+        android:descendantFocusability="blocksDescendants" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content">
+        
+        <ImageView android:id="@+id/socketlist_list_left" 
+            android:layout_width="70.0dip" 
+            android:layout_height="70.0dip" 
+            android:layout_marginRight="6.0dip" />
+        
+        <TextView android:textColor="#ff000000" 
+            android:id="@+id/socketlist_list_name" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/socketlist_list_left" />
+        <TextView android:textColor="#ffaaaaaa" 
+            android:visibility="gone"
+            android:id="@+id/socketlist_list_id" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="5.0dip" 
+            android:layout_toRightOf="@id/socketlist_list_left" 
+            android:layout_below="@id/socketlist_list_name" />
+        <TextView android:textColor="#ffaaaaaa" 
+            android:visibility="gone"
+            android:id="@+id/socketlist_list_online" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="5.0dip" 
+            android:layout_marginLeft="5.0dip"
+            android:layout_below="@id/socketlist_list_id" 
+            android:layout_toRightOf="@id/socketlist_list_left" />
+        <TextView android:textColor="#ffaaaaaa" 
+            android:visibility="gone"
+            android:id="@+id/socketlist_list_onoff" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="5.0dip" 
+            android:layout_marginLeft="5.0dip"
+            android:layout_below="@id/socketlist_list_id"
+            android:layout_toRightOf="@id/socketlist_list_online" ></TextView>
+        
+        <TextView android:textColor="#ffaaaaaa" 
+            android:visibility="gone"
+            android:id="@+id/socketlist_list_settime" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="5.0dip" 
+            android:layout_marginLeft="5.0dip"
+            android:layout_below="@id/socketlist_list_id"
+            android:layout_toRightOf="@id/socketlist_list_onoff" >
+            
+        </TextView>
+        
+        <ImageButton android:id="@+id/socketlist_list_imgonoff" 
+            android:layout_width="40.0dip" 
+            android:layout_height="40.0dip" 
+            android:background="@drawable/off"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip" />
+        
+        <Button  android:id="@+id/socketlist_list_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip"
+            android:text="删除"
+            android:visibility="gone"
+            ></Button>"
+        
+    </RelativeLayout>
+
+</LinearLayout>
