@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <RelativeLayout android:background="@drawable/maintab_toolbar_bg" android:paddingTop="8.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="9.0">
+            <ImageButton android:id="@+id/controlsetedit_back" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/reply_btn_normal" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+            <TextView android:textSize="17.0dip" android:textColor="#ffffffff" android:id="@+id/controlsetedit_title_view" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" />
+            <ImageButton android:id="@+id/controlsetedit_save" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/contrl_set_save" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <ScrollView android:background="#ffe7e3de" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <LinearLayout android:orientation="vertical" android:padding="3.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:background="@drawable/info_setting_circle" android:padding="1.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+                    <RelativeLayout android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                        <TextView android:textColor="#ff000000" android:id="@+id/controlsetedit_iv_icon_set" android:paddingLeft="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/enable" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                        <CheckBox android:id="@+id/controlsetedit_g_enable" android:paddingRight="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                    </RelativeLayout>
+                    <View android:background="#ffdedbde" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+                    <RelativeLayout android:id="@+id/controlsetedit_circle_choose" android:paddingLeft="8.0dip" android:paddingTop="15.0dip" android:paddingRight="8.0dip" android:paddingBottom="18.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                        <TextView android:textColor="#ff000000" android:paddingLeft="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/repeat" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                        <ImageView android:id="@+id/controlsetedit_circle_more" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/mm_submenu_normal" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                        <TextView android:textColor="#ff000000" android:id="@+id/controlsetedit_circle_text" android:paddingRight="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nerver" android:layout_toLeftOf="@id/controlsetedit_circle_more" android:layout_centerVertical="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="20.0dip">
+                    <RelativeLayout android:background="@drawable/set_in_circle_bg" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                        <TextView android:textColor="#ffffffff" android:id="@+id/conrolsetedit_start_textview" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="@string/openTime" android:layout_centerVertical="true" />
+                        <RelativeLayout android:background="#ffffffff" android:layout_width="100.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_toRightOf="@id/conrolsetedit_start_textview" android:layout_centerVertical="true">
+                            <TextView android:textSize="23.0dip" android:textColor="#ff000000" android:id="@+id/controlsetedit_start_time" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="22:33" android:layout_centerHorizontal="true" />
+                        </RelativeLayout>
+                        <ImageButton android:id="@+id/controlsetedit_start_button" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/group_edit_checkbox" android:layout_alignParentRight="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:background="@drawable/set_in_circle_bg" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="15.0dip">
+                        <TextView android:textColor="#ffffffff" android:id="@+id/controlsetedit_start_textview" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="@string/CloseTime" android:layout_centerVertical="true" />
+                        <RelativeLayout android:background="#ffffffff" android:layout_width="100.0dip" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_toRightOf="@id/controlsetedit_start_textview" android:layout_centerVertical="true">
+                            <TextView android:textSize="23.0dip" android:textColor="#ff000000" android:id="@+id/controlsetedit_finish_time" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="22:d3" android:layout_centerHorizontal="true" />
+                        </RelativeLayout>
+                        <ImageButton android:id="@+id/controlsetedit_finish_button" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/group_edit_checkbox_checked" android:layout_alignParentRight="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="10.0dip" 
+        android:textColor="#ff4a5563" 
+        android:id="@+id/devicelist_list_monitor_list_left" 
+        android:background="#ffd6dbde" 
+        android:paddingLeft="8.0dip" 
+        android:paddingTop="4.0dip" 
+        android:paddingRight="8.0dip" 
+        android:paddingBottom="4.0dip" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content" />
+    <RelativeLayout android:paddingLeft="8.0dip" 
+        android:paddingTop="8.0dip" 
+        android:paddingRight="1.0dip" 
+        android:paddingBottom="8.0dip" 
+        android:descendantFocusability="blocksDescendants" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content">
+        
+        <ImageView android:id="@+id/devicelist_list_left" 
+            android:layout_width="60.0dip" 
+            android:layout_height="60.0dip" 
+            android:layout_marginRight="6.0dip" />
+        <TextView android:textColor="#ff000000" 
+            android:id="@+id/devicelist_list_name" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="5.0dip" 
+            android:layout_toRightOf="@id/devicelist_list_left" />
+        <TextView android:textColor="#ffaaaaaa" 
+            android:id="@+id/devicelist_list_id" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="5.0dip" 
+            android:layout_toRightOf="@id/devicelist_list_left" 
+            android:layout_below="@id/devicelist_list_name" />
+        <ImageView android:id="@+id/devicelist_list_lock" 
+            android:visibility="invisible" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:src="@drawable/device_list_lock" 
+            android:layout_alignParentRight="true" 
+            android:layout_centerVertical="true" />
+        <ImageView android:id="@+id/devicelist_list_net_from" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginRight="2.0dip" 
+            android:layout_toLeftOf="@id/devicelist_list_lock" 
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+</LinearLayout>

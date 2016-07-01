@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="horizontal" android:padding="10.0dip" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView 
+        android:layout_height="wrap_content"
+        android:layout_width="50.0dip"
+        android:id="@+id/socketdetail_list_start"
+        android:layout_marginLeft="5.0dip"
+        android:text="09:00"
+        />
+    <TextView 
+        android:layout_height="wrap_content"
+        android:layout_width="50.0dip"
+        android:id="@+id/socketdetail_list_end"
+        android:layout_marginLeft="5.0dip"
+        android:layout_below="@id/socketdetail_list_start"
+        android:layout_marginTop="5.0dip"
+        android:text="10:00"
+        />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/socketdetail_list_end"
+        android:layout_below="@id/socketdetail_list_start"
+        android:layout_marginLeft="10.0dip"
+        android:text=""
+        android:id="@+id/socketdetail_list_repeat"
+        />
+    
+    <ImageView 
+        android:layout_width="30.0dip"
+        android:layout_height="30.0dip"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10.0dip"
+        android:background="@drawable/status_enable"
+        android:id="@+id/socketdetail_list_enable"
+        />
+    
+    <Button  android:id="@+id/socketdetail_list_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip"
+            android:text="删除"
+            android:visibility="gone"
+            ></Button>"
+</RelativeLayout>

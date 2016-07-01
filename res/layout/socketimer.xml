@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/aura_bg"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_height="50.0dip" 
+        android:layout_width="fill_parent" 
+        android:paddingTop="8.0dip" 
+        android:background="@color/transprent"
+        >
+        
+        <ImageButton 
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:background="@drawable/back_aura" 
+            android:layout_centerVertical="true" 
+            android:layout_alignParentLeft="true" 
+            android:layout_marginLeft="10.0dip"
+            android:id="@+id/socketinfo_back"/>
+        
+        
+        <TextView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/socketdetail_timer"
+            android:text="@string/edittimer"
+            android:textSize="17.0dip"
+            />
+        
+        <ProgressBar
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            style="?android:attr/progressBarStyleSmall" 
+            android:layout_centerVertical="true" 
+            android:layout_alignParentRight="true" 
+            android:indeterminate="true" 
+            android:layout_marginRight="20.0dip" 
+            android:layout_marginTop="10.0dip" 
+            android:layout_marginLeft="30.0dip" 
+            android:visibility="gone" 
+            android:id="@+id/socketinfo_refresjing"
+             />
+        
+        <ImageButton 
+            android:layout_height="30dp" 
+            android:layout_width="30dp"
+            android:background="@drawable/add"
+            android:layout_centerVertical="true" 
+            android:layout_alignParentRight="true" 
+            android:id="@+id/sockettimer_add" 
+            android:layout_marginRight="10.0dip"
+            android:textSize="17.0dip"
+            />
+    </RelativeLayout>
+    
+    
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/info_setting_circle"
+        android:layout_margin="10.0dip"
+        android:visibility="gone"
+        android:padding="5.0dip"
+        >
+        
+            <TextView 
+	            android:id="@+id/socketinfo_title"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_marginLeft="5.0dip"
+	            android:text="@string/renwu_info_name"
+            />
+            
+            <EditText 
+                android:layout_width="30.0dip"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="5.0dip"
+                android:layout_weight="1"
+                android:id="@+id/socketinfo_name"
+                />
+       
+        
+    </LinearLayout>
+    
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transprent"
+        android:orientation="vertical"
+        >
+        <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            >
+            <TextView 
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:text="@string/renwu_info_pic"
+                />
+            
+            <ImageView 
+                android:layout_width="30.0dip"
+                android:layout_height="30.0dip"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10.0dip"
+                android:background="@drawable/camera"
+                android:id="@+id/socketinfo_camera"
+                />
+        </RelativeLayout>
+       
+       
+        <ListView 
+          android:id="@+id/socket_timer_aura"
+	      android:layout_width="fill_parent"
+	      android:layout_height="fill_parent"
+	      android:background="@color/transprent"
+	      android:layout_marginTop="20dp"/>
+        
+    </LinearLayout>
+
+</LinearLayout>

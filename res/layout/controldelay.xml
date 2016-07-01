@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:background="@drawable/maintab_toolbar_bg" android:paddingTop="8.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="9.0">
+        <ImageButton 
+            android:id="@+id/controldelay_back" 
+            android:background="@android:color/transparent" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:src="@drawable/reply_btn_normal" 
+            android:layout_alignParentLeft="true" 
+            android:layout_centerVertical="true" />
+        <TextView android:textSize="17.0dip" 
+            android:textColor="#ffffffff" 
+            android:id="@+id/controldelay_title_view" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:text="@string/delayDo" 
+            android:layout_centerInParent="true" />
+        <ImageButton android:id="@+id/controldelay_save" 
+            android:background="@android:color/transparent" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:src="@drawable/contrl_set_save" 
+            android:layout_alignParentRight="true" 
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="vertical" 
+        android:id="@+id/controldelay_info_body" 
+        android:background="#ffe7e3de" 
+        android:padding="8.0dip" 
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent" 
+        android:layout_weight="1.0">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textColor="#ff888888" 
+                android:id="@+id/controldelay_tv_status" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content" 
+                android:layout_marginTop="14.0dip" 
+                android:text="@string/unEnaable" android:layout_centerInParent="true" />
+            <TextView android:textColor="#ff000000" 
+                android:paddingRight="5.0dip" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content" 
+                android:layout_marginTop="14.0dip" 
+                android:text="@string/notis" android:layout_toLeftOf="@+id/controldelay_tv_status" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <LinearLayout android:orientation="vertical" android:background="@drawable/info_setting_circle" android:paddingTop="10.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:layout_marginBottom="15.0dip">
+            <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:textColor="#ff000000" 
+                    android:paddingLeft="10.0dip" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:text="@string/enable" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                <CheckBox android:id="@+id/controldelay_cb_turn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="6.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <RadioGroup android:orientation="horizontal" android:id="@+id/controldelay_radioGroup1" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <RadioButton android:textColor="#ff333333" android:id="@+id/controldealy_radio1" android:paddingRight="50.0dip" android:layout_width="140.0dip" android:layout_height="wrap_content" android:text="@string/m_5_min" />
+                <RadioButton android:textColor="#ff333333" android:id="@+id/controldelay_radio2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/m_10_min" />
+            </RadioGroup>
+            <RadioGroup android:orientation="horizontal" android:id="@+id/controldelay_radioGroup2" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <RadioButton android:textColor="#ff333333" android:id="@+id/controldelay_radio3" android:paddingRight="50.0dip" android:layout_width="140.0dip" android:layout_height="wrap_content" android:text="@string/m_30_min" />
+                <RadioButton android:textColor="#ff333333" android:id="@+id/controldelay_radio4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/m_60_min" />
+            </RadioGroup>
+            <RadioGroup android:orientation="horizontal" android:id="@+id/controldelay_radioGroup3" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <RadioButton android:textColor="#ff333333" android:id="@+id/controldelay_radio5" android:paddingRight="50.0dip" android:layout_width="140.0dip" android:layout_height="wrap_content" android:text="@string/m_90_min" />
+                <RadioButton android:textColor="#ff333333" android:id="@+id/controldelay_radio6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/m_120_min" />
+            </RadioGroup>
+            <RadioGroup android:orientation="horizontal" android:id="@+id/controldelay_radioGroup4" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <RadioButton android:id="@+id/controldelay_radio7" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <EditText android:id="@+id/controldelay_et_other" android:layout_width="100.0dip" android:layout_height="wrap_content" android:text="10" android:inputType="number" />
+                <TextView android:id="@+id/controldelay_text1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/min" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

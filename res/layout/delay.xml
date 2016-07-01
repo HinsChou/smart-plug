@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="50.0dip"
+	    >
+	    <ImageView 
+	        android:layout_width="30.0dip"
+	        android:layout_height="30.0dip"
+	        android:layout_alignParentLeft="true"
+	        android:id="@+id/delay_back"
+	        android:layout_marginLeft="5.0dip"
+	        />
+	    <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="true"
+	        android:text="延迟"
+	        />
+	    <ImageView 
+	        android:layout_width="30.0dip"
+	        android:layout_height="30.0dip"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginRight="5.0dip"
+	        />
+	</RelativeLayout>
+	
+	<ListView 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_marginTop="20.0dip"
+	    android:id="@+id/delay_list"
+	    android:layout_weight="1"
+	    android:background="#ff333333"
+	    ></ListView>
+</LinearLayout>
