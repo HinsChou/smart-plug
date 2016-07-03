@@ -33,7 +33,9 @@
         <item name="android:windowBackground">@android:color/transparent</item> 
    	</style>
 	<style name="MyToggleButton" parent="@android:style/Widget.CompoundButton">  
+
        <item name="android:button">@drawable/device_on</item>  
+
    </style>	
    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">  
     <item name="android:button">@drawable/pwdcheck</item>  

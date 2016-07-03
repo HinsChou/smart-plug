@@ -42,6 +42,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -116,6 +117,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 		ssid = (EditText)findViewById(R.id.socketnewconfig_edit_ssid);
 		password = (EditText)findViewById(R.id.socketnewconfig_edit_pass);
 		back =(LinearLayout)findViewById(R.id.socketnewconfig_back);
+
 		start = (Button)findViewById(R.id.socketnewconfig_edit_config);
 		showpass = (CheckBox)findViewById(R.id.socketnewconfig_edit_showpass);
 	}

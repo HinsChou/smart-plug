@@ -141,6 +141,7 @@ public class SocketListAdapter extends BaseAdapter {
 		
 		DeviceItemModel dim = mSwitchList.get(pos);
 		
+
 		viewHolder.switchName.setText(String.valueOf(dim.getDeviceName()));
 		viewHolder.onoff.setOnClickListener(new OnImgOnOffClickListener(pos, mContext));
 		viewHolder.socketDelete.setOnClickListener(new OnDeleteClickListener(pos, mContext));
@@ -320,6 +321,7 @@ public class SocketListAdapter extends BaseAdapter {
 //				return true;
 //			}
 //		});
+
 		return convertView;
 	}
 	private class RenameDevice implements OnClickListener{

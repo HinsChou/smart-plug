@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+
 import android.widget.LinearLayout;
 
 public class SpecificationAvtivity extends Activity{
@@ -39,6 +40,7 @@ public class SpecificationAvtivity extends Activity{
 	private void findView() {
 		// TODO Auto-generated method stub
 		backmain = (LinearLayout)findViewById(R.id.llBack);
+
 	}
 
 }

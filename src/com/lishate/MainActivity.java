@@ -2,6 +2,7 @@ package com.lishate;
 
 import android.os.Bundle;
 
+
 import com.lishate.activity.renwu.SocketNewConfigActivity;
 import com.lishate.data.GobalDef;
 
@@ -57,6 +58,5 @@ public class MainActivity extends Activity {
 		});
 	}
 
-	
 
 }
