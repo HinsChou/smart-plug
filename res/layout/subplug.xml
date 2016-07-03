@@ -7,74 +7,76 @@
     
 	<LinearLayout 
 	    android:layout_width="match_parent"
-	    android:layout_height="150dp"
-	    android:orientation="horizontal"
-	    android:background="#ffffffff" >
-		<RelativeLayout 
-		    android:layout_width="80dp"
-		    android:layout_height="fill_parent">  
-		    <ImageButton 
-		        android:id="@+id/setplugscene"
-		        android:src="@drawable/setplugscene"
-		        android:layout_centerInParent="true"
-		        android:layout_width="80dp"
-		        android:layout_height="80dp"
-		        />
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
 	    
-	   </RelativeLayout>   
+	    <ImageButton
+	        android:id="@+id/setplugscene"
+	        android:layout_width="48dp"
+	        android:layout_height="48dp"
+	        android:layout_gravity="center_vertical"
+	        android:layout_margin="16dp"
+	        android:src="@drawable/setplugscene" />
+	    
 	    <LinearLayout 
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:orientation="vertical">
 	        <RelativeLayout 
 	          android:layout_width="fill_parent"
-	          android:layout_height="50dp"
-	          android:orientation="horizontal"  
-	            >
-	           <TextView 
+	          android:layout_height="fill_parent"
+	          android:orientation="horizontal"  >
+	          
+	            <!-- android:background="@drawable/namebg" -->
+
+	           <TextView
 	               android:id="@+id/plugname"
-	               android:background="@drawable/namebg"
-	               android:layout_centerVertical="true"
-	               android:layout_marginLeft="25dp"
+	               android:layout_width="wrap_content"
 	               android:layout_height="wrap_content"
-	               android:layout_width="100dp"
+	               android:layout_alignParentTop="true"
+	               android:layout_centerVertical="true"
+	               android:layout_marginTop="16dp"
 	               android:gravity="center"
-	               android:text="@string/devicename"/> 
-	            <ToggleButton 
+	               android:text="@string/devicename" />
+	               
+	          	<ImageView
+	          	    android:layout_width="wrap_content"
+	          	    android:layout_height="wrap_content"
+	          	    android:layout_alignParentBottom="true"
+	          	    android:layout_marginBottom="16dp"
+	          	    android:src="@drawable/device_disconnect" />
+
+	            <ToggleButton
 	                android:id="@+id/plugonoff"
-	                android:layout_alignParentRight="true"
-	                android:layout_marginRight="20dp"
-	                android:layout_centerVertical="true"
-	                android:background="@color/transprent"
-	                android:layout_height="wrap_content"
+	                style="@style/MyToggleButton"
 	                android:layout_width="wrap_content"
-	                android:textOn=""
+	                android:layout_height="wrap_content"
+	                android:layout_alignParentRight="true"
+	                android:layout_centerVertical="true"
+	                android:layout_marginRight="24dp"
+	                android:background="@color/transprent"
 	                android:textOff=""
-	                 style="@style/MyToggleButton"
-	                />
+	                android:textOn="" />
+
+	            <ImageButton
+	                android:id="@+id/timerlist"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_centerVertical="true"
+	                android:layout_marginRight="36dp"
+	                android:layout_toLeftOf="@+id/plugonoff"
+	                android:background="@color/transprent"
+	                android:src="@drawable/timerlog" />
+
 	        </RelativeLayout>
-	        <View 
-	            android:layout_width="fill_parent"
-	            android:layout_height="1dp"
-	            android:layout_marginLeft="20dp"
-	            android:background="#ff000000"/>
 	        <RelativeLayout 
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            >
-	            <ImageButton 
-	                android:id="@+id/timerlist"
-	                android:src="@drawable/timerlog"
-	                android:layout_height="wrap_content"
-	                android:layout_width="wrap_content"
-	                android:background="@color/transprent"
-	                android:layout_centerVertical="true"
-	                android:layout_centerHorizontal="true"
-	                android:layout_marginLeft="40dp"
-	                />
 	            <RelativeLayout 
 	                android:layout_height="fill_parent"
 	                android:layout_width="fill_parent"
+	                android:visibility="gone"
 	                >
 	                
 	               <ToggleButton 
@@ -115,9 +117,4 @@
 	        </RelativeLayout>
 	    </LinearLayout>
 	</LinearLayout>
-	<View 
-	    android:layout_width="fill_parent"
-	    android:layout_height="20dp"
-	    android:background="@color/transprent"
-	    />
 </LinearLayout>

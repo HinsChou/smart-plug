@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.j256.ormlite.dao.Dao;
+import com.lishate.MainActivity;
 import com.lishate.R;
 
 import android.app.Activity;
@@ -25,6 +26,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
@@ -48,6 +50,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -87,13 +90,20 @@ import com.lishate.message.baseMessage;
 import com.lishate.message.baseRspMessage;
 import com.lishate.net.UdpProcess;
 import com.lishate.utility.Utility;
+import com.zxs.ptrmenulistview.PullToRefreshLayout;
+import com.zxs.ptrmenulistview.PullToRefreshLayout.OnRefreshListener;
+import com.zxs.ptrmenulistview.SwipeMenu;
+import com.zxs.ptrmenulistview.SwipeMenuCreator;
+import com.zxs.ptrmenulistview.SwipeMenuItem;
+import com.zxs.ptrmenulistview.SwipeMenuListView;
+import com.zxs.ptrmenulistview.SwipeMenuListView.OnMenuItemClickListener;
 
 public class SocketListActivity extends FirstActivity {
 	
 	private static final String TAG = "SocketListActivity";
 	private ProgressBar mProgressBar;
 	private ImageButton mrefreshBtn;
-	private ListView mSocketList;
+	private SwipeMenuListView mSocketList;
 	public TextView mNetworkView;
 	private SocketListAdapter mAdapter;
 	private ImageButton mRefreshButton;
@@ -121,7 +131,7 @@ public class SocketListActivity extends FirstActivity {
 	private Button editplug;
 	private ImageButton addplug_more;
 	private PopupWindow popup;
-	
+	private PullToRefreshLayout mRefreshView;
 	private  PopupWindow popupseticon;
 	private String dev_pic = "";
 	private Bitmap myBitmap;
@@ -146,7 +156,8 @@ public class SocketListActivity extends FirstActivity {
 			
 			//DeviceItemDao did = new DeviceItemDao(getHelper());
 			result.clear();
-			
+			DeviceItemModel item = new DeviceItemModel();
+			result.add(item);
 			result.addAll(devicedatadao.queryForAll());
 			
 		} catch (SQLException e) {
@@ -159,7 +170,6 @@ public class SocketListActivity extends FirstActivity {
 	}
 	
 	
-	
 //	@Override
 //	public boolean onKeyDown(int keyCode, KeyEvent event) {
 //		// TODO Auto-generated method stub
@@ -169,27 +179,21 @@ public class SocketListActivity extends FirstActivity {
 //		return super.onKeyDown(keyCode, event);
 //	}
 	
-
-
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
 		// TODO Auto-generated method stub
 		Log.d(TAG, "dispatchKeyEvent");
 		return super.dispatchKeyEvent(event);
 	}
-	
-	
-
-
 
 	private void findView(){
 		mProgressBar = (ProgressBar)findViewById(R.id.socketlist_refresjing);
 		mRefreshButton = (ImageButton)findViewById(R.id.socketlist_allopen);
 		mCloseButton = (Button)findViewById(R.id.socketlist_allclose);
 		addplug_more = (ImageButton)findViewById(R.id.socketlist_refresh);
-		mSocketList = (ListView)findViewById(R.id.socketlist_listview);
+		mSocketList = (SwipeMenuListView)findViewById(R.id.socketlist_listview);
 		mNetworkView = (TextView)findViewById(R.id.socketlist_net_check);
-		
+		mRefreshView = (PullToRefreshLayout)findViewById(R.id.refresh_view);
 	}
 	
 	private void initView(){
@@ -197,34 +201,104 @@ public class SocketListActivity extends FirstActivity {
 		try {
 			devicedatadao = getHelper().getDao(DeviceItemModel.class);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		addplug_more.setOnClickListener(new OnClickListener(){
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				popup.showAsDropDown(v);
 				//popup.setOutsideTouchable(true);
+			}
+		});
+		
+		//帮助页面
+		ImageView ivHelp = (ImageView) findViewById(R.id.ivHelp);
+		ivHelp.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent mintent = new Intent(getApplicationContext(), SpecificationAvtivity.class);
+				startActivity(mintent);
+			}
+		});
+		
+		//下拉刷新
+		mRefreshView.setOnRefreshListener(new OnRefreshListener(){
+
+			@Override
+			public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+				// TODO Auto-generated method stub
+				if(Utility.CheckNetwork(SocketListActivity.this) == true){
+					mNetworkView.setVisibility(View.GONE);
+					new RefreshTask().execute(new Void[0]);
+				}
+				else{
+					mNetworkView.setVisibility(View.VISIBLE);
+					Toast.makeText(SocketListActivity.this, R.string.unNetwork, Toast.LENGTH_SHORT).show();
+				}
+				
+				new Handler(){
+					@Override
+					public void handleMessage(Message msg)
+					{
+						// 千万别忘了告诉控件刷新完毕了哦！
+						mRefreshView.refreshFinish(PullToRefreshLayout.SUCCEED);
+					}
+				}.sendEmptyMessageDelayed(0, 3000);
+			}
+
+			@Override
+			public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
+				// TODO Auto-generated method stub
+				
+				new Handler()
+				{
+					@Override
+					public void handleMessage(Message msg)
+					{
+						// 千万别忘了告诉控件加载完毕了哦！
+						mRefreshView.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+					}
+				}.sendEmptyMessageDelayed(0, 5000);
 			}
 			
 		});
 		
-		//*
-		mSocketList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
+		
+		//侧滑删除
+		SwipeMenuCreator creator = new SwipeMenuCreator() {
 			@Override
-			public void onItemClick(AdapterView<?> view, View arg1, int pos,
-					long arg3) {
-				// TODO Auto-generated method stub
-				/*
-				DeviceItemModel dim = (DeviceItemModel)(view.getAdapter()).getItem(pos);
-				LoginToTask ltt = new LoginToTask();
-				ltt.execute(new DeviceItemModel[]{dim});
-				*/
+			public void create(SwipeMenu menu) {
+				// create "delete" item
+				SwipeMenuItem deleteItem = new SwipeMenuItem(
+						getApplicationContext());
+				// set item background
+				deleteItem.setBackground(new ColorDrawable(getResources().getColor(R.color.red)));
+				// set item width
+				deleteItem.setWidth(140);
+				// set a icon
+				deleteItem.setIcon(R.drawable.device_del);
+				// add to menu
+				menu.addMenuItem(deleteItem);
 			}
-			
+		};
+		mSocketList.setMenuCreator(creator);
+		
+		mSocketList.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+		    @Override
+		    public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+		        switch (index) {
+		        case 0:
+		            // delete
+		        	DeviceItemModel dim = (DeviceItemModel)mAdapter.getItem(position);
+		        	SocketListActivity.this.OnRemoveItem(dim);
+		            break;
+		        }
+		        // false : close the menu; true : not close the menu
+		        return true;
+		    }
 		});
 		
 		mSocketList.setOnScrollListener(new OnScrollListener(){
@@ -254,45 +328,6 @@ public class SocketListActivity extends FirstActivity {
 			
 		});
 		
-		mSocketList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
-
-			@Override
-			public boolean onItemLongClick(AdapterView<?> view, View arg1,
-					int pos, long arg3) {
-				// TODO Auto-generated method stub
-				
-				return false;
-			}
-			
-		});
-		//*/
-		
-		mRefreshButton.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-				/*
-				OpenAllTask oat = new OpenAllTask();
-				Integer[] oc=  new Integer[1];
-				oc[0] = 1;
-				oat.execute(oc);
-				*/
-				if(Utility.CheckNetwork(SocketListActivity.this) == true){
-				mNetworkView.setVisibility(View.GONE);
-				new RefreshTask().execute(new Void[0]);
-			}
-			else{
-				mNetworkView.setVisibility(View.VISIBLE);
-				Toast.makeText(SocketListActivity.this, R.string.unNetwork, Toast.LENGTH_SHORT).show();
-			}
-
-				
-			}
-			
-		});
-		
 		mCloseButton.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -309,100 +344,104 @@ public class SocketListActivity extends FirstActivity {
 					mNetworkView.setVisibility(View.VISIBLE);
 					Toast.makeText(SocketListActivity.this, R.string.unNetwork, Toast.LENGTH_SHORT);
 				}
-				
 			}
+		});
+		
+		LinearLayout llDeviceNew = (LinearLayout) findViewById(R.id.llDeviceNew);
+		llDeviceNew.setOnClickListener(new OnClickListener() {
 			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent mintent = new Intent(getApplicationContext(), MainActivity.class);
+//				startActivityForResult(mintent, GobalDef.REQEST_SMART_CONFIG);
+				startActivity(mintent);
+			}
 		});
 		
 		// 装载R.layout.popup对应的界面布局 用来选择增加设备或者更多功能
-				View root = this.getLayoutInflater().inflate(R.layout.popup, null);
-				// 创建PopupWindow对象
-				popup = new PopupWindow(root, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-				//popup.setFocusable(false);
-				popup.setOutsideTouchable(true);
-				popup.setBackgroundDrawable(new PaintDrawable(Color.TRANSPARENT));
-				root.findViewById(R.id.morefunc).setOnClickListener(
-				new View.OnClickListener()
-				{
-					public void onClick(View v)
-					{
-						// 关闭PopupWindow
-						popup.dismiss(); //①
-						Intent mintent = new Intent(getApplicationContext(), SocketNewConfigActivity.class);
-						startActivityForResult(mintent, GobalDef.REQEST_SMART_CONFIG);
-					}
-				});
-				root.findViewById(R.id.adddevice).setOnClickListener(
-				new View.OnClickListener()
-				{
-					public void onClick(View v)
-					{
-						// 通过ap模式添加插座设备
-						popup.dismiss(); //①
-						Intent mintent = new Intent(getApplicationContext(), AddPlugActivity.class);
-						startActivityForResult(mintent, GobalDef.REQEST_AP_CONFIG);
-						
-					}
-				});
-				root.findViewById(R.id.specif).setOnClickListener(
-						new View.OnClickListener()
-						{
-							public void onClick(View v)
-							{
-								// 通过ap模式添加插座设备
-								popup.dismiss(); //①
-								Intent mintent = new Intent(getApplicationContext(), SpecificationAvtivity.class);
-								startActivity(mintent);
-								
-							}
-						});
-				// 装载R.layout.popup对应的界面布局 用来为设备选择图片
-				View rooticon = this.getLayoutInflater().inflate(R.layout.popupicon, null);
-				// 创建PopupWindow对象
-				popupseticon = new PopupWindow(rooticon, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-				//popupseticon.setFocusable(false);
-				popupseticon.setOutsideTouchable(true);
-				popupseticon.setBackgroundDrawable(new PaintDrawable(Color.TRANSPARENT));
-				rooticon.findViewById(R.id.morefunc).setOnClickListener(
-				new View.OnClickListener()
-				{
-					public void onClick(View v)
-					{
-						// 关闭PopupWindow
-						//Log.i(TAG, "photoshop is starting...");
-						popupseticon.dismiss(); //①
-						Date now = new Date();
-                    	dev_pic = "device_" + now.getTime() + ".png";
-                        Intent getImage = new Intent(Intent.ACTION_GET_CONTENT);  
-                        getImage.addCategory(Intent.CATEGORY_OPENABLE);  
-                        getImage.setType("image/jpeg");  
-                        startActivityForResult(getImage, code);  
-					}
-				});
-				rooticon.findViewById(R.id.adddevice).setOnClickListener(
-				new View.OnClickListener()
-				{
-					public void onClick(View v)
-					{
-						// 添加插座设备
-						popupseticon.dismiss(); //①
-						Log.i(TAG, "photoshop is starting...");
-						Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    	Date now = new Date();
-                    	dev_pic = "device_" + now.getTime() + ".png";
-                    	intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(Environment.getExternalStorageDirectory(), dev_pic)));
-        				startActivityForResult(intent, capture);
-						
-					}
-				});	
+		View root = this.getLayoutInflater().inflate(R.layout.popup, null);
+		// 创建PopupWindow对象
+		popup = new PopupWindow(root, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		//popup.setFocusable(false);
+		popup.setOutsideTouchable(true);
+		popup.setBackgroundDrawable(new PaintDrawable(Color.TRANSPARENT));
+		
+		//一键配置
+		root.findViewById(R.id.morefunc).setOnClickListener(new View.OnClickListener(){
+			public void onClick(View v)
+			{
+				// 关闭PopupWindow
+				popup.dismiss(); //①
+				Intent mintent = new Intent(getApplicationContext(), SocketNewConfigActivity.class);
+				startActivityForResult(mintent, GobalDef.REQEST_SMART_CONFIG);
+			}
+		});
+		
+		//ap配置
+		root.findViewById(R.id.adddevice).setOnClickListener(new View.OnClickListener(){
+			public void onClick(View v)
+			{
+				// 通过ap模式添加插座设备
+				popup.dismiss(); //①
+				Intent mintent = new Intent(getApplicationContext(), AddPlugActivity.class);
+				startActivityForResult(mintent, GobalDef.REQEST_AP_CONFIG);
 				
+			}
+		});
+		
+		//帮助
+		root.findViewById(R.id.specif).setOnClickListener(new View.OnClickListener(){
+			public void onClick(View v)
+			{
+				popup.dismiss(); //①
+				Intent mintent = new Intent(getApplicationContext(), SpecificationAvtivity.class);
+				startActivity(mintent);
+			}
+		});
+		
+		// 装载R.layout.popup对应的界面布局 用来为设备选择图片
+		View rooticon = this.getLayoutInflater().inflate(R.layout.popupicon, null);
+		// 创建PopupWindow对象
+		popupseticon = new PopupWindow(rooticon, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		//popupseticon.setFocusable(false);
+		popupseticon.setOutsideTouchable(true);
+		popupseticon.setBackgroundDrawable(new PaintDrawable(Color.TRANSPARENT));
+		
+		//相机拍照
+		rooticon.findViewById(R.id.morefunc).setOnClickListener(new View.OnClickListener(){
+			public void onClick(View v){
+				// 关闭PopupWindow
+				//Log.i(TAG, "photoshop is starting...");
+				popupseticon.dismiss(); //①
+				Date now = new Date();
+            	dev_pic = "device_" + now.getTime() + ".png";
+                Intent getImage = new Intent(Intent.ACTION_GET_CONTENT);  
+                getImage.addCategory(Intent.CATEGORY_OPENABLE);  
+                getImage.setType("image/jpeg");  
+                startActivityForResult(getImage, code);  
+			}
+		});
+		
+		//相册选择
+		rooticon.findViewById(R.id.adddevice).setOnClickListener(new View.OnClickListener(){
+			public void onClick(View v){
+				// 添加插座设备
+				popupseticon.dismiss(); //①
+				Log.i(TAG, "photoshop is starting...");
+				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            	Date now = new Date();
+            	dev_pic = "device_" + now.getTime() + ".png";
+            	intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(Environment.getExternalStorageDirectory(), dev_pic)));
+				startActivityForResult(intent, capture);
 				
+			}
+		});	
 	}
 	
 	class OpenCloseTask extends AsyncTask<DeviceItemModel, Integer, String>{
 
 		private ProgressDialog progressDialog;
-		
 		public int IsClose = 1;
 		private int fail = 0;
 		
@@ -422,9 +461,6 @@ public class SocketListActivity extends FirstActivity {
 			progressDialog.show();
 			Log.d(TAG, "OpenTask preexecute");
 		}
-		
-		
-
 
 		@Override
 		protected void onPostExecute(String result) {
@@ -436,8 +472,6 @@ public class SocketListActivity extends FirstActivity {
 				Toast.makeText(SocketListActivity.this, R.string.renwu_socketlist_send_fail, Toast.LENGTH_SHORT).show();
 			}
 		}
-
-
 
 		private void UpdateMessage(baseRspMessage rspmsg){
 			for(int i= 0; i<devlist.size(); i++){
@@ -565,8 +599,6 @@ public class SocketListActivity extends FirstActivity {
 				Toast.makeText(SocketListActivity.this, R.string.renwu_socketlist_send_fail, Toast.LENGTH_SHORT);
 			}
 		}
-
-
 
 		private void UpdateMessage(OpenRspMessage rspmsg){
 			for(int i= 0; i<devlist.size(); i++){
@@ -817,10 +849,8 @@ public class SocketListActivity extends FirstActivity {
 			progressDialog.setCanceledOnTouchOutside(false);
 			progressDialog.show();
 		}
-		
-		
-		
 	}
+	
 	class GetConfigsToTask extends AsyncTask<DeviceItemModel, Integer, String>{
 
 		private ProgressDialog progressDialog;
@@ -861,8 +891,6 @@ public class SocketListActivity extends FirstActivity {
 			return result;
 		}
 
-
-
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
@@ -892,9 +920,6 @@ public class SocketListActivity extends FirstActivity {
 //			progressDialog.setCanceledOnTouchOutside(false);
 //			progressDialog.show();
 		}
-		
-		
-		
 	}
 	
 
@@ -1143,8 +1168,8 @@ public class SocketListActivity extends FirstActivity {
 						//RefreshAllDevice();
 						//mAdapter.notifyDataSetChanged();
 						Log.d(TAG, "update local info");
-						if(refreshrun)
-							UpdateLocalInfo();
+//						if(refreshrun)
+//							UpdateLocalInfo();
 							//new RefreshTask().execute(new Void[0]);
 					}
 					//Message msg = Message.obtain();
@@ -1294,8 +1319,6 @@ public class SocketListActivity extends FirstActivity {
 			mRefreshButton.setVisibility(View.GONE);
 			mProgressBar.setVisibility(View.VISIBLE);
 		}
-		
-		
 		
 	}
 	
@@ -1654,7 +1677,7 @@ public class SocketListActivity extends FirstActivity {
 	public void SetIconForDevice(final DeviceItemModel dim, View v) {
 		// TODO Auto-generated method stub
 		
-		myhander	= new Handler(){
+		myhander = new Handler(){
 
 			@Override
 			public void handleMessage(Message msg) {

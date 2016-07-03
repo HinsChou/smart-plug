@@ -33,7 +33,7 @@
     <string name="m_90_min">90分钟</string>
     <string name="m_120_min">120分钟</string>
     <string name="min">分钟</string>
-    <string name="device_new">新设备</string>
+    <string name="device_new">添加新设备</string>
     <string name="unNetwork">网络未连接</string>
     <string name="remove">SD无法读取，请检查SD</string>
     <string name="rom">使用ROM存储</string>

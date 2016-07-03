@@ -1,14 +1,106 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
-
-    <TextView
+    tools:context=".MainActivity"
+    android:orientation="vertical" >
+	
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/grey"
+        android:gravity="center_vertical">
+        
+        <LinearLayout 
+            android:id="@+id/llBack"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"/>
+        </LinearLayout>
+        
+        <TextView 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/device_new"
+            android:textSize="18sp"
+            android:gravity="center"/>
+        
+        <LinearLayout
+            android:layout_width="48dp"
+            android:layout_height="match_parent">
+            
+        </LinearLayout>
+    </LinearLayout>
+    
+    <ImageView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world" />
+        android:src="@drawable/device_header"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:gravity="center_horizontal">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/device_new_power"
+            android:textSize="18sp" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/device_new_config"
+            android:textSize="14sp" />
+	
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/plug_demo" />
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:gravity="center" >
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/tvCancel"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="36dp"
+                android:background="@drawable/button_bg"
+                android:gravity="center"
+                android:text="@string/no"
+                android:textSize="14sp" />
+            
+            <TextView 
+                android:id="@+id/tvConfig"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/device_new_onekey"
+                android:textSize="14sp"
+                android:background="@drawable/button_bg"/>
+        </LinearLayout>
+        
+        <TextView
+            android:id="@+id/tvHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:textColor="@color/gray"
+            android:text="@string/device_new_help" />
+
+    </LinearLayout>
+</LinearLayout>

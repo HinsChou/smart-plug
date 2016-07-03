@@ -33,7 +33,7 @@
     <string name="m_90_min">90分钟</string>
     <string name="m_120_min">120分钟</string>
     <string name="min">分钟</string>
-    <string name="device_new">新设备</string>
+    <string name="device_new">添加新设备</string>
     <string name="unNetwork">网络未连接</string>
     <string name="remove">SD无法读取，请检查SD</string>
     <string name="rom">使用ROM存储</string>
@@ -151,4 +151,23 @@
    <string name="minute">"分"</string>
    <string name="timeropen">"开"</string>
    <string name="timerclose">"关"</string>
+   
+    <string name="head">这里是HeadView</string>
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="pullup_to_load">上拉加载更多</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="loading">正在加载...</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="load_fail">加载失败</string>
+    
+    <string name="device_new_power">确定设备已接入电源</string>
+    <string name="device_new_config">长按开关键5秒,当红灯开始慢闪,选择配置</string>
+    <string name="device_new_onekey">一键配置</string>
+    <string name="device_new_help">添加配置说明</string>
+    
+    <string name="help_title">使用说明中</string>
 </resources>

@@ -141,8 +141,6 @@ public class SocketListAdapter extends BaseAdapter {
 		
 		DeviceItemModel dim = mSwitchList.get(pos);
 		
-		
-		
 		viewHolder.switchName.setText(String.valueOf(dim.getDeviceName()));
 		viewHolder.onoff.setOnClickListener(new OnImgOnOffClickListener(pos, mContext));
 		viewHolder.socketDelete.setOnClickListener(new OnDeleteClickListener(pos, mContext));
@@ -218,9 +216,6 @@ public class SocketListAdapter extends BaseAdapter {
 				viewHolder.switchIcon.setImageResource(R.drawable.setplugscene);
 			}
 			
-			
-			
-			
 			//holder.socketId.setText(Utility.GetMacFormID(dim.getDeviceId()));
 			
 			
@@ -259,81 +254,72 @@ public class SocketListAdapter extends BaseAdapter {
 			
 		}
 		
-		
-		
-		convertView.setOnTouchListener(new OnTouchListener(){
-
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				Log.d(TAG, "socketlistadpater on touch ");
-				
-				final SocketHolder holder = (SocketHolder)v.getTag();
-				switch(event.getAction()){
-				case MotionEvent.ACTION_CANCEL:
-					v.setBackgroundColor(Color.TRANSPARENT);
-					//*
-					Log.d(TAG, "action cancel");
-					
-					ux = event.getX();
-					//Log.d(TAG, "x " + x + " us " + ux);
-					if(Math.abs(x-ux) > 30){
-						if(x > ux){
-							VisibleDelete(holder);
-							
-						}
-						else{
-							//VisibleDelete(holder);
-							GoneDelete(holder);
-						}
-						//VisibleDelete(holder);
-						Log.d(TAG, "Visible delete");
-					}
-					else{
-						//暂时把它注释掉，因为现在不需要跳转到socketDail
-						GoneDelete(holder);
-//						int ppos = holder.pos;
-//						DeviceItemModel tempdim = (DeviceItemModel)SocketListAdapter.this.getItem(ppos);
-//						mContext.OnItemClick(tempdim);
-					}
-					
-					break;
-				case MotionEvent.ACTION_DOWN:
-					v.setBackgroundColor(Color.GREEN);
-					x = event.getX();
-					GoneDelete(holder);
-					break;
-				case MotionEvent.ACTION_UP:
-					Log.d(TAG, "action up");
-					v.setBackgroundColor(Color.TRANSPARENT);
-					ux = event.getX();
-					Log.d(TAG, "x " + x + " us " + ux);
-					if(Math.abs(x-ux) > 30){
-						if(x > ux){
-							VisibleDelete(holder);
-							
-						}
-						else{
-							GoneDelete(holder);
-						}
-						Log.d(TAG, "Visible delete");
-					}
-					else{
-						GoneDelete(holder);
-						
-//						int ppos = holder.pos;
-//						Log.d(TAG, "ppos is: " + ppos);
-//						DeviceItemModel tempdim = (DeviceItemModel)SocketListAdapter.this.getItem(ppos);
-//						mContext.OnItemClick(tempdim);
-					}
-					break;
-				}
-				
-				return true;
-			}
-			
-		});
-		
+//		convertView.setOnTouchListener(new OnTouchListener(){
+//
+//			@Override
+//			public boolean onTouch(View v, MotionEvent event) {
+//				// TODO Auto-generated method stub
+//				Log.d(TAG, "socketlistadpater on touch ");
+//				
+//				final SocketHolder holder = (SocketHolder)v.getTag();
+//				switch(event.getAction()){
+//				case MotionEvent.ACTION_CANCEL:
+//					v.setBackgroundColor(Color.TRANSPARENT);
+//					//*
+//					Log.d(TAG, "action cancel");
+//					
+//					ux = event.getX();
+//					//Log.d(TAG, "x " + x + " us " + ux);
+//					if(Math.abs(x-ux) > 30){
+//						if(x > ux){
+//							VisibleDelete(holder);
+//						}
+//						else{
+//							//VisibleDelete(holder);
+//							GoneDelete(holder);
+//						}
+//						//VisibleDelete(holder);
+//						Log.d(TAG, "Visible delete");
+//					}
+//					else{
+//						//暂时把它注释掉，因为现在不需要跳转到socketDail
+//						GoneDelete(holder);
+////						int ppos = holder.pos;
+////						DeviceItemModel tempdim = (DeviceItemModel)SocketListAdapter.this.getItem(ppos);
+////						mContext.OnItemClick(tempdim);
+//					}
+//					break;
+//				case MotionEvent.ACTION_DOWN:
+//					v.setBackgroundColor(Color.GREEN);
+//					x = event.getX();
+//					GoneDelete(holder);
+//					break;
+//				case MotionEvent.ACTION_UP:
+//					Log.d(TAG, "action up");
+//					v.setBackgroundColor(Color.TRANSPARENT);
+//					ux = event.getX();
+//					Log.d(TAG, "x " + x + " us " + ux);
+//					if(Math.abs(x-ux) > 30){
+//						if(x > ux){
+//							VisibleDelete(holder);
+//						}
+//						else{
+//							GoneDelete(holder);
+//						}
+//						Log.d(TAG, "Visible delete");
+//					}
+//					else{
+//						GoneDelete(holder);
+////						int ppos = holder.pos;
+////						Log.d(TAG, "ppos is: " + ppos);
+////						DeviceItemModel tempdim = (DeviceItemModel)SocketListAdapter.this.getItem(ppos);
+////						mContext.OnItemClick(tempdim);
+//					}
+//					break;
+//				}
+//				return true;
+//			}
+//		});
 		return convertView;
 	}
 	private class RenameDevice implements OnClickListener{

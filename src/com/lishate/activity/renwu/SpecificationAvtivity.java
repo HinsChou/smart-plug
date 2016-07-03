@@ -9,10 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 public class SpecificationAvtivity extends Activity{
 
-	private ImageButton backmain;
+	private LinearLayout backmain;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -37,7 +38,7 @@ public class SpecificationAvtivity extends Activity{
 
 	private void findView() {
 		// TODO Auto-generated method stub
-		backmain = (ImageButton)findViewById(R.id.backmain);
+		backmain = (LinearLayout)findViewById(R.id.llBack);
 	}
 
 }

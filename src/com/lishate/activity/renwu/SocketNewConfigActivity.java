@@ -42,6 +42,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.lishate.activity.BaseActivity;
@@ -72,7 +73,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 	private final static int connect_times = 60;//20;
 	
 	private int wifi_connect_statue = 0;
-	private ImageButton back;
+	private LinearLayout back;
 	private Config config = new Config();
 	private ArrayList<String> list = new ArrayList<String>();
 	ArrayList<String> list_ns=new ArrayList<String>();
@@ -114,7 +115,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 		rgbEditor = rgbSharedPreferences.edit();
 		ssid = (EditText)findViewById(R.id.socketnewconfig_edit_ssid);
 		password = (EditText)findViewById(R.id.socketnewconfig_edit_pass);
-		back =(ImageButton)findViewById(R.id.socketnewconfig_back);
+		back =(LinearLayout)findViewById(R.id.socketnewconfig_back);
 		start = (Button)findViewById(R.id.socketnewconfig_edit_config);
 		showpass = (CheckBox)findViewById(R.id.socketnewconfig_edit_showpass);
 	}
