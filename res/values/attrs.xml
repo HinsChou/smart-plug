@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="GZSportTasksView">
+        <attr name="gz_sport_radius" format="dimension"/>
+        <attr name="gz_sport_ringColor" format="color"/>
+        <attr name="gz_sport_ringBgColor" format="color"/>
+        <attr name="gz_sport_strokeWidth" format="dimension"/>
+        <attr name="gz_sport_outerRingColor" format="color"/>
+        <attr name="gz_sport_outerStrokeWidth" format="dimension"/>
+        <attr name="gz_sport_descTextColor" format="color"/>
+    </declare-styleable>
+   	
+</resources>

@@ -17,10 +17,13 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
-    <style parent="@android:style/Theme.Light.NoTitleBar" name="globalActTheme"/>
+    <style parent="@android:style/Theme.Light.NoTitleBar" name="globalActTheme">
+        <item name="android:windowBackground">@android:color/white</item> 
+        <item name="android:textColor">@android:color/black</item> 
+    </style>
     <style parent="@android:style/Theme.Dialog" name="myDialog"> 
-        <item name="android:windowBackground">@android:color/transparent</item> 
-        <item name="android:textColor">#ffffffff</item> 
+        <item name="android:windowBackground">@android:color/white</item> 
+        <item name="android:textColor">@android:color/black</item> 
     </style>
     <style parent="@android:style/Theme.Dialog" name="myTimeDialogTheme"> 
         <item name="android:windowNoTitle">true</item> 
@@ -31,11 +34,10 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item> 
+        
    	</style>
 	<style name="MyToggleButton" parent="@android:style/Widget.CompoundButton">  
-
        <item name="android:button">@drawable/device_on</item>  
-
    </style>	
    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">  
     <item name="android:button">@drawable/pwdcheck</item>  

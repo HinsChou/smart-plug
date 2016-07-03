@@ -31,7 +31,6 @@ import android.widget.TextView;
 
 import com.lishate.R;
 import com.lishate.activity.BaseActivity;
-import com.lishate.activity.renwu.MainMenuActivity;
 import com.lishate.data.GobalDef;
 import com.lishate.data.SharedPreferencesUtility;
 import com.lishate.data.dao.ServerItemDao;

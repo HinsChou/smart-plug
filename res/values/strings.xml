@@ -169,7 +169,10 @@
     <string name="device_new_config">长按开关键5秒,当红灯开始慢闪,选择配置</string>
     <string name="device_new_onekey">一键配置</string>
     <string name="device_new_help">添加配置说明</string>
+    <string name="device_new_fail">如果配置失败,请点击</string>
+    <string name="device_new_ap">AP配置</string>
+    <string name="device_new_aphelp">AP配置说明</string>
     
-    <string name="help_title">使用说明中</string>
+    <string name="help_title">使用说明书</string>
 
 </resources>

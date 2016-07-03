@@ -15,8 +15,6 @@
         android:layout_height="50.0dip"
         android:textSize="30.0dip"
         />
-
-
     <TextView
         android:id="@+id/exitdialog_text"
         android:layout_width="fill_parent"

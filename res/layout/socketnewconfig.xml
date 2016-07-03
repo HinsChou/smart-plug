@@ -28,9 +28,9 @@
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:text="@string/renwu_config_device"
-            android:textColor="#ff000000"
-            android:textSize="17.0dip" />
+            android:text="@string/device_new_onekey"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
 
         <ProgressBar
             android:id="@+id/socketnewconfig_refresjing"
@@ -59,53 +59,90 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10.0dip"
-        android:orientation="vertical"
-        android:padding="5.0dip" >
+        android:layout_margin="32.0dip"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible" >
+            
+            <com.zxs.ptrmenulistview.CircleProgress 
+                xmlns:zxs="http://schemas.android.com/apk/res/com.lishate"
+                android:id="@+id/pbStart"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
+        
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_marginTop="32dp"
+            android:background="@drawable/edittext_grey"
+            android:gravity="center_vertical" >
 
             <TextView
-                android:layout_width="50.0dip"
+                android:layout_width="48dip"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="5.0dip"
-                android:text="@string/renwu_config_ssid" />
+                android:layout_margin="16dp"
+                android:text="@string/renwu_config_ssid"
+                android:textColor="@color/grey_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/socketnewconfig_edit_ssid"
-                android:layout_width="30.0dip"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1" 
+                android:background="@color/transprent"
+                android:textColor="@color/grey_text"/>
+            
+            <ImageView 
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/edittext_grey" >
 
             <TextView
-                android:layout_width="50.0dip"
+                android:layout_width="48dip"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="5.0dip"
-                android:text="@string/renwu_config_password" />
+                android:layout_margin="16dp"
+                android:text="@string/renwu_config_password"
+                android:textColor="@color/grey_text"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/socketnewconfig_edit_pass"
-                android:layout_width="30.0dip"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:password="true" />
+                android:background="@color/transprent"
+                android:inputType="textPassword"
+                android:textColor="@color/grey_text" />
+            
+            <ImageView 
+                android:id="@+id/ivShowPass"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/password_hide"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:visibility="gone" >
 
             <CheckBox
                 android:id="@+id/socketnewconfig_edit_showpass"
@@ -121,51 +158,43 @@
                 android:text="@string/renwu_config_showpass" />
         </LinearLayout>
 
+	       <Button
+	           android:id="@+id/socketnewconfig_edit_config"
+	           android:layout_width="match_parent"
+	           android:layout_height="wrap_content"
+	           android:layout_marginTop="32dp"
+	           android:background="@drawable/button_blue"
+	           android:padding="16dp"
+	           android:text="@string/start_config"
+	           android:textColor="@color/white" />
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <TextView
-                android:layout_width="50.0dip"
-                android:layout_height="wrap_content"
-                android:text="配置进度" />
-
-            <ProgressBar
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="30.0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:max="100"
-                android:progress="20" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/socketnewconfig_edit_config"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+            
+            <TextView 
+                android:id="@+id/tvConfigFail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/startconfig" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone" >
+                android:text="@string/device_new_fail"
+                android:textColor="@color/grey_text"/>
 
             <Button
                 android:id="@+id/socketdetail_search_config"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/renwu_config_config" />
+                android:layout_marginTop="8dp"
+                android:background="@drawable/textview_blue"
+                android:paddingBottom="4dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="4dp"
+                android:text="@string/device_new_ap"
+                android:textColor="@color/blue" />
+
         </LinearLayout>
     </LinearLayout>
 

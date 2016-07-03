@@ -33,6 +33,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,8 +44,9 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.lishate.activity.BaseActivity;
@@ -53,6 +56,7 @@ import com.lishate.data.GobalDef;
 import com.lishate.data.dao.DeviceItemDao;
 import com.lishate.data.model.DeviceItemModel;
 import com.lishate.utility.Utility;
+import com.zxs.ptrmenulistview.CircleProgress;
 public class SocketNewConfigActivity extends BaseActivity implements configInterface {
 
 	protected static final String TAG = "SocketConfigActivity";
@@ -81,11 +85,12 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 	w_ns ns;
 	Context context;
 	private ProgressDialog progressDialog;
-	private CheckBox showpass;
-	
+	private ImageView showpass;
+	private CircleProgress pbStart;
 	private EditText ssid;
 	private EditText password;
 	private Button start;
+	private Button apconfig;
 	private Timer handTimer;
 	private TimerTask showTask;
 	private int selapflag = 0;
@@ -117,12 +122,15 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 		ssid = (EditText)findViewById(R.id.socketnewconfig_edit_ssid);
 		password = (EditText)findViewById(R.id.socketnewconfig_edit_pass);
 		back =(LinearLayout)findViewById(R.id.socketnewconfig_back);
-
+		pbStart = (CircleProgress)findViewById(R.id.pbStart);
 		start = (Button)findViewById(R.id.socketnewconfig_edit_config);
-		showpass = (CheckBox)findViewById(R.id.socketnewconfig_edit_showpass);
+		showpass = (ImageView)findViewById(R.id.ivShowPass);
+		apconfig = (Button)findViewById(R.id.socketdetail_search_config);
 	}
 	
 	private void initView(){
+		pbStart.setTitle(getResources().getString(R.string.device_new_onekey));
+		
 		back.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -138,20 +146,33 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			
 		});
 		
-		showpass.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-
+		showpass.setOnClickListener(new OnClickListener() {
+			
 			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				if(!showpass.isChecked()){
-					password.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
-				}
-				else{
-					password.setInputType(InputType.TYPE_CLASS_TEXT);
+				Log.i(TAG, "password" + password.getInputType());
+				if(password.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD){
+					showpass.setImageResource(R.drawable.password_hide);
+					password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+				}else{
+					showpass.setImageResource(R.drawable.password_show);
+					password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
 				}
 			}
-			
 		});
+		
+		apconfig.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent mintent = new Intent(getApplicationContext(), SocketNewApConfigActivity.class);
+				startActivity(mintent);
+				finish();
+			}
+		});
+		
 		
 		start.setOnClickListener(new OnClickListener(){
 
@@ -179,7 +200,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 				SendConfigConnect();
 				progressDialog.setCanceledOnTouchOutside(false);
 				progressDialog.setMessage(SocketNewConfigActivity.this.getString(R.string.renwu_config_finding));
-				progressDialog.show();
+//				progressDialog.show();
 			}
 			
 		});
@@ -191,23 +212,19 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 		
 		if(showTask == null){
 			showTask = new TimerTask() {
-				
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					// TODO Auto-generated method stub
 					Message msg = Message.obtain();
 //					msg.what = TIME_MSG;
 //					showHandler.sendMessage(msg);
-					Log.e(TAG, "定时计数中*********timeout_count=" + timeout_count + "******");
+//					Log.e(TAG, "定时计数中*********timeout_count=" + timeout_count + "******");
 					timeout_count ++;
-
-					
-						msg.what = CONNECTING_SEC;
-					if(timeout_count >120){
+					msg.what = CONNECTING_SEC;
+					if(timeout_count > 2500)
 						msg.what = TIMEROUT;
-						
-					}
+					
+					pbStart.setProgress(timeout_count * 100f / 2500);
 					showHandler.sendMessage(msg);
 //					msg.what = TIME_MSG;
 //					testswitchssid.sendMessage(msg);
@@ -215,7 +232,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			};
 		}
 		if(handTimer != null && showTask != null )  
-			handTimer.schedule(showTask, 10, 1000);  
+			handTimer.schedule(showTask, 0, 40);  
 	}
 	
 	private void StopTimer(){
@@ -230,7 +247,9 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			
 		}
 		timeout_count = 0;
+		pbStart.setProgress(timeout_count);
 	}
+	
 	public void SendConfigConnect(){
 		String apSsid = ssid.getText().toString().trim();;
 		String apPassword = password.getText().toString().trim();
@@ -434,8 +453,6 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 				Toast.makeText(SocketNewConfigActivity.this, R.string.renwu_config_fail, Toast.LENGTH_SHORT).show();
 				break;
 			case ADDDEVICE:
-
-				
 				e8266config.stopConfig();
 				Bundle msgbundle = msg.getData();
 				String deviid = msgbundle.getString(DEVICEID);
@@ -446,7 +463,6 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 				AddPlug(deviid);
 				setResult(GobalDef.CONFIG_DEVICE_SMARTCONFIG_OK);
 				finish();
-				
 				break;
 			case CONNECTING:
 				break;
@@ -640,10 +656,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			super.onPreExecute();
 		}
 		
-		
 	}
-	
-	
 	
 	@Override
 	protected void onDestroy() {
@@ -653,6 +666,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			handTimer.cancel();
 			handTimer = null;
 		}
+		unregisterReceiver(wifiConnectReceiver);
 	}
 
 	@Override

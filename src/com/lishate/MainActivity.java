@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 
 import com.lishate.activity.renwu.SocketNewConfigActivity;
+import com.lishate.activity.renwu.SpecificationAvtivity;
 import com.lishate.data.GobalDef;
 
 import android.app.Activity;
@@ -53,6 +54,17 @@ public class MainActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(getApplicationContext(), SocketNewConfigActivity.class);
+				startActivity(intent);
+			}
+		});
+		
+		TextView tvHelp = (TextView) findViewById(R.id.tvHelp);
+		tvHelp.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getApplicationContext(), SpecificationAvtivity.class);
 				startActivity(intent);
 			}
 		});

@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#ffffffff</color>
+    
 	<color name="unfocused">#FFFFFFFF</color>
 	<color name="pressed">#ff00FF00</color>
 	<color name="selected">#ff00FF00</color>
 	<color name="focused">#ff00FF00</color>
 	<color name="transprent">#00000000</color>
-
 	
-	<color name="orange">#fff49b35</color>
 	<color name="grey">#fff2f2f2</color>
 	<color name="gray">#aaaaaa</color>
+  <color name="grey_text">#ff646464</color>
+  
+	<color name="light_blue">#6593cb</color>
+  <color name="blue">#ff3998ed</color>
+
+	<color name="orange">#fff49b35</color>
 	<color name="red">#ffff5f5f</color>
 	<color name="black">#ff000000</color>
-	<color name="light_blue">#6593cb</color>
-
+	<color name="white">#ffffffff</color>
 </resources>

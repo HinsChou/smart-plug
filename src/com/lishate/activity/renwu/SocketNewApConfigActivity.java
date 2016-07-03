@@ -37,12 +37,16 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lishate.activity.BaseActivity;
 import com.lishate.data.GobalDef;
 import com.lishate.data.dao.DeviceItemDao;
 import com.lishate.data.model.DeviceItemModel;
+import com.zxs.ptrmenulistview.CircleProgress;
 
 public class SocketNewApConfigActivity extends BaseActivity {
 
@@ -60,42 +64,53 @@ public class SocketNewApConfigActivity extends BaseActivity {
 	private final static int connect_times = 60;//20;
 	
 	private int wifi_connect_statue = 0;
-	private ImageButton back;
+	private LinearLayout back;
 	private Config config = new Config();
 	private ArrayList<String> list = new ArrayList<String>();
 	ArrayList<String> list_ns=new ArrayList<String>();
 	w_ns ns;
 	Context context;
 	private ProgressDialog progressDialog;
-	private CheckBox showpass;
+	private ImageView showpass;
 	
 	private EditText ssid;
 	private EditText password;
 	private Button start;
 	private Timer handTimer=new Timer();
 	private int selapflag = 0;
-	
+	private TextView socketname;
 	private String currentSSid;
 	private static final String COMPARESSID = "SmartPlug";
 	private int sendflag = 1;
 	private GetInfoTask git = new GetInfoTask();
 	private SharedPreferences rgbSharedPreferences;
 	private SharedPreferences.Editor rgbEditor;
-	
+	private CircleProgress pbStart;
 	WifiManager mWifiManager;
-	
+	private Button apconfig;
 	private int timeout_count;
+	private TextView tvConfigFail;
+	
 	private void findView(){
 		rgbSharedPreferences = getSharedPreferences("SSIDPWD", MODE_PRIVATE);
 		rgbEditor = rgbSharedPreferences.edit();
 		ssid = (EditText)findViewById(R.id.socketnewconfig_edit_ssid);
 		password = (EditText)findViewById(R.id.socketnewconfig_edit_pass);
-		back =(ImageButton)findViewById(R.id.socketnewconfig_back);
+		back =(LinearLayout)findViewById(R.id.socketnewconfig_back);
 		start = (Button)findViewById(R.id.socketnewconfig_edit_config);
-		showpass = (CheckBox)findViewById(R.id.socketnewconfig_edit_showpass);
+		showpass = (ImageView)findViewById(R.id.ivShowPass);
+		socketname = (TextView)findViewById(R.id.socketconfig_name);
+		pbStart = (CircleProgress)findViewById(R.id.pbStart);
+		apconfig = (Button)findViewById(R.id.socketdetail_search_config);
+		tvConfigFail = (TextView)findViewById(R.id.tvConfigFail);
 	}
 	
 	private void initView(){
+		socketname.setText(getResources().getString(R.string.device_new_ap));
+		pbStart.setTitle(getResources().getString(R.string.device_new_ap));
+		apconfig.setVisibility(View.GONE);
+		tvConfigFail.setText(getResources().getString(R.string.device_new_aphelp));
+		
 		back.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -111,19 +126,20 @@ public class SocketNewApConfigActivity extends BaseActivity {
 			
 		});
 		
-		showpass.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-
+		showpass.setOnClickListener(new OnClickListener() {
+			
 			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				if(!showpass.isChecked()){
-					password.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
-				}
-				else{
-					password.setInputType(InputType.TYPE_CLASS_TEXT);
+				Log.i(TAG, "password" + password.getInputType());
+				if(password.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD){
+					showpass.setImageResource(R.drawable.password_hide);
+					password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+				}else{
+					showpass.setImageResource(R.drawable.password_show);
+					password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
 				}
 			}
-			
 		});
 		
 		start.setOnClickListener(new OnClickListener(){
@@ -192,6 +208,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 
 					Message msg = Message.obtain();
 					msg.what = TIME_MSG;
+					pbStart.setProgress(timeout_count * 100f / 2500);
 					showHandler.sendMessage(msg);
 //					msg.what = TIME_MSG;
 //					testswitchssid.sendMessage(msg);
@@ -199,7 +216,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 			};
 		}
 		if(handTimer != null && showTask != null )  
-			handTimer.schedule(showTask, 10, 1000);  
+			handTimer.schedule(showTask, 0, 40);  
 	}
 	
 	private void StopTimer(){
@@ -214,6 +231,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 			
 		}
 		timeout_count = 0;
+		pbStart.setProgress(timeout_count);
 	}
 	protected void StopConfig() {
 		// TODO Auto-generated method stub
@@ -481,11 +499,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 		}
-		
-		
 	}
-	
-	
 	
 	@Override
 	protected void onDestroy() {

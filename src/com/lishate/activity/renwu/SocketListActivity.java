@@ -1167,7 +1167,7 @@ public class SocketListActivity extends FirstActivity {
 					if(Utility.CheckNetwork(SocketListActivity.this) == true){
 						//RefreshAllDevice();
 						//mAdapter.notifyDataSetChanged();
-						Log.d(TAG, "update local info");
+//						Log.d(TAG, "update local info");
 //						if(refreshrun)
 //							UpdateLocalInfo();
 							//new RefreshTask().execute(new Void[0]);

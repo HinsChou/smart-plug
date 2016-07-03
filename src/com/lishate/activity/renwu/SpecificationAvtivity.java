@@ -1,7 +1,5 @@
 package com.lishate.activity.renwu;
 
-
-
 import com.lishate.R;
 
 import android.app.Activity;
@@ -15,6 +13,8 @@ import android.widget.LinearLayout;
 public class SpecificationAvtivity extends Activity{
 
 	private LinearLayout backmain;
+	private LinearLayout llFinish;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -35,12 +35,21 @@ public class SpecificationAvtivity extends Activity{
 				finish();
 			}
 		});
+		
+		llFinish.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 	}
 
 	private void findView() {
 		// TODO Auto-generated method stub
 		backmain = (LinearLayout)findViewById(R.id.llBack);
-
+		llFinish = (LinearLayout)findViewById(R.id.llFinish);
 	}
 
 }

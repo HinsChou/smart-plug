@@ -191,7 +191,7 @@ public class Utility {
 		ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo mInfo = mConnectivityManager.getActiveNetworkInfo();
 		if(mInfo != null){
-			Log.d(TAG, "CheckNetwork is not null");
+//			Log.d(TAG, "CheckNetwork is not null");
 			return mInfo.isConnected();
 		}
 		Log.d(TAG, "CheckNetwork is null");

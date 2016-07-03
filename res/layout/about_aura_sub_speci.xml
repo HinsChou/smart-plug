@@ -44,7 +44,7 @@
         android:src="@drawable/specifications"/>
     
     <LinearLayout 
-            android:id="@+id/llDeviceNew"
+            android:id="@+id/llFinish"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@color/grey"
