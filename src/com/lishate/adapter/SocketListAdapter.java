@@ -157,7 +157,7 @@ public class SocketListAdapter extends BaseAdapter {
 	public View getView(int pos, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		SocketHolder viewHolder = null;
-		Log.e(TAG, "getView-------------------------------------------");
+		Log.e(TAG, "getView");
 		
 		//*
 		if(convertView == null){
@@ -175,6 +175,7 @@ public class SocketListAdapter extends BaseAdapter {
 				viewHolder.timeronoff = (ToggleButton) convertView.findViewById(R.id.timeronoff);
 				viewHolder.timerset = (Button) convertView.findViewById(R.id.timerset);
 				viewHolder.socketDelete= (Button) convertView.findViewById(R.id.delete_device);
+				viewHolder.connect = (ImageView) convertView.findViewById(R.id.ivConnect);
 			}
 			
 			InitViewHolder(viewHolder, pos);
@@ -193,66 +194,71 @@ public class SocketListAdapter extends BaseAdapter {
 		DeviceItemModel dim = mSwitchList.get(pos);
 		
 		if(dim != null){
-			if(dim.isUi_del() == true){
-				VisibleDelete(viewHolder);
-			}else{
-				GoneDelete(viewHolder);
-			}
+//			if(dim.isUi_del() == true){
+//				VisibleDelete(viewHolder);
+//			}else{
+//				GoneDelete(viewHolder);
+//			}
+			//名称
 			viewHolder.switchName.setText(dim.getDeviceName());
 			//int intdraw = R.drawable.p1;
+			//图片
 			if(dim.getDeviceIcon() != null ){	
-				   
 				try { 
 					//ContentResolver contentResolver  =mContext.getActivity().getContentResolver();
 		                  //将图片内容解析成字节数组  
 					//Log.i(TAG, "position="  + position +  sim.getPicuri() +  " " +  sim.getName());
 					myBitmap = BitmapFactory.decodeFile(dim.getDeviceIcon());
-		               
 					viewHolder.switchIcon.setImageBitmap(myBitmap); 
-		            } catch (Exception e) { 
-		                e.printStackTrace(); 
-		                // TODO: handle exception 
-		            } 
+	            } catch (Exception e) { 
+	                e.printStackTrace(); 
+	            } 
 			}else{
 				viewHolder.switchIcon.setImageResource(R.drawable.setplugscene);
 			}
 			
 			//holder.socketId.setText(Utility.GetMacFormID(dim.getDeviceId()));
 			
-			
+			//在线
 			if(dim.getOnline() == DeviceItemModel.Online_Off){
 				Log.d(TAG, "dim get online off");
-				viewHolder.timeronoff.setBackgroundResource(R.drawable.offline_on);
+				viewHolder.connect.setImageResource(R.drawable.device_disconnect);
+				viewHolder.onoff.setClickable(false);
+				viewHolder.timeronoff.setClickable(false);
+				viewHolder.switchIcon.setClickable(false);
+				viewHolder.switchName.setClickable(false);
+				viewHolder.switchLock.setClickable(false);
 				
-				viewHolder.onoff.setClickable(true);
-				viewHolder.timeronoff.setClickable(true);
-				viewHolder.switchIcon.setClickable(true);
-				viewHolder.switchName.setClickable(true);
-			}
-			else if(dim.getOnline() == DeviceItemModel.Online_On){
-//				
+				viewHolder.onoff.setChecked(false);
+				viewHolder.timeronoff.setChecked(false);
+				viewHolder.switchLock.setImageResource(R.drawable.timer_off);
+			}else if(dim.getOnline() == DeviceItemModel.Online_On){
 				Log.e(TAG, "dim id " + dim.getDeviceId() + " onoff " + dim.getOnoff());
+				viewHolder.connect.setImageResource(R.drawable.device_connect);
 				viewHolder.onoff.setClickable(true);
 				viewHolder.timeronoff.setClickable(true);
 				viewHolder.switchIcon.setClickable(true);
 				viewHolder.switchName.setClickable(true);
+				viewHolder.switchLock.setClickable(true);
+				
 				if(dim.getOnoff() == DeviceItemModel.OnOff_On){
 					Log.e(TAG, "dim id " + dim.getDeviceId() + " set on");
 					viewHolder.onoff.setChecked(true);//.setImageResource(R.drawable.on);
-				}
-				else{
+				}else{
 					Log.e(TAG, "dim id " + dim.getDeviceId() + " set off");
 					viewHolder.onoff.setChecked(false);//.setImageResource(R.drawable.off);
 				}
-				if(dim.getSettime() == DeviceItemModel.SetTime_On)
-				{
+				
+				if(dim.getSettime() == DeviceItemModel.SetTime_On){
 					viewHolder.timeronoff.setChecked(true);
-				}else
+					viewHolder.switchLock.setImageResource(R.drawable.timer_on);
+				}else{
 					viewHolder.timeronoff.setChecked(false);
-				
-				
+					viewHolder.switchLock.setImageResource(R.drawable.timer_off);
+				}
 			}
-			
+		}else{
+			Log.i(TAG, "dim is null");
 		}
 		
 //		convertView.setOnTouchListener(new OnTouchListener(){
@@ -488,7 +494,7 @@ public class SocketListAdapter extends BaseAdapter {
 		ImageButton switchLock;
 		TextView switchId;
 		TextView switchName;
-		ImageView netFrom;
+		ImageView connect;
 		TextView type;
 		
 		ToggleButton onoff;

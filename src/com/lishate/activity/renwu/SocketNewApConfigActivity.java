@@ -78,7 +78,6 @@ public class SocketNewApConfigActivity extends BaseActivity {
 	private Button start;
 	private Timer handTimer=new Timer();
 	private int selapflag = 0;
-	private TextView socketname;
 	private String currentSSid;
 	private static final String COMPARESSID = "SmartPlug";
 	private int sendflag = 1;
@@ -87,7 +86,6 @@ public class SocketNewApConfigActivity extends BaseActivity {
 	private SharedPreferences.Editor rgbEditor;
 	private CircleProgress pbStart;
 	WifiManager mWifiManager;
-	private Button apconfig;
 	private int timeout_count;
 	private TextView tvConfigFail;
 	
@@ -99,17 +97,21 @@ public class SocketNewApConfigActivity extends BaseActivity {
 		back =(LinearLayout)findViewById(R.id.socketnewconfig_back);
 		start = (Button)findViewById(R.id.socketnewconfig_edit_config);
 		showpass = (ImageView)findViewById(R.id.ivShowPass);
-		socketname = (TextView)findViewById(R.id.socketconfig_name);
 		pbStart = (CircleProgress)findViewById(R.id.pbStart);
-		apconfig = (Button)findViewById(R.id.socketdetail_search_config);
 		tvConfigFail = (TextView)findViewById(R.id.tvConfigFail);
 	}
 	
 	private void initView(){
-		socketname.setText(getResources().getString(R.string.device_new_ap));
 		pbStart.setTitle(getResources().getString(R.string.device_new_ap));
-		apconfig.setVisibility(View.GONE);
+		
 		tvConfigFail.setText(getResources().getString(R.string.device_new_aphelp));
+		tvConfigFail.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(SocketNewApConfigActivity.this, AddPlugActivity.class);
+				startActivity(intent);
+			}
+		});
 		
 		back.setOnClickListener(new OnClickListener(){
 
@@ -117,9 +119,9 @@ public class SocketNewApConfigActivity extends BaseActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(start.isEnabled() == true){
+				Log.i(TAG, "back");
 					finish();
-				}
-				else{
+				}else{
 					Toast.makeText(getApplicationContext(), R.string.renwu_config_back, Toast.LENGTH_SHORT).show();
 				}
 			}
@@ -208,7 +210,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 
 					Message msg = Message.obtain();
 					msg.what = TIME_MSG;
-					pbStart.setProgress(timeout_count * 100f / 2500);
+					pbStart.setProgress(timeout_count * 100f / (25 * 60));
 					showHandler.sendMessage(msg);
 //					msg.what = TIME_MSG;
 //					testswitchssid.sendMessage(msg);
@@ -515,7 +517,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 	protected void onCreate(Bundle paramBundle) {
 		// TODO Auto-generated method stub
 		super.onCreate(paramBundle);
-		setContentView(R.layout.socketnewconfig);
+		setContentView(R.layout.socketnewapconfig);
 		findView();
 		initView();
 		
@@ -538,10 +540,8 @@ public class SocketNewApConfigActivity extends BaseActivity {
 			currentSSid = "\"" + ssid_data + "\"";
 		}
 		else{
-			Toast toast;
-			toast=Toast.makeText(getApplicationContext(), R.string.unNetwork, Toast.LENGTH_LONG);
+			Toast.makeText(getApplicationContext(), R.string.unNetwork, Toast.LENGTH_LONG).show();
 			//toast.setGravity(Gravity.CENTER, 0, 0);
-			toast.show();
 		}
 		
 		wifi_connect_statue = WIFI_CONNECT_START;

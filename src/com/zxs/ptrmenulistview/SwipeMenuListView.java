@@ -202,7 +202,7 @@ public class SwipeMenuListView extends ListView implements Pullable{
 		}
 	}
 
-	private int dp2px(int dp) {
+	public int dp2px(int dp) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
 				getContext().getResources().getDisplayMetrics());
 	}

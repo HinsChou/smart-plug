@@ -48,7 +48,7 @@ public class CircleProgress extends View{
 	private void initAttrs(Context context, AttributeSet attrs) {
 		TypedArray typeArray = context.getTheme().obtainStyledAttributes(attrs,R.styleable.GZSportTasksView, 0, 0);
 		
-		mRadius = typeArray.getDimension(R.styleable.GZSportTasksView_gz_sport_radius, 136);
+		mRadius = typeArray.getDimension(R.styleable.GZSportTasksView_gz_sport_radius, 144);
 		mOuterStrokeWidth = typeArray.getDimension(R.styleable.GZSportTasksView_gz_sport_outerStrokeWidth, 24);
 		mStrokeWidth = typeArray.getDimension(R.styleable.GZSportTasksView_gz_sport_strokeWidth, 8);
 		

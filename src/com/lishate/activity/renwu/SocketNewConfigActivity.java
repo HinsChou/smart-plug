@@ -221,10 +221,10 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 //					Log.e(TAG, "定时计数中*********timeout_count=" + timeout_count + "******");
 					timeout_count ++;
 					msg.what = CONNECTING_SEC;
-					if(timeout_count > 2500)
+					if(timeout_count > 25 * 60)
 						msg.what = TIMEROUT;
 					
-					pbStart.setProgress(timeout_count * 100f / 2500);
+					pbStart.setProgress(timeout_count * 100f / (25 * 60));
 					showHandler.sendMessage(msg);
 //					msg.what = TIME_MSG;
 //					testswitchssid.sendMessage(msg);

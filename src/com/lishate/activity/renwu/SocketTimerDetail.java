@@ -42,6 +42,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -49,8 +50,8 @@ public class SocketTimerDetail extends Activity{
 	private final String TAG = "SocketTimerDetail";
 	private final int REQUESTMODIFYTIMER = 10001;
 	private final int REQUESTADDTIMERTASK = 10002;
-	private ImageButton backkey;
-	private ImageButton addtask;
+	private LinearLayout backkey;
+	private LinearLayout addtask;
 //	private ImageView   device_icon;
 //	private EditText	device_name;
 	private ListView	timerlist;
@@ -288,14 +289,12 @@ public class SocketTimerDetail extends Activity{
 //			configinfos.add(oldtimerinfo);
 //		}
 		
-		
-		
 	}
 
 	private void findView() {
 		// TODO Auto-generated method stub
-		backkey = (ImageButton)findViewById(R.id.socketinfo_back);
-		addtask = (ImageButton)findViewById(R.id.sockettimer_add);
+		backkey = (LinearLayout)findViewById(R.id.socketinfo_back);
+		addtask = (LinearLayout)findViewById(R.id.sockettimer_add);
 //		device_icon = (ImageView)findViewById(R.id.socketinfo_detail);
 //		device_name = (EditText)findViewById(R.id.device_name);
 		timerlist  = (ListView)findViewById(R.id.socket_timer_aura);

@@ -28,7 +28,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:text="@string/device_new_onekey"
+            android:text="@string/device_new_ap"
             android:textColor="@color/black"
             android:textSize="18dp" />
 
@@ -180,21 +180,8 @@
                 android:id="@+id/tvConfigFail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/device_new_fail"
+                android:text="@string/device_new_aphelp"
                 android:textColor="@color/grey_text"/>
-
-            <Button
-                android:id="@+id/socketdetail_search_config"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/textview_blue"
-                android:paddingBottom="4dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="4dp"
-                android:text="@string/device_new_ap"
-                android:textColor="@color/blue" />
 
         </LinearLayout>
     </LinearLayout>

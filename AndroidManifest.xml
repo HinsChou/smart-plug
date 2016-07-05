@@ -63,7 +63,7 @@
             android:name="com.lishate.activity.renwu.AddPlugActivity"
             android:configChanges="keyboardHidden|navigation|orientation" 
             android:screenOrientation="portrait" 
-            android:theme="@style/globalActTheme"
+            android:theme="@style/myDialog"
             ></activity>        
         <activity
             android:name="com.lishate.activity.renwu.ConfigDevice"

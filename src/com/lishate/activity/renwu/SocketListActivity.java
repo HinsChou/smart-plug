@@ -157,7 +157,7 @@ public class SocketListActivity extends FirstActivity {
 			//DeviceItemDao did = new DeviceItemDao(getHelper());
 			result.clear();
 			DeviceItemModel item = new DeviceItemModel();
-			result.add(item);
+//			result.add(item);
 			result.addAll(devicedatadao.queryForAll());
 			
 		} catch (SQLException e) {
@@ -261,7 +261,7 @@ public class SocketListActivity extends FirstActivity {
 						// 千万别忘了告诉控件加载完毕了哦！
 						mRefreshView.loadmoreFinish(PullToRefreshLayout.SUCCEED);
 					}
-				}.sendEmptyMessageDelayed(0, 5000);
+				}.sendEmptyMessageDelayed(0, 3000);
 			}
 			
 		});
@@ -277,7 +277,7 @@ public class SocketListActivity extends FirstActivity {
 				// set item background
 				deleteItem.setBackground(new ColorDrawable(getResources().getColor(R.color.red)));
 				// set item width
-				deleteItem.setWidth(140);
+				deleteItem.setWidth(mSocketList.dp2px(96));
 				// set a icon
 				deleteItem.setIcon(R.drawable.device_del);
 				// add to menu
@@ -994,98 +994,98 @@ public class SocketListActivity extends FirstActivity {
 	
 	private void UpdateLocalMessage(GetStatueRspMessage rspmsg, LocalIpInfo ip){
 		boolean isUpdate = false;
-		for(int i= 0; i<devlist.size(); i++){
+		for(int i= 0; i < devlist.size(); i++){
 			DeviceItemModel dim = devlist.get(i);
 			String result = null;
 			baseMessage bm = null;
-			
-			if(rspmsg.getFromId() == dim.getDeviceId()){
-				//dim.setDeviceStatus(GobalDef.DEVICE_STATUS_OPEN);
-				Log.e(TAG, "设备处于在线状态，哈哈------------------------");
-				GobalDef.Instance.getLocalList().putLocalInfo(dim.getDeviceId(), ip.ip);
-				if(dim.getOnline() != DeviceItemModel.Online_On){
-					//更新一下持久化数据库
-					isUpdate = true;
-					
-				}
-				dim.setOnline(DeviceItemModel.Online_On);
-				if(rspmsg.getOpenClose() == 1){
-					if(dim.getOnoff() != DeviceItemModel.OnOff_On){
+			try {
+				if(rspmsg.getFromId() == dim.getDeviceId()){
+					//dim.setDeviceStatus(GobalDef.DEVICE_STATUS_OPEN);
+					Log.e(TAG, "设备处于在线状态，哈哈");
+					GobalDef.Instance.getLocalList().putLocalInfo(dim.getDeviceId(), ip.ip);
+					if(dim.getOnline() != DeviceItemModel.Online_On){
+						//更新一下持久化数据库
 						isUpdate = true;
 					}
-					dim.setOnoff(DeviceItemModel.OnOff_On);
-					Log.d(TAG, "rspmsg openclose true");
-				}
-				else{
-					if(dim.getOnoff() != DeviceItemModel.OnOff_Off){
-						isUpdate = true;
+					dim.setOnline(DeviceItemModel.Online_On);
+					if(rspmsg.getOpenClose() == 1){
+						if(dim.getOnoff() != DeviceItemModel.OnOff_On){
+							isUpdate = true;
+						}
+						dim.setOnoff(DeviceItemModel.OnOff_On);
+						Log.d(TAG, "rspmsg openclose true");
 					}
-					dim.setOnoff(DeviceItemModel.OnOff_Off);
-					Log.d(TAG, "rspmsg openclose false");
-				}
-				Log.d(TAG, "ip is: " + ip.ip);
-				
-				dim.setLocalIp(ip.ip);
-				
-				
-				GetServerConfigReqMessage lrm = new GetServerConfigReqMessage();
-				lrm.Direct = MessageDef.BASE_MSG_FT_REQ;
-				lrm.setFromId(GobalDef.MOBILEID);
-				lrm.setToId(dim.getDeviceId());
-				Log.d(TAG, "to hid is: " + lrm.ToHID);
-				Log.d(TAG, "to lid is: " + lrm.ToLID);
-				Log.d(TAG, "dim deviceid is: " + dim.getDeviceId());
-				lrm.MsgType = MessageDef.MESSAGE_TYPE_GET_CONFIG_SERVER_REQ;
-				lrm.Seq = MessageSeqFactory.GetNextSeq();
-				lrm.FromType = MessageDef.BASE_MSG_FT_MOBILE;
-				lrm.ToType = MessageDef.BASE_MSG_FT_HUB;
-				
-				ServerItemModel sim = new ServerItemModel();
-				sim.setIpaddress(GobalDef.SERVER_URL);
-				sim.setPort(GobalDef.SERVER_PORT);
-				bm = UdpProcess.GetMsgReturn(lrm, sim);
-				if(bm != null){
-					GetServerConfigRspMessage gscrsp = (GetServerConfigRspMessage)bm;
-					gscrsp.Content2Array();
-					//这里取出时间信息从主机设备去获取。
-					result = Utility.getConfigStringInfo(gscrsp.configinfos);
-					dim.setTimeinfo(result);
-					if(gscrsp.configinfos.size() >0)
-					{
-						ConfigInfo ci = gscrsp.configinfos.get(0);
-						if(ci.isenable)
-						{
-							if(dim.getSettime() != DeviceItemModel.SetTime_On){
-								isUpdate = true;
-							}
-							dim.setSettime(DeviceItemModel.SetTime_On);
+					else{
+						if(dim.getOnoff() != DeviceItemModel.OnOff_Off){
+							isUpdate = true;
 						}
-						else
+						dim.setOnoff(DeviceItemModel.OnOff_Off);
+						Log.d(TAG, "rspmsg openclose false");
+					}
+					Log.d(TAG, "ip is: " + ip.ip);
+					
+					dim.setLocalIp(ip.ip);
+					
+					GetServerConfigReqMessage lrm = new GetServerConfigReqMessage();
+					lrm.Direct = MessageDef.BASE_MSG_FT_REQ;
+					lrm.setFromId(GobalDef.MOBILEID);
+					lrm.setToId(dim.getDeviceId());
+					Log.d(TAG, "to hid is: " + lrm.ToHID);
+					Log.d(TAG, "to lid is: " + lrm.ToLID);
+					Log.d(TAG, "dim deviceid is: " + dim.getDeviceId());
+					lrm.MsgType = MessageDef.MESSAGE_TYPE_GET_CONFIG_SERVER_REQ;
+					lrm.Seq = MessageSeqFactory.GetNextSeq();
+					lrm.FromType = MessageDef.BASE_MSG_FT_MOBILE;
+					lrm.ToType = MessageDef.BASE_MSG_FT_HUB;
+					
+					ServerItemModel sim = new ServerItemModel();
+					sim.setIpaddress(GobalDef.SERVER_URL);
+					sim.setPort(GobalDef.SERVER_PORT);
+					bm = UdpProcess.GetMsgReturn(lrm, sim);
+					if(bm != null){
+						GetServerConfigRspMessage gscrsp = (GetServerConfigRspMessage)bm;
+						gscrsp.Content2Array();
+						//这里取出时间信息从主机设备去获取。
+						result = Utility.getConfigStringInfo(gscrsp.configinfos);
+						dim.setTimeinfo(result);
+						if(gscrsp.configinfos.size() >0)
 						{
-							if(dim.getSettime() != DeviceItemModel.SetTime_Off){
-								isUpdate = true;
+							ConfigInfo ci = gscrsp.configinfos.get(0);
+							if(ci.isenable)
+							{
+								if(dim.getSettime() != DeviceItemModel.SetTime_On){
+									isUpdate = true;
+								}
+								dim.setSettime(DeviceItemModel.SetTime_On);
 							}
-							dim.setSettime(DeviceItemModel.SetTime_Off);
+							else
+							{
+								if(dim.getSettime() != DeviceItemModel.SetTime_Off){
+									isUpdate = true;
+								}
+								dim.setSettime(DeviceItemModel.SetTime_Off);
+							}
 						}
+						
 					}
 					
+	//			if(true == isUpdate){
+	//				try {
+	//					devicedatadao.update(dim);
+	//				} catch (SQLException e) {
+	//					// TODO Auto-generated catch block
+	//					e.printStackTrace();
+	//				}
+	//			}	
+					
 				}
-				
-//			if(true == isUpdate){
-//				try {
-//					devicedatadao.update(dim);
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
+//				else{
+//					
 //				}
-//			}	
-				
+			} catch (Exception e) {
+				Log.e(TAG, "设备处于离线状态，哈哈");
+				dim.setOnline(DeviceItemModel.Online_Off);	
 			}
-//			else
-//			{
-//				Log.e(TAG, "设备处于离线状态，哈哈------------------------");
-//				dim.setOnline(DeviceItemModel.Online_Off);	
-//			}
 		}
 		Message msg = handler.obtainMessage();
 		msg.what = update_ui_message;
@@ -1164,23 +1164,28 @@ public class SocketListActivity extends FirstActivity {
 			while(true)
 			{
 				try{
-					if(Utility.CheckNetwork(SocketListActivity.this) == true){
+					if(Utility.CheckNetwork(SocketListActivity.this) == true && refreshrun){
 						//RefreshAllDevice();
 						//mAdapter.notifyDataSetChanged();
-//						Log.d(TAG, "update local info");
-//						if(refreshrun)
-//							UpdateLocalInfo();
-							//new RefreshTask().execute(new Void[0]);
+						Log.i(TAG, "update local info");
+						UpdateLocalInfo();
+						//new RefreshTask().execute(new Void[0]);
 					}
 					//Message msg = Message.obtain();
 					//SocketListActivity.this.handler.sendMessage(msg);
-					sleep(2000L);
+					
 				}
 				catch(Exception e){
 					if(e.getMessage() != null){
 						Log.d(TAG, e.getMessage());
 					}
 					e.printStackTrace();
+				}finally {
+					try {
+						sleep(3000L);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -1352,28 +1357,23 @@ public class SocketListActivity extends FirstActivity {
 			DeviceItemModel dim = devlist.get(i);
 			orm.setToId(dim.getDeviceId());
 			UdpProcess.SendMsg(ds, orm, sim);
-			
 		}
 		
-		
-		while(true){
+//		while(true){
 			LocalIpInfo ip = new LocalIpInfo();
 			baseMessage bm = RecvMsg(ds, ip);
 			Log.d(TAG, "after recvmsg ip: " + ip.ip);
-			if(bm != null){
-				if(bm.MsgType == MessageDef.MESSAGE_TYPE_GET_STATUS_RSP){
-					GetStatueRspMessage gsrm = (GetStatueRspMessage)bm;
-					
-					UpdateLocalMessage(gsrm, ip);
-				}
-			}
-			else{
-				//Log.e(TAG, "设备处于离线状态，哈哈------------------------");
-				break;
-			}
-		}
-		
-		
+			GetStatueRspMessage gsrm = (GetStatueRspMessage)bm;
+			UpdateLocalMessage(gsrm, ip);
+//			if(bm != null){
+//				if(bm.MsgType == MessageDef.MESSAGE_TYPE_GET_STATUS_RSP){
+//					GetStatueRspMessage gsrm = (GetStatueRspMessage)bm;
+//					UpdateLocalMessage(gsrm, ip);
+//				}
+//			}else{
+				
+//			}
+//		}
 	}
 	
 	class OpenAllTask extends AsyncTask<Integer, Integer, Integer>{
@@ -1964,33 +1964,6 @@ private class SaveConfigInfoTask extends  AsyncTask<DeviceItemModel,Integer, Int
 			return 0;
 		}
 		
-	}
-
-
-	public void RenameDeviceForPlug(DeviceItemModel dim2, int position) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		// TODO Auto-generated method stub
-		Log.i(TAG, "onTouchEvent------------ -------------");
-		if(popup.isShowing())
-		{
-			Log.i(TAG, "popup------------ onClick-------------");
-			//if(popup.isOutsideTouchable())
-				popup.dismiss();
-		}
-		if(popupseticon.isShowing())
-		{
-			//if(popupseticon.isOutsideTouchable())
-				popupseticon.dismiss();
-		}
-		
-		return super.onTouchEvent(event);
 	}
 
 }
