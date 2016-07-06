@@ -2,77 +2,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/aura_bg"
     android:orientation="vertical" >
-    
-    <RelativeLayout 
-        android:layout_height="50.0dip" 
-        android:layout_width="fill_parent" 
-        android:paddingTop="8.0dip" 
-        android:background="@color/transprent"
-        >
-        
-        <ImageButton 
-            android:layout_height="wrap_content" 
-            android:layout_width="wrap_content" 
-            android:background="@drawable/back_aura" 
-            android:layout_centerVertical="true" 
-            android:layout_alignParentLeft="true" 
-            android:layout_marginLeft="10.0dip"
-            android:id="@+id/socketinfo_back"/>
-        
-        
-        <TextView 
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_centerInParent="true"
-            android:id="@+id/socketdetail_timer"
-            android:text="@string/edittimer"
-            android:textSize="17.0dip"
-            />
-        
-        <ProgressBar
-            android:layout_height="wrap_content" 
-            android:layout_width="wrap_content" 
-            style="?android:attr/progressBarStyleSmall" 
-            android:layout_centerVertical="true" 
-            android:layout_alignParentRight="true" 
-            android:indeterminate="true" 
-            android:layout_marginRight="20.0dip" 
-            android:layout_marginTop="10.0dip" 
-            android:layout_marginLeft="30.0dip" 
-            android:visibility="gone" 
-            android:id="@+id/socketinfo_refresjing"
-             />
-        
-        <Button 
-            android:layout_height="wrap_content" 
-            android:layout_width="wrap_content"
-            android:background="@color/transprent"
-            android:layout_centerVertical="true" 
-            android:layout_alignParentRight="true" 
-            android:id="@+id/sockettimer_complete" 
-        	android:text="@string/complete"
-            android:layout_marginRight="10.0dip"
-            android:textSize="17.0dip"
-            />
-    </RelativeLayout>
-    
+
     <RelativeLayout
-        android:layout_marginTop="40dp"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-		
-        <View 
+        android:layout_height="48.0dip"
+        android:background="@color/grey" >
+
+        <LinearLayout
+            android:id="@+id/socketinfo_back"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/socketdetail_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="@string/edittimer"
+            android:textSize="17.0dip" />
+
+        <ProgressBar
+            android:id="@+id/socketinfo_refresjing"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="16dp"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/sockettimer_complete"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:background="@color/transprent"
+            android:text="@string/complete"
+            android:textSize="17.0dip"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp" >
+
+        <View
             android:id="@+id/midrefrenceline"
             android:layout_width="2dp"
             android:layout_height="20dp"
-            
-            android:layout_centerHorizontal="true"/>
-        
-       
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/textView1"
@@ -81,123 +70,129 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/midrefrenceline"
             android:text="@string/hour" />
-		 <NumberPicker
+
+        <NumberPicker
             android:id="@+id/hour"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"  
-            android:focusable="false"
-            android:layout_toLeftOf="@id/textView1"    
-            android:layout_marginLeft="40dp" />
-		 
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_toLeftOf="@id/textView1"
+            android:focusable="false" />
+
         <NumberPicker
             android:id="@+id/minute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:focusable="false"
-			android:focusableInTouchMode="true" 
             android:layout_alignParentTop="true"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/midrefrenceline" />
+            android:layout_toRightOf="@id/midrefrenceline"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:layout_alignBottom="@+id/textView1"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/minute"
-            android:text="@string/minute" />
-
+            android:text="@string/minute"
+            android:visibility="visible" />
     </RelativeLayout>
-    	<RelativeLayout 
-	    android:layout_marginTop="30dp"
-	    android:background="@drawable/wai"
-	    android:layout_gravity="center_horizontal"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content">
 
-		<CheckBox
-		    android:id="@+id/openorclose"
-		    android:layout_centerInParent="true"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:checked="false"
-		    style="@style/MyOpenCloseDev" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" >
 
-	</RelativeLayout>
-	<RelativeLayout 
-	    android:layout_marginTop="50dp"
-	    android:layout_gravity="center_horizontal"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content">
-		
-			<TextView
-	            android:id="@+id/repeatday"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_centerVertical="true"
-	            android:textSize="10pt"
-	            android:layout_marginLeft="10dp"
-	            android:text="@string/repeat" />
-			
-			<CheckBox
-			    android:id="@+id/sundaycheck"
-			    android:layout_toRightOf="@id/repeatday"
-			    android:layout_centerVertical="true"
-			    android:layout_marginLeft="8dp"
-			    style="@style/sundaystyle"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content" />
-			<CheckBox
-			    android:id="@+id/mondaycheck"
-			    android:layout_toRightOf="@id/sundaycheck"
-			    android:layout_marginLeft="8dp"
-			    android:layout_centerVertical="true"
-			    style="@style/mondaystyle"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content" />
-			<CheckBox
-			    android:id="@+id/tuesdaycheck"
-			    android:layout_toRightOf="@id/mondaycheck"
-			    android:layout_centerVertical="true"
-			    android:layout_marginLeft="8dp"
-			    style="@style/tuesdaystyle"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content" />
-			<CheckBox
-			    android:id="@+id/wednesdaycheck"
-			    android:layout_toRightOf="@id/tuesdaycheck"
-			    android:layout_centerVertical="true"
-			    android:layout_marginLeft="8dp"
-			    android:layout_width="wrap_content"
-			    style="@style/wednesdaystyle"
-			    android:layout_height="wrap_content" />
-			<CheckBox
-			    android:id="@+id/thurdaycheck"
-			    android:layout_toRightOf="@id/wednesdaycheck"
-			    android:layout_centerVertical="true"
-			    android:layout_marginLeft="8dp"
-			    style="@style/thurdaystyle"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content" />
-			<CheckBox
-			    android:id="@+id/fridaycheck"
-			    android:layout_centerVertical="true"
-			    android:layout_toRightOf="@id/thurdaycheck"
-			    android:layout_marginLeft="8dp"
-			    style="@style/fridaystyle"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content" />
-			<CheckBox
-			    android:id="@+id/satdaycheck"
-			    android:layout_centerVertical="true"
-			    android:layout_toRightOf="@id/fridaycheck"
-			    android:layout_marginLeft="8dp"
-			    style="@style/satdaystyle"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content" />
-		
-	</RelativeLayout>
+        <CheckBox
+            android:id="@+id/openorclose"
+            style="@style/MyOpenCloseDev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:checked="false" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp" >
+
+        <TextView
+            android:id="@+id/repeatday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="@string/repeat"
+            android:textSize="10pt" />
+
+        <CheckBox
+            android:id="@+id/sundaycheck"
+            style="@style/sundaystyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/repeatday" />
+
+        <CheckBox
+            android:id="@+id/mondaycheck"
+            style="@style/mondaystyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/sundaycheck" />
+
+        <CheckBox
+            android:id="@+id/tuesdaycheck"
+            style="@style/tuesdaystyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/mondaycheck" />
+
+        <CheckBox
+            android:id="@+id/wednesdaycheck"
+            style="@style/wednesdaystyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/tuesdaycheck" />
+
+        <CheckBox
+            android:id="@+id/thurdaycheck"
+            style="@style/thurdaystyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/wednesdaycheck" />
+
+        <CheckBox
+            android:id="@+id/fridaycheck"
+            style="@style/fridaystyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/thurdaycheck" />
+
+        <CheckBox
+            android:id="@+id/satdaycheck"
+            style="@style/satdaystyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/fridaycheck" />
+    </RelativeLayout>
+
 </LinearLayout>

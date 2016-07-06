@@ -126,14 +126,14 @@ public class AuraSocketTimerAdapter extends BaseAdapter {
 		}
 		viewHolder.timepiont.setText(str);
 		if(config.startenable && !config.endenable){
-			viewHolder.isOnOff.setText(mContext.getText(R.string.timeropen));
+			viewHolder.isOnOff.setBackgroundResource(R.drawable.plug_on);
 		}else if(!config.startenable && config.endenable){
-			viewHolder.isOnOff.setText(mContext.getText(R.string.timerclose));
+			viewHolder.isOnOff.setBackgroundResource(R.drawable.plug_off);
 		}
 		if(config.isenable){
-			viewHolder.activeButton.setImageResource(R.drawable.timer_active);
+			viewHolder.activeButton.setImageResource(R.drawable.switch_on);
 		}else{
-			viewHolder.activeButton.setImageResource(R.drawable.timer_inactive);
+			viewHolder.activeButton.setImageResource(R.drawable.switch_off);
 		}
 		viewHolder.activeButton.setOnClickListener(new ActiveTimer(position));
 		viewHolder.deletButton.setOnClickListener(new DeletTask(position));

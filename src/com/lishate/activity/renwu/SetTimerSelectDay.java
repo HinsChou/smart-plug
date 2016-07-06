@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.NumberPicker.Formatter;
 import android.widget.NumberPicker.OnScrollListener;
@@ -36,7 +37,7 @@ public class SetTimerSelectDay extends Activity implements OnScrollListener, For
 	private Byte minute;
 	private NumberPicker hourpick;
 	private NumberPicker minutepick;
-	private ImageButton back;
+	private LinearLayout back;
 	private Button complete;
 	private ConfigInfo mconfig;
 	private enum RequestCode{
@@ -149,7 +150,7 @@ public class SetTimerSelectDay extends Activity implements OnScrollListener, For
 		checkfriday = (CheckBox)findViewById(R.id.fridaycheck);	
 		checksatday = (CheckBox)findViewById(R.id.satdaycheck);
 		
-		back = (ImageButton)findViewById(R.id.socketinfo_back);
+		back = (LinearLayout)findViewById(R.id.socketinfo_back);
 		complete = (Button)findViewById(R.id.sockettimer_complete);
 		
 		mrequestcode = RequestCode.NONE;
