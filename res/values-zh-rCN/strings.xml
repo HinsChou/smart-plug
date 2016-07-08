@@ -105,7 +105,6 @@
     <string name="renwu_socket_detail_close">关闭</string>
     <string name="renwu_socket_dtail_maxtime">定时最大7个</string>
     <string name="renwu_socket_offline">设备断线</string>
-    <string name="rewnu_config_start"/>
     <string name="renwu_config_fail">配置失败</string>
     <string name="renwu_config_sus">配置成功</string>
     <string name="renwu_config_find">发现设备</string>

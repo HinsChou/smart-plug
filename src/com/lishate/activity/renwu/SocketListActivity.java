@@ -24,10 +24,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -40,31 +37,24 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import kankan.wheel.widget.WheelView;
+import kankan.wheel.widget.adapters.NumericWheelAdapter;
 
-import com.lishate.activity.BaseActivity;
-import com.lishate.activity.ControlActivity;
 import com.lishate.activity.FirstActivity;
-import com.lishate.activity.SwtichListActivity;
-import com.lishate.activity.renwu.ScoketTaskEditActivity.SaveConfigInfoTask;
 import com.lishate.adapter.SocketListAdapter;
-import com.lishate.adapter.SwitchAdapter;
 import com.lishate.application.switchApplication;
 import com.lishate.data.GobalDef;
 import com.lishate.data.LocalIpInfo;
@@ -80,7 +70,6 @@ import com.lishate.message.GetServerConfigReqMessage;
 import com.lishate.message.GetServerConfigRspMessage;
 import com.lishate.message.GetStatueReqMessage;
 import com.lishate.message.GetStatueRspMessage;
-import com.lishate.message.LoginReqMessage;
 import com.lishate.message.MessageDef;
 import com.lishate.message.MessageSeqFactory;
 import com.lishate.message.OpenReqMessage;
@@ -194,6 +183,7 @@ public class SocketListActivity extends FirstActivity {
 		mSocketList = (SwipeMenuListView)findViewById(R.id.socketlist_listview);
 		mNetworkView = (TextView)findViewById(R.id.socketlist_net_check);
 		mRefreshView = (PullToRefreshLayout)findViewById(R.id.refresh_view);
+		
 	}
 	
 	private void initView(){
@@ -1363,15 +1353,11 @@ public class SocketListActivity extends FirstActivity {
 			LocalIpInfo ip = new LocalIpInfo();
 			baseMessage bm = RecvMsg(ds, ip);
 			Log.d(TAG, "after recvmsg ip: " + ip.ip);
-			GetStatueRspMessage gsrm = (GetStatueRspMessage)bm;
-			UpdateLocalMessage(gsrm, ip);
 //			if(bm != null){
-//				if(bm.MsgType == MessageDef.MESSAGE_TYPE_GET_STATUS_RSP){
-//					GetStatueRspMessage gsrm = (GetStatueRspMessage)bm;
-//					UpdateLocalMessage(gsrm, ip);
-//				}
-//			}else{
-				
+				if(bm.MsgType == MessageDef.MESSAGE_TYPE_GET_STATUS_RSP){
+					GetStatueRspMessage gsrm = (GetStatueRspMessage)bm;
+					UpdateLocalMessage(gsrm, ip);
+				}
 //			}
 //		}
 	}

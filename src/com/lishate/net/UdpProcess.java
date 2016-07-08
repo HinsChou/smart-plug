@@ -58,7 +58,7 @@ public class UdpProcess {
 			ds.receive(packet);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 			packet = null;
 		}
 		return packet;

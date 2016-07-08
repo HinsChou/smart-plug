@@ -18,8 +18,8 @@ public class ControlSetAlertActivity extends Activity {
 	private Button cancel;
 	private String hour = "1";
 	private WheelView hours;
-	private String min = "1";
 	private WheelView mins;
+	private String min = "1";
 	private Button save;
 	
 	public void findView(){

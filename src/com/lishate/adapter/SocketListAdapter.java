@@ -5,33 +5,24 @@ import java.util.List;
 
 import com.lishate.activity.renwu.ChangeLampProperty;
 import com.lishate.activity.renwu.SocketListActivity;
-import com.lishate.data.GobalDef;
 import com.lishate.data.model.DeviceItemModel;
-import com.lishate.utility.Utility;
 import com.lishate.R;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class SocketListAdapter extends BaseAdapter {
@@ -40,8 +31,6 @@ public class SocketListAdapter extends BaseAdapter {
 	private SocketListActivity mContext;
 	private List<DeviceItemModel> mSwitchList = new ArrayList<DeviceItemModel>();
 	private LayoutInflater mInflater;
-	private float x, ux;
-	private byte[] mContent;  
 	private Bitmap myBitmap;
 	
 	//private boolean isDelete = false;
@@ -61,14 +50,14 @@ public class SocketListAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
+		
 		//Log.d(TAG, "get size is: " + mSwitchList.size());
 		return mSwitchList.size();
 	}
 
 	@Override
 	public Object getItem(int pos) {
-		// TODO Auto-generated method stub
+		
 		if(pos < 0 || pos >= mSwitchList.size())
 		{
 			return null;
@@ -80,7 +69,7 @@ public class SocketListAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int pos) {
-		// TODO Auto-generated method stub
+		
 		Log.d(TAG, "get item id");
 		return pos;
 	}
@@ -117,26 +106,6 @@ public class SocketListAdapter extends BaseAdapter {
 		return R.string.renwu_socketlist_settime_off;
 	}
 	
-	private void VisibleDelete(SocketHolder holder){
-		Log.d(TAG, " Visible delete");
-		holder.socketDelete.setVisibility(View.VISIBLE);// = View.VISIBLE;
-		holder.onoff.setVisibility(View.GONE);
-		holder.timeronoff.setVisibility(View.GONE);
-		holder.timerset.setVisibility(View.GONE);
-		DeviceItemModel dim = mSwitchList.get(holder.pos);
-		dim.setUi_del(true);
-	}
-	
-	private void GoneDelete(SocketHolder holder){
-		Log.d(TAG, " Gone delete");
-		holder.socketDelete.setVisibility(View.GONE);
-		holder.onoff.setVisibility(View.VISIBLE);
-		holder.timeronoff.setVisibility(View.GONE);
-		holder.timerset.setVisibility(View.GONE);
-		DeviceItemModel dim = mSwitchList.get(holder.pos);
-		dim.setUi_del(false);
-	}
-	
 	private void InitViewHolder(SocketHolder viewHolder, int pos ){
 		
 		DeviceItemModel dim = mSwitchList.get(pos);
@@ -155,11 +124,10 @@ public class SocketListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
+		
 		SocketHolder viewHolder = null;
 		Log.e(TAG, "getView");
 		
-		//*
 		if(convertView == null){
 			viewHolder = new SocketHolder();
 			Log.d(TAG, "create convertview");
@@ -265,7 +233,7 @@ public class SocketListAdapter extends BaseAdapter {
 //
 //			@Override
 //			public boolean onTouch(View v, MotionEvent event) {
-//				// TODO Auto-generated method stub
+//				
 //				Log.d(TAG, "socketlistadpater on touch ");
 //				
 //				final SocketHolder holder = (SocketHolder)v.getTag();
@@ -334,13 +302,13 @@ public class SocketListAdapter extends BaseAdapter {
 		
 		private int position;
 		public RenameDevice(int pos) {
-			// TODO Auto-generated constructor stub
+			
 			this.position = pos;
 		}
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			
 			DeviceItemModel dim = (DeviceItemModel)getItem(position);
 			if(null != dim)
 			{
@@ -359,16 +327,15 @@ public class SocketListAdapter extends BaseAdapter {
 		
 	}
 	private class OnCheckedTimerOnOff implements OnClickListener{
-		private boolean mchecked;
 		private int position;
 		public OnCheckedTimerOnOff(int pos) {
-			// TODO Auto-generated constructor stub
+			
 			this.position = pos;
 		}
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			
 			ToggleButton timeronoff = (ToggleButton) v;
 			DeviceItemModel dim = (DeviceItemModel)getItem(position);
 			if(null != dim)
@@ -379,13 +346,13 @@ public class SocketListAdapter extends BaseAdapter {
 	private class SetDeviceIcon implements OnClickListener{
 		private int postion;
 		public SetDeviceIcon(int pos) {
-			// TODO Auto-generated constructor stub
+			
 			this.postion = pos;
 		}
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			
 			DeviceItemModel dim = (DeviceItemModel)getItem(postion);
 			if(null != dim)
 				mContext.SetIconForDevice(dim, v);
@@ -395,12 +362,12 @@ public class SocketListAdapter extends BaseAdapter {
 	private class SetDeviceName implements OnClickListener{
 
 		public SetDeviceName(int pos) {
-			// TODO Auto-generated constructor stub
+			
 		}
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
@@ -408,13 +375,13 @@ public class SocketListAdapter extends BaseAdapter {
 	private class SetTimerTask implements OnClickListener{
 		private int postion;
 		public SetTimerTask(int pos) {
-			// TODO Auto-generated constructor stub
+			
 			this.postion = pos;
 		}
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			
 			DeviceItemModel dim = (DeviceItemModel)getItem(postion);
 			if(null != dim)
 			{
@@ -429,13 +396,12 @@ public class SocketListAdapter extends BaseAdapter {
 	private class ShowTimerTask implements OnClickListener{
 		private int postion;
 		public ShowTimerTask(int pos) {
-			// TODO Auto-generated constructor stub
 			this.postion = pos;
 		}
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			
 			DeviceItemModel dim = (DeviceItemModel)getItem(postion);
 			if(null != dim)
 			{
@@ -445,7 +411,6 @@ public class SocketListAdapter extends BaseAdapter {
 				mContext.OnItemClick(tempdim);
 			}
 		}
-		
 	}	
 	
 	class OnDeleteClickListener implements OnClickListener{
@@ -459,7 +424,7 @@ public class SocketListAdapter extends BaseAdapter {
 		}
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			
 			Log.d(TAG, "SocketListAdapter onclick");
 			DeviceItemModel dim = (DeviceItemModel)SocketListAdapter.this.getItem(ppos);
 			mContext.OnRemoveItem(dim);
@@ -479,7 +444,7 @@ public class SocketListAdapter extends BaseAdapter {
 		
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			
 			Log.d(TAG, "SocketListAdapter onclick");
 			DeviceItemModel dim = (DeviceItemModel)SocketListAdapter.this.getItem(ppos);
 			mContext.OnItemOpenClick(dim);

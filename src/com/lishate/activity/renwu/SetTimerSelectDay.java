@@ -1,21 +1,20 @@
 package com.lishate.activity.renwu;
 
 
+import com.aigestudio.wheelpicker.AbstractWheelPicker;
+import com.aigestudio.wheelpicker.AbstractWheelPicker.OnWheelChangeListener;
+import com.aigestudio.wheelpicker.WheelTimePicker;
 import com.lishate.R;
 import com.lishate.message.ConfigInfo;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Config;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.NumberPicker.Formatter;
@@ -38,8 +37,9 @@ public class SetTimerSelectDay extends Activity implements OnScrollListener, For
 	private NumberPicker hourpick;
 	private NumberPicker minutepick;
 	private LinearLayout back;
-	private Button complete;
+	private LinearLayout complete;
 	private ConfigInfo mconfig;
+	private WheelTimePicker wtpSelect;
 	private enum RequestCode{
 		MODIFYTASK,
 		ADDTIMETASK,
@@ -81,11 +81,17 @@ public class SetTimerSelectDay extends Activity implements OnScrollListener, For
 		if(mrequestcode == RequestCode.MODIFYTASK){
 			if(mconfig.startenable)
 			{
+				wtpSelect.setCurrentTime(mconfig.startHour&0x1f, mconfig.startMin&0x3f);
+				hour = mconfig.startHour;
+				minute = mconfig.startMin;
 				hourpick.setValue(mconfig.startHour&0x1f);
 				minutepick.setValue(mconfig.startMin&0x3f);
 				openofclose.setChecked(true);
 				mconfig.endenable = false;
 			}else if(mconfig.endenable){
+				wtpSelect.setCurrentTime(mconfig.endHour&0x1f, mconfig.endMin&0x3f);
+				hour = mconfig.endHour;
+				minute = mconfig.endMin;
 				hourpick.setValue(mconfig.endHour&0x1f);
 				minutepick.setValue(mconfig.endMin&0x3f);
 				openofclose.setChecked(false);
@@ -135,10 +141,37 @@ public class SetTimerSelectDay extends Activity implements OnScrollListener, For
 			}
 		}
 		
+		int padding = getResources().getDimensionPixelSize(R.dimen.WheelPadding);
+        wtpSelect.setItemCount(5);
+        wtpSelect.setItemSpace(padding * 3);
+        wtpSelect.setTextSize(padding * 4);
+        wtpSelect.setCurrentTextColor(getResources().getColor(R.color.blue));
+        wtpSelect.setOnWheelChangeListener(new OnWheelChangeListener() {
+			
+			@Override
+			public void onWheelScrolling(float deltaX, float deltaY) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onWheelSelected(int index, String data) {
+				// TODO Auto-generated method stub
+				hour = (byte) Integer.parseInt(data.split(":")[0]);
+				minute = (byte) Integer.parseInt(data.split(":")[1]);
+			}
+
+			@Override
+			public void onWheelScrollStateChanged(int state) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 	private void findView() {
 		// TODO Auto-generated method stub
+		wtpSelect = (WheelTimePicker) findViewById(R.id.wtpSelect);
 		hourpick = (NumberPicker)findViewById(R.id.hour);
 		minutepick = (NumberPicker)findViewById(R.id.minute);
 		openofclose = (CheckBox)findViewById(R.id.openorclose);
@@ -151,7 +184,7 @@ public class SetTimerSelectDay extends Activity implements OnScrollListener, For
 		checksatday = (CheckBox)findViewById(R.id.satdaycheck);
 		
 		back = (LinearLayout)findViewById(R.id.socketinfo_back);
-		complete = (Button)findViewById(R.id.sockettimer_complete);
+		complete = (LinearLayout)findViewById(R.id.sockettimer_complete);
 		
 		mrequestcode = RequestCode.NONE;
 		mconfig = (ConfigInfo) getIntent().getSerializableExtra("MODIFYTIMER");
@@ -160,9 +193,7 @@ public class SetTimerSelectDay extends Activity implements OnScrollListener, For
 		}else{
 			mconfig = new ConfigInfo();
 			mrequestcode = RequestCode.ADDTIMETASK;
-			
 		}
-		
 	}
 
 	@Override
@@ -214,11 +245,15 @@ public class SetTimerSelectDay extends Activity implements OnScrollListener, For
 			mconfig.startenable = openofclose.isChecked();
 			mconfig.endenable = !openofclose.isChecked();
 			if(mconfig.startenable){
-				mconfig.startHour = (byte) hourpick.getValue();
-				mconfig.startMin = (byte) minutepick.getValue();
+//				mconfig.startHour = (byte) hourpick.getValue();
+//				mconfig.startMin = (byte) minutepick.getValue();
+				mconfig.startHour = hour;
+				mconfig.startMin = minute;
 			}else{
-				mconfig.endHour = (byte) hourpick.getValue();
-				mconfig.endMin = (byte) minutepick.getValue();
+//				mconfig.endHour = (byte) hourpick.getValue();
+//				mconfig.endMin = (byte) minutepick.getValue();
+				mconfig.endHour = hour;
+				mconfig.endMin = minute;
 			}
 			if(checksunday.isChecked())
 			{

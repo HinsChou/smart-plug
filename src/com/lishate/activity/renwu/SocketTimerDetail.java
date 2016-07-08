@@ -132,15 +132,6 @@ public class SocketTimerDetail extends Activity{
 			ci.week = Utility.clearByteIndex(ci.week, 2);
 		}
 		
-//		String sresult = (String) endTime.getText();
-//		String[] times = sresult.split(":");
-//		ci.endHour = (byte) Integer.parseInt(times[0]);
-//		ci.endMin = (byte) Integer.parseInt(times[1]);
-//		sresult = (String)startTime.getText();
-//		times = sresult.split(":");
-//		ci.startHour = (byte)Integer.parseInt(times[0]);
-//		ci.startMin = (byte)Integer.parseInt(times[1]);
-		
 	}
 	
 
@@ -175,8 +166,6 @@ public class SocketTimerDetail extends Activity{
 		initView();
 		mtimeradapter = new AuraSocketTimerAdapter(this,  configinfos);
 		timerlist.setAdapter(mtimeradapter);
-		
-		
 	}
 
 	private void SaveOldConfig() {
@@ -199,7 +188,6 @@ public class SocketTimerDetail extends Activity{
 
 	private void initView() {
 		// TODO Auto-generated method stub
-		
 		
 		backkey.setOnClickListener(new OnClickListener(){
 
