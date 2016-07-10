@@ -151,4 +151,45 @@
    <string name="minute">"分"</string>
    <string name="timeropen">"开"</string>
    <string name="timerclose">"关"</string>
+   
+   <string name="head">这里是HeadView</string>
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="pullup_to_load">上拉加载更多</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="loading">正在加载...</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="load_fail">加载失败</string>
+    
+    <string name="device_new_power">确定设备已接入电源</string>
+    <string name="device_new_config">长按开关键5秒,当红灯开始慢闪,选择配置</string>
+    <string name="device_new_onekey">一键配置</string>
+    <string name="device_new_help">一键配置说明</string>
+    <string name="device_new_fail">如果配置失败,请点击</string>
+    <string name="device_new_ap">AP配置</string>
+    <string name="device_new_aphelp">AP配置说明</string>
+    
+    <string name="help_title">使用说明书</string>
+    <string name="help_ap_title">AP配置为一种辅助配置, 如果一键配置失效, 请尝试以下方法进行配置.</string>
+    <string name="help_ap_one">(1) 在一键配置的基础上继续长按配置键5S, 指示灯进入更慢闪的状态. </string>
+    <string name="help_ap_two">(2) 现在手动跳转到设置的无线局域网界面, 手动连接上插座的SSID.</string>
+    <string name="help_ap_three">(3) 等手机正常连接到插座之后, 回到APP配置界面, 选择需要配置路由器的表项, 点击 "开始配置".</string>
+    <string name="help_ap_four">(4) 等待配置, 如果AP配置成功就跳转到主控界面.</string>
+    <string name="help_ok_h1">1. 添加配置</string>
+    <string name="help_ok_h1_one">(1) 手机连接路由器</string>
+    <string name="help_ok_h1_two">(2) 长按配置键5S, 指示灯开始闪烁, 进入智能配置模式.</string>
+    <string name="help_ok_h1_three">(3) 打开APP, 点击下方添加设备后, 选择 "一键配置" 进入一键配置界面.</string>
+    <string name="help_ok_h1_four">(4) 输入 当前手机连接的路由器的密码, 点击 "开始配置".</string>
+    <string name="help_ok_h1_five">(5) 等待配置成功</string>
+    <string name="help_ok_h2">2. 使用插座</string>
+    <string name="help_ok_h2_one">(1) 插座配置完成后会自动跳回到主控界面, 可以对添加成功的设备进行配置了.</string>
+    <string name="help_ok_h2_two">(2) 可以修改设备图片, 修改名称, 进行开关控制, 开启定时功能, 设置定时任务.</string>
+    <string name="help_ok_h3">3. AP配置</string>
+    <string name="help_ok_h3_one">(1) 如果一键配置失败, 请尝试选择AP配置.</string>
+    
+    <string name="timer_new">添加新闹钟</string>
+    <string name="timer_switch">定时开关</string>
 </resources>

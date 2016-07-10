@@ -221,7 +221,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 //					Log.e(TAG, "定时计数中*********timeout_count=" + timeout_count + "******");
 					timeout_count ++;
 					msg.what = CONNECTING_SEC;
-					if(timeout_count > 25 * 60)
+					if(timeout_count == 25 * 60)
 						msg.what = TIMEROUT;
 					
 					pbStart.setProgress(timeout_count * 100f / (25 * 60));
@@ -469,7 +469,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			case CONNECTING_SEC:
 				break;
 			case TIMEROUT:
-				Toast.makeText(getApplicationContext(), "配置失败，请重试", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), getResources().getString(R.string.renwu_config_fail), Toast.LENGTH_SHORT).show();
 				e8266config.stopConfig();
 				progressDialog.dismiss();
 				start.setEnabled(true);

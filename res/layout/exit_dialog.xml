@@ -12,7 +12,7 @@
     <TextView 
         android:id="@+id/exitdialog_title"
         android:layout_width="fill_parent"
-        android:layout_height="50.0dip"
+        android:layout_height="48.0dip"
         android:textSize="30.0dip"
         />
     <TextView

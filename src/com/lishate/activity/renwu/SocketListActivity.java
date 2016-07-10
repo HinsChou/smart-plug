@@ -39,8 +39,11 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -267,11 +270,12 @@ public class SocketListActivity extends FirstActivity {
 				// set item background
 				deleteItem.setBackground(new ColorDrawable(getResources().getColor(R.color.red)));
 				// set item width
-				deleteItem.setWidth(mSocketList.dp2px(96));
+				deleteItem.setWidth(mSocketList.dp2px(72));
 				// set a icon
 				deleteItem.setIcon(R.drawable.device_del);
 				// add to menu
 				menu.addMenuItem(deleteItem);
+				
 			}
 		};
 		mSocketList.setMenuCreator(creator);
@@ -290,6 +294,7 @@ public class SocketListActivity extends FirstActivity {
 		        return true;
 		    }
 		});
+		
 		
 		mSocketList.setOnScrollListener(new OnScrollListener(){
 
@@ -755,8 +760,6 @@ public class SocketListActivity extends FirstActivity {
 			progressDialog.show();
 		}
 		
-		
-		
 	}
 	
 	class LoginToTask extends AsyncTask<DeviceItemModel, Integer, String>{
@@ -808,15 +811,13 @@ public class SocketListActivity extends FirstActivity {
 			if(result == null){//获取定时任务表失败
 				Toast.makeText(SocketListActivity.this, R.string.timeout, Toast.LENGTH_SHORT).show();
 				
-				//*
-				switchApplication app = (switchApplication)getApplication();
-				app.SetDeviceItemModel(dim);
-				GobalDef.Instance.setDeviceItemModel(dim);
-				//dim = app.getItemModel();
-				Intent intent = new Intent();
-				intent.setClass(SocketListActivity.this, SocketInfoActivity.class);
-				SocketListActivity.this.startActivity(intent);
-				//*/
+//				switchApplication app = (switchApplication)getApplication();
+//				app.SetDeviceItemModel(dim);
+//				GobalDef.Instance.setDeviceItemModel(dim);
+//				//dim = app.getItemModel();
+//				Intent intent = new Intent();
+//				intent.setClass(SocketListActivity.this, SocketInfoActivity.class);
+//				SocketListActivity.this.startActivity(intent);
 			}
 			else
 			{//获取定时任务表成功
@@ -1201,8 +1202,7 @@ public class SocketListActivity extends FirstActivity {
 						dim.setOnoff(DeviceItemModel.OnOff_Off);
 						Log.e(TAG, "rspmsg.getFromId()"+ rspmsg.getFromId() + "rspmsg openclose false");
 					}
-				}else
-				{
+				}else{
 					dim.setOnline(DeviceItemModel.Online_Off);
 				}
 			}
@@ -1353,12 +1353,15 @@ public class SocketListActivity extends FirstActivity {
 			LocalIpInfo ip = new LocalIpInfo();
 			baseMessage bm = RecvMsg(ds, ip);
 			Log.d(TAG, "after recvmsg ip: " + ip.ip);
-//			if(bm != null){
+			if(bm != null){
 				if(bm.MsgType == MessageDef.MESSAGE_TYPE_GET_STATUS_RSP){
 					GetStatueRspMessage gsrm = (GetStatueRspMessage)bm;
 					UpdateLocalMessage(gsrm, ip);
 				}
-//			}
+			}else{
+				GetStatueRspMessage gsrm = (GetStatueRspMessage)bm;
+				UpdateLocalMessage(gsrm, ip);
+			}
 //		}
 	}
 	

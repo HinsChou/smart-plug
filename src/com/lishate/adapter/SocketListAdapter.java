@@ -116,7 +116,6 @@ public class SocketListAdapter extends BaseAdapter {
 		viewHolder.socketDelete.setOnClickListener(new OnDeleteClickListener(pos, mContext));
 		viewHolder.timeronoff.setOnClickListener(new OnCheckedTimerOnOff(pos));
 		viewHolder.switchIcon.setOnClickListener(new SetDeviceIcon(pos));
-		viewHolder.switchName.setOnClickListener(new SetDeviceName(pos));
 		viewHolder.timerset.setOnClickListener(new SetTimerTask(pos));
 		viewHolder.switchLock.setOnClickListener(new ShowTimerTask(pos));
 		viewHolder.switchName.setOnClickListener(new RenameDevice(pos));
@@ -314,8 +313,6 @@ public class SocketListAdapter extends BaseAdapter {
 			{
 				
 //				mContext.RenameDeviceForPlug(dim, position);
-				
-				
 				Intent intent = new Intent(mContext, ChangeLampProperty.class);
 				Bundle mBundle = new Bundle();
 				mBundle.putSerializable("renamedevice", dim);
