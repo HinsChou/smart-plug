@@ -286,12 +286,28 @@ public class SocketListActivity extends FirstActivity {
 		        switch (index) {
 		        case 0:
 		            // delete
-		        	DeviceItemModel dim = (DeviceItemModel)mAdapter.getItem(position);
-		        	SocketListActivity.this.OnRemoveItem(dim);
-		            break;
+		        	final int pos = position;
+		        	new AlertDialog.Builder(SocketListActivity.this, AlertDialog.THEME_HOLO_LIGHT)
+		        		.setMessage(getResources().getString(R.string.wangt_del_device))
+		        		.setPositiveButton(getString(R.string.yes), new AlertDialog.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								// TODO Auto-generated method stub
+								DeviceItemModel dim = (DeviceItemModel)mAdapter.getItem(pos);
+					        	SocketListActivity.this.OnRemoveItem(dim);
+							}
+						}).setNegativeButton(getString(R.string.no), new AlertDialog.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								// TODO Auto-generated method stub
+								arg0.dismiss();
+							}
+						}).show();
 		        }
 		        // false : close the menu; true : not close the menu
-		        return true;
+		        return false;
 		    }
 		});
 		

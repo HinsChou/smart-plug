@@ -6,13 +6,17 @@ import java.util.List;
 
 import com.lishate.R;
 import com.lishate.activity.renwu.ScoketTaskDaysActivity;
+import com.lishate.activity.renwu.SocketListActivity;
 import com.lishate.activity.renwu.SocketTimerDetail;
 import com.lishate.adapter.SocketDetailAdapter.SocketDetailHolder;
 import com.lishate.adapter.SocketListAdapter.SocketHolder;
+import com.lishate.data.model.DeviceItemModel;
 import com.lishate.message.ConfigInfo;
 import com.lishate.utility.Utility;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -196,10 +200,26 @@ public class AuraSocketTimerAdapter extends BaseAdapter {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			//Log.i(TAG, "timer week is selected pos="+ pos + " checked=" + mchecked);	
-			configinfos.remove(pos);
-			mContext.Update();
-
-			}
+			new AlertDialog.Builder(mContext, AlertDialog.THEME_HOLO_LIGHT)
+    		.setMessage(mContext.getResources().getString(R.string.deltask))
+    		.setPositiveButton(mContext.getString(R.string.yes), new AlertDialog.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					// TODO Auto-generated method stub
+					configinfos.remove(pos);
+					mContext.Update();
+				}
+			}).setNegativeButton(mContext.getString(R.string.no), new AlertDialog.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					// TODO Auto-generated method stub
+					arg0.dismiss();
+				}
+			}).show();
+			
+		}
 		
 	}	
 	class TimerTaskHolder{

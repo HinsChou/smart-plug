@@ -99,7 +99,7 @@
     <string name="renwu_socket_task_closetime">关闭时间</string>
     <string name="renwu_socket_task_cyc">重复周期</string>
     <string name="renwu_socketlist_send_fail">发生错误，请检查网络状况</string>
-    <string name="renwu_exit">确定退出？</string>
+    <string name="renwu_exit">确定退出?</string>
     <string name="renwu_operation_fail">操作失败！</string>
     <string name="renwu_socket_detail_open">打开</string>
     <string name="renwu_socket_detail_close">关闭</string>

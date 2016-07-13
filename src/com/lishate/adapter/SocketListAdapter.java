@@ -192,8 +192,8 @@ public class SocketListAdapter extends BaseAdapter {
 				viewHolder.connect.setImageResource(R.drawable.device_disconnect);
 				viewHolder.onoff.setClickable(false);
 				viewHolder.timeronoff.setClickable(false);
-				viewHolder.switchIcon.setClickable(false);
-				viewHolder.switchName.setClickable(false);
+				viewHolder.switchIcon.setClickable(true);
+				viewHolder.switchName.setClickable(true);
 				viewHolder.switchLock.setClickable(false);
 				
 				viewHolder.onoff.setChecked(false);
