@@ -196,7 +196,7 @@
             android:name="com.lishate.activity.renwu.SocketInfoActivity"
             android:configChanges="keyboardHidden|navigation|orientation" 
             android:screenOrientation="portrait" 
-            android:theme="@style/globalActTheme"
+            android:theme="@style/myTimeDialogTheme"
             ></activity>
         <activity
             android:name="com.lishate.activity.renwu.ScoketConfigActivity"

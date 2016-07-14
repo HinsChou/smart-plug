@@ -10,12 +10,13 @@
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal" >
 	    
-	    <ImageButton
+	    <ImageView
 	        android:id="@+id/setplugscene"
 	        android:layout_width="48dp"
 	        android:layout_height="48dp"
 	        android:layout_gravity="center_vertical"
 	        android:layout_margin="16dp"
+	        android:background="@color/transprent"
 	        android:src="@drawable/setplugscene" />
 	    
 	    <LinearLayout 

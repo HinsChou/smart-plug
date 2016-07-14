@@ -1,5 +1,6 @@
 package com.lishate.adapter;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import com.lishate.R;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -135,7 +137,7 @@ public class SocketListAdapter extends BaseAdapter {
 			convertView.setTag(viewHolder);
 			
 			{
-				viewHolder.switchIcon = (ImageButton)convertView.findViewById(R.id.setplugscene);
+				viewHolder.switchIcon = (ImageView)convertView.findViewById(R.id.setplugscene);
 				viewHolder.switchLock = (ImageButton)convertView.findViewById(R.id.timerlist);
 				viewHolder.switchName = (TextView) convertView.findViewById(R.id.plugname);
 				viewHolder.onoff = (ToggleButton) convertView.findViewById(R.id.plugonoff);
@@ -175,7 +177,14 @@ public class SocketListAdapter extends BaseAdapter {
 					//ContentResolver contentResolver  =mContext.getActivity().getContentResolver();
 		                  //将图片内容解析成字节数组  
 					//Log.i(TAG, "position="  + position +  sim.getPicuri() +  " " +  sim.getName());
-					myBitmap = BitmapFactory.decodeFile(dim.getDeviceIcon());
+					if(dim.getDeviceIcon().startsWith("file:///android_asset/")){
+						AssetManager am = mContext.getResources().getAssets();
+						InputStream is = am.open(dim.getDeviceIcon().replace("file:///android_asset/", ""));
+						myBitmap = BitmapFactory.decodeStream(is);
+						is.close();
+					}else
+						myBitmap = BitmapFactory.decodeFile(dim.getDeviceIcon());
+					Log.i(TAG, dim.getDeviceIcon());
 					viewHolder.switchIcon.setImageBitmap(myBitmap); 
 	            } catch (Exception e) { 
 	                e.printStackTrace(); 
@@ -185,7 +194,6 @@ public class SocketListAdapter extends BaseAdapter {
 			}
 			
 			//holder.socketId.setText(Utility.GetMacFormID(dim.getDeviceId()));
-			
 			//在线
 			if(dim.getOnline() == DeviceItemModel.Online_Off){
 				Log.d(TAG, "dim get online off");
@@ -452,7 +460,7 @@ public class SocketListAdapter extends BaseAdapter {
 
 	class SocketHolder{
 		Button  socketDelete;
-		ImageButton switchIcon;
+		ImageView switchIcon;
 		ImageButton switchLock;
 		TextView switchId;
 		TextView switchName;

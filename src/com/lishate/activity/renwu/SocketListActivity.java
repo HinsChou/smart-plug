@@ -148,12 +148,12 @@ public class SocketListActivity extends FirstActivity {
 			
 			//DeviceItemDao did = new DeviceItemDao(getHelper());
 			result.clear();
-			DeviceItemModel item = new DeviceItemModel();
+//			DeviceItemModel item = new DeviceItemModel();
 //			result.add(item);
 			result.addAll(devicedatadao.queryForAll());
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		//Log.i(TAG, "获得的名字是: " + result.get(0).getDeviceName());
@@ -164,7 +164,7 @@ public class SocketListActivity extends FirstActivity {
 	
 //	@Override
 //	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		// TODO Auto-generated method stub
+//		
 //		//Log.d(TAG, "onKeyDown");
 //		//return super.onKeyDown(keyCode, event);
 //		finish();
@@ -173,7 +173,7 @@ public class SocketListActivity extends FirstActivity {
 	
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
-		// TODO Auto-generated method stub
+		
 		Log.d(TAG, "dispatchKeyEvent");
 		return super.dispatchKeyEvent(event);
 	}
@@ -211,7 +211,7 @@ public class SocketListActivity extends FirstActivity {
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+				
 				Intent mintent = new Intent(getApplicationContext(), SpecificationAvtivity.class);
 				startActivity(mintent);
 			}
@@ -222,7 +222,7 @@ public class SocketListActivity extends FirstActivity {
 
 			@Override
 			public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
-				// TODO Auto-generated method stub
+				
 				if(Utility.CheckNetwork(SocketListActivity.this) == true){
 					mNetworkView.setVisibility(View.GONE);
 					new RefreshTask().execute(new Void[0]);
@@ -244,7 +244,7 @@ public class SocketListActivity extends FirstActivity {
 
 			@Override
 			public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
-				// TODO Auto-generated method stub
+				
 				
 				new Handler()
 				{
@@ -293,7 +293,7 @@ public class SocketListActivity extends FirstActivity {
 							
 							@Override
 							public void onClick(DialogInterface arg0, int arg1) {
-								// TODO Auto-generated method stub
+								
 								DeviceItemModel dim = (DeviceItemModel)mAdapter.getItem(pos);
 					        	SocketListActivity.this.OnRemoveItem(dim);
 							}
@@ -301,7 +301,7 @@ public class SocketListActivity extends FirstActivity {
 							
 							@Override
 							public void onClick(DialogInterface arg0, int arg1) {
-								// TODO Auto-generated method stub
+								
 								arg0.dismiss();
 							}
 						}).show();
@@ -316,13 +316,13 @@ public class SocketListActivity extends FirstActivity {
 
 			@Override
 			public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
-				// TODO Auto-generated method stub
+				
 				Log.d(TAG, "socket scrolllistener");
 			}
 
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				// TODO Auto-generated method stub
+				
 				switch(scrollState){
 				case OnScrollListener.SCROLL_STATE_IDLE:
 					mScrollBusy = false;
@@ -343,7 +343,7 @@ public class SocketListActivity extends FirstActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				if(Utility.CheckNetwork(SocketListActivity.this) == true){
 					mNetworkView.setVisibility(View.GONE);
 					//new RefreshTask().execute(new Void[0]);
@@ -363,7 +363,7 @@ public class SocketListActivity extends FirstActivity {
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+				
 				Intent mintent = new Intent(getApplicationContext(), MainActivity.class);
 //				startActivityForResult(mintent, GobalDef.REQEST_SMART_CONFIG);
 				startActivity(mintent);
@@ -419,7 +419,7 @@ public class SocketListActivity extends FirstActivity {
 		popupseticon.setOutsideTouchable(true);
 		popupseticon.setBackgroundDrawable(new PaintDrawable(Color.TRANSPARENT));
 		
-		//相机拍照
+		//相机选择
 		rooticon.findViewById(R.id.morefunc).setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v){
 				// 关闭PopupWindow
@@ -434,7 +434,7 @@ public class SocketListActivity extends FirstActivity {
 			}
 		});
 		
-		//相册选择
+		//相册拍照
 		rooticon.findViewById(R.id.adddevice).setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v){
 				// 添加插座设备
@@ -458,7 +458,7 @@ public class SocketListActivity extends FirstActivity {
 		
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+			
 			super.onPreExecute();
 			fail = 0;
 			progressDialog = new ProgressDialog(SocketListActivity.this);
@@ -475,7 +475,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
+			
 			super.onPostExecute(result);
 			mAdapter.notifyDataSetChanged();
 			progressDialog.dismiss();
@@ -501,7 +501,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected String doInBackground(DeviceItemModel... params) {
-			// TODO Auto-generated method stub
+			
 			baseMessage orm = null;
 			if(IsClose == 0){
 				orm = new OpenReqMessage();
@@ -534,7 +534,7 @@ public class SocketListActivity extends FirstActivity {
 				ds = new DatagramSocket();
 				ds.setSoTimeout(GobalDef.Instance.getUdpReadTimeOut());
 			} catch (SocketException e) {
-				// TODO Auto-generated catch block
+				
 				fail = 1;
 				e.printStackTrace();
 				return null;
@@ -587,7 +587,7 @@ public class SocketListActivity extends FirstActivity {
 		
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+			
 			super.onPreExecute();
 			fail = 0;
 			progressDialog = new ProgressDialog(SocketListActivity.this);
@@ -602,7 +602,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
+			
 			super.onPostExecute(result);
 			mAdapter.notifyDataSetChanged();
 			progressDialog.dismiss();
@@ -624,7 +624,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected String doInBackground(DeviceItemModel... params) {
-			// TODO Auto-generated method stub
+			
 			OpenReqMessage orm = new OpenReqMessage();
 			ServerItemModel sim = new ServerItemModel();
 			sim.setIpaddress(GobalDef.SERVER_URL);
@@ -641,7 +641,7 @@ public class SocketListActivity extends FirstActivity {
 				ds = new DatagramSocket();
 				ds.setSoTimeout(GobalDef.Instance.getUdpReadTimeOut());
 			} catch (SocketException e) {
-				// TODO Auto-generated catch block
+				
 				fail = 1;
 				e.printStackTrace();
 				return null;
@@ -678,7 +678,7 @@ public class SocketListActivity extends FirstActivity {
 		private Vibrator mVibrator;
 		@Override
 		protected Integer doInBackground(DeviceItemModel... params) {
-			// TODO Auto-generated method stub
+			
 			dim = params[0];
 			baseMessage orm = null;
 			baseMessage msg = null;
@@ -740,7 +740,7 @@ public class SocketListActivity extends FirstActivity {
 		}
 		@Override
 		protected void onPostExecute(Integer result) {
-			// TODO Auto-generated method stub
+			
 			super.onPostExecute(result);
 			progressDialog.dismiss();
 			if(result == 0){
@@ -763,7 +763,7 @@ public class SocketListActivity extends FirstActivity {
 		}
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+			
 			super.onPreExecute();
 			if (SharedPreferencesUtility.getVibrate() == true)
 	         {
@@ -784,7 +784,7 @@ public class SocketListActivity extends FirstActivity {
 		private DeviceItemModel dim;
 		@Override
 		protected String doInBackground(DeviceItemModel... params) {
-			// TODO Auto-generated method stub
+			
 			String result = null;
 			baseMessage bm = null;
 			dim = params[0];
@@ -821,7 +821,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
+			
 			super.onPostExecute(result);
 			progressDialog.dismiss();
 			if(result == null){//获取定时任务表失败
@@ -849,7 +849,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+			
 			super.onPreExecute();
 			progressDialog = new ProgressDialog(SocketListActivity.this);
 			progressDialog.setMessage(SocketListActivity.this.getString(R.string.loging));
@@ -864,7 +864,7 @@ public class SocketListActivity extends FirstActivity {
 		private DeviceItemModel dim;
 		@Override
 		protected String doInBackground(DeviceItemModel... params) {
-			// TODO Auto-generated method stub
+			
 			String result = null;
 			baseMessage bm = null;
 			dim = params[0];
@@ -900,7 +900,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
+			
 			super.onPostExecute(result);
 			//progressDialog.dismiss();
 			if(null != result){
@@ -910,7 +910,7 @@ public class SocketListActivity extends FirstActivity {
 //			try {
 //				devicedatadao.update(dim);
 //			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
+//				
 //				e.printStackTrace();
 //			}
 			getconfig_suc = true;
@@ -919,7 +919,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+			
 			super.onPreExecute();
 			getconfig_suc = false;
 //			progressDialog = new ProgressDialog(SocketListActivity.this);
@@ -934,7 +934,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
+			
 			super.handleMessage(msg);
 			if(Utility.CheckNetwork(SocketListActivity.this) == false){
 				SocketListActivity.this.mNetworkView.setVisibility(View.GONE);
@@ -1080,7 +1080,7 @@ public class SocketListActivity extends FirstActivity {
 	//				try {
 	//					devicedatadao.update(dim);
 	//				} catch (SQLException e) {
-	//					// TODO Auto-generated catch block
+	//					
 	//					e.printStackTrace();
 	//				}
 	//			}	
@@ -1126,7 +1126,7 @@ public class SocketListActivity extends FirstActivity {
 			ds = new DatagramSocket();
 			ds.setSoTimeout(GobalDef.Instance.getUdpReadTimeOut());
 		} catch (SocketException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -1166,7 +1166,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
+			
 			super.run();
 			while(true)
 			{
@@ -1226,7 +1226,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected Void doInBackground(Void... arg0) {
-			// TODO Auto-generated method stub
+			
 			
 			//Encryption.EncriptionGetServerConfigsReq(null);
 			//Log.e(TAG, "refresh do background");
@@ -1251,7 +1251,7 @@ public class SocketListActivity extends FirstActivity {
 				ds = new DatagramSocket();
 				ds.setSoTimeout(GobalDef.Instance.getUdpReadTimeOut());
 			} catch (SocketException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 				return null;
 			}
@@ -1305,7 +1305,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
+			
 			super.onPostExecute(result);
 			Log.e(TAG, "on refersh post exec");
 			//*
@@ -1325,7 +1325,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+			
 			super.onPreExecute();
 			mRefreshButton.setVisibility(View.GONE);
 			mProgressBar.setVisibility(View.VISIBLE);
@@ -1351,7 +1351,7 @@ public class SocketListActivity extends FirstActivity {
 			ds = new DatagramSocket();
 			ds.setSoTimeout(GobalDef.Instance.getUdpReadTimeOut());
 		} catch (SocketException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return ;
 		}
@@ -1391,7 +1391,7 @@ public class SocketListActivity extends FirstActivity {
 		
 		@Override
 		protected Integer doInBackground(Integer... params) {
-			// TODO Auto-generated method stub
+			
 			//return null;
 			int flag = 0;
 			while(true){
@@ -1405,7 +1405,7 @@ public class SocketListActivity extends FirstActivity {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -1415,7 +1415,7 @@ public class SocketListActivity extends FirstActivity {
 		@SuppressWarnings("unused")
 		@Override
 		protected void onCancelled() {
-			// TODO Auto-generated method stub
+			
 			super.onCancelled();
 			if(dialogType == dialog_type_alert){
 				if(dialog != null){
@@ -1433,7 +1433,7 @@ public class SocketListActivity extends FirstActivity {
 		@SuppressWarnings("unused")
 		@Override
 		protected void onPostExecute(Integer result) {
-			// TODO Auto-generated method stub
+			
 			super.onPostExecute(result);
 			//mLayout = new LinearLayout(SocketListActivity.this);
 			if(dialogType == dialog_type_alert){
@@ -1452,7 +1452,7 @@ public class SocketListActivity extends FirstActivity {
 		@SuppressWarnings("unused")
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+			
 			super.onPreExecute();
 			if(dialogType == dialog_type_alert){
 				layoutinflat = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -1465,7 +1465,7 @@ public class SocketListActivity extends FirstActivity {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
-									// TODO Auto-generated method stub
+									
 									
 								}
 								
@@ -1474,7 +1474,7 @@ public class SocketListActivity extends FirstActivity {
 								
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
-									// TODO Auto-generated method stub
+									
 									
 								}
 							})
@@ -1498,7 +1498,7 @@ public class SocketListActivity extends FirstActivity {
 
 		@Override
 		protected void onProgressUpdate(Integer... values) {
-			// TODO Auto-generated method stub
+			
 			super.onProgressUpdate(values);
 		}
 		
@@ -1561,14 +1561,14 @@ public class SocketListActivity extends FirstActivity {
 			devlist.remove(dim);
 			mAdapter.notifyDataSetChanged();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	protected void onCreate(Bundle paramBundle) {
-		// TODO Auto-generated method stub
+		
 		super.onCreate(paramBundle);
 		setContentView(R.layout.socketlist);
 		int id = 2;
@@ -1601,7 +1601,7 @@ public class SocketListActivity extends FirstActivity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
+		
 		
 		super.onResume();
 		Log.i(TAG, "onResume----------------------");
@@ -1615,102 +1615,97 @@ public class SocketListActivity extends FirstActivity {
 
 	 class GetConfigFromDevice extends Thread{
 		
-		// TODO Auto-generated method stub
+		
 		
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
+			
 			super.run();
 			configinfos.clear();
 			for(DeviceItemModel dim: devlist){
-			if(mScrollBusy == false){
-				if(Utility.CheckNetwork(SocketListActivity.this) == true){
-					mNetworkView.setVisibility(View.GONE);
-					//new RefreshTask().execute(new Void[0]);
-					GetConfigsToTask ltt = new GetConfigsToTask();
-					ltt.execute(new DeviceItemModel[]{dim});
-					getconfig_suc=false; 
-					while(false == getconfig_suc){
-						try {
-							Thread.sleep(100);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+				if(mScrollBusy == false){
+					if(Utility.CheckNetwork(SocketListActivity.this) == true){
+						mNetworkView.setVisibility(View.GONE);
+						//new RefreshTask().execute(new Void[0]);
+						GetConfigsToTask ltt = new GetConfigsToTask();
+						ltt.execute(new DeviceItemModel[]{dim});
+						getconfig_suc=false; 
+						while(false == getconfig_suc){
+							try {
+								Thread.sleep(100);
+							} catch (InterruptedException e) {
+								
+								e.printStackTrace();
+							}
 						}
 					}
+	//				else{
+	//					mNetworkView.setVisibility(View.VISIBLE);
+	//					Toast.makeText(SocketListActivity.this, R.string.unNetwork, Toast.LENGTH_SHORT);
+	//				}
 				}
-//				else{
-//					mNetworkView.setVisibility(View.VISIBLE);
-//					Toast.makeText(SocketListActivity.this, R.string.unNetwork, Toast.LENGTH_SHORT);
-//				}
 			}
 		}
-
-		}
-		}
-
-
+	}
 	 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
+		
 		super.onPause();
 		refreshrun = false;
 	}
 
-
-
 //	@Override
 //	protected void onRestart() {
-//		// TODO Auto-generated method stub
+//		
 //		super.onRestart();
 //		refreshrun = false;
 //	}
 
-
-
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
+		
 		super.onDestroy();
 		refreshrun = false;
 		
 	}
 
-
-
 	public void SetIconForDevice(final DeviceItemModel dim, View v) {
-		// TODO Auto-generated method stub
+		
 		
 		myhander = new Handler(){
 
 			@Override
 			public void handleMessage(Message msg) {
-				// TODO Auto-generated method stub
+				
 				super.handleMessage(msg);
 				if(msg.what == 0)
 				{
-					Log.i(TAG, "orginalUriStr==  ++++++++++------------------------" + orginalUriStr);
+					Log.i(TAG, "orginalUriStr=" + orginalUriStr);
 					try {
 					if(null != orginalUriStr)
 						dim.setDeviceIcon(orginalUriStr);
 					devicedatadao.update(dim);
 					devicedatadao.refresh(dim);
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 					setDataSource();
 				}
 			}
-			
 		};			
-		popupseticon.showAsDropDown(v);
-		//popupseticon.setOutsideTouchable(true);
+//		popupseticon.showAsDropDown(v);
+		switchApplication app = (switchApplication)getApplication();
+		app.SetDeviceItemModel(dim);
+		GobalDef.Instance.setDeviceItemModel(dim);
+		Intent intent = new Intent();
+		intent.setClass(SocketListActivity.this, SocketInfoActivity.class);
+		startActivity(intent);
 		
 	}
 	protected void setDataSource() {
-		// TODO Auto-generated method stub
+		
 		List<DeviceItemModel> result = initDevList();
 		for(int i=0; i< result.size(); i++){
 			getFromDevList(result.get(i));
@@ -1724,7 +1719,7 @@ public class SocketListActivity extends FirstActivity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
+		
 		super.onActivityResult(requestCode, resultCode, data);
 		// ContentResolver contentResolver  =getContentResolver();  
          /** 
@@ -1769,10 +1764,10 @@ public class SocketListActivity extends FirstActivity {
 							//dev_icon = "dev_" + dim.getDeviceId();
 							//dim.setDeviceIcon("dev_" + dim.getDeviceId());
 						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 						 myhander.sendEmptyMessage(0);
@@ -1822,7 +1817,7 @@ public class SocketListActivity extends FirstActivity {
 
 
 	public void SetTimerForDevice(DeviceItemModel dim, View v) {
-		// TODO Auto-generated method stub
+		
 		switchApplication app = (switchApplication)getApplication();
 		app.SetDeviceItemModel(dim);
 		GobalDef.Instance.setDeviceItemModel(dim);
@@ -1834,7 +1829,6 @@ public class SocketListActivity extends FirstActivity {
 
 
 	public void SetTimerOnOff(DeviceItemModel dim2, boolean isChecked) {
-		// TODO Auto-generated method stub{
 		//Log.e(TAG, "该设备号是" + dim2.getDeviceId());
 		if(dim2.getOnline() == DeviceItemModel.Online_On){
 			int onlinedevice_index=0;
@@ -1872,7 +1866,6 @@ private class SaveConfigInfoTask extends  AsyncTask<DeviceItemModel,Integer, Int
 
 		@Override
 		protected void onPostExecute(Integer result) {
-			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			processDialog.dismiss();
 			if(result == 0){
@@ -1896,7 +1889,6 @@ private class SaveConfigInfoTask extends  AsyncTask<DeviceItemModel,Integer, Int
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
 			super.onPreExecute();
 //			if(timeCount > 0){
 				//tempci = configinfos.get(timeCount - 1);
@@ -1918,7 +1910,6 @@ private class SaveConfigInfoTask extends  AsyncTask<DeviceItemModel,Integer, Int
 
 		@Override
 		protected Integer doInBackground(DeviceItemModel... params) {
-			// TODO Auto-generated method stub
 			dim = params[0];
 			SetConfigReqMessage scrm = new SetConfigReqMessage();
 			ServerItemModel sim = new ServerItemModel();
@@ -1968,7 +1959,5 @@ private class SaveConfigInfoTask extends  AsyncTask<DeviceItemModel,Integer, Int
 			}
 			return 0;
 		}
-		
 	}
-
 }

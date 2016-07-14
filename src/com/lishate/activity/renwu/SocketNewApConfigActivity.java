@@ -5,6 +5,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,6 +19,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.PaintDrawable;
 import android.net.DhcpInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
@@ -31,14 +34,21 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.ListView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,6 +98,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 	WifiManager mWifiManager;
 	private int timeout_count;
 	private TextView tvConfigFail;
+	private ImageView ivConfigList;
 	
 	private void findView(){
 		rgbSharedPreferences = getSharedPreferences("SSIDPWD", MODE_PRIVATE);
@@ -99,6 +110,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 		showpass = (ImageView)findViewById(R.id.ivShowPass);
 		pbStart = (CircleProgress)findViewById(R.id.pbStart);
 		tvConfigFail = (TextView)findViewById(R.id.tvConfigFail);
+		ivConfigList = (ImageView)findViewById(R.id.ivConfigList);
 	}
 	
 	private void initView(){
@@ -126,6 +138,34 @@ public class SocketNewApConfigActivity extends BaseActivity {
 				}
 			}
 			
+		});
+		
+		View view = this.getLayoutInflater().inflate(R.layout.popupicon, null);
+		final PopupWindow popupWindow = new PopupWindow(view, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		popupWindow.setOutsideTouchable(true);
+		popupWindow.setBackgroundDrawable(new PaintDrawable(Color.TRANSPARENT));
+		
+		ListView lvConfigList = (ListView) view.findViewById(R.id.lvConfigList);
+		lvConfigList.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
+				new String[]{"a", "b"}));
+		lvConfigList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				ivConfigList.setImageResource(R.drawable.config_down);
+			}
+		});
+		ivConfigList.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				if(popupWindow.isShowing()){
+					ivConfigList.setImageResource(R.drawable.config_down);
+					popupWindow.dismiss();
+				}else{
+					ivConfigList.setImageResource(R.drawable.config_up);
+					popupWindow.showAsDropDown(v);
+				}
+			}
 		});
 		
 		showpass.setOnClickListener(new OnClickListener() {

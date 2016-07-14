@@ -80,6 +80,7 @@
         </RelativeLayout>
         
         <LinearLayout
+            android:id="@+id/llWifi"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -103,8 +104,10 @@
                 android:textColor="@color/grey_text"/>
             
             <ImageView 
+                android:id="@+id/ivConfigList"
                 android:layout_width="48dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:src="@drawable/config_down"/>
         </LinearLayout>
 
         <LinearLayout
