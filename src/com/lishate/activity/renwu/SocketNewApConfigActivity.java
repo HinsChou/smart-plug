@@ -70,7 +70,6 @@ public class SocketNewApConfigActivity extends BaseActivity {
 	private int wifi_connect_statue = 0;
 	private LinearLayout back;
 	private Config config = new Config();
-	private ArrayList<String> list = new ArrayList<String>();
 	ArrayList<String> list_ns = new ArrayList<String>();
 	w_ns ns;
 	Context context;
@@ -94,7 +93,8 @@ public class SocketNewApConfigActivity extends BaseActivity {
 	private TextView tvConfigFail;
 	private ImageView ivConfigList;
 	private boolean bShow = false;
-
+	private String[] wifis;
+	
 	private void findView() {
 		rgbSharedPreferences = getSharedPreferences("SSIDPWD", MODE_PRIVATE);
 		rgbEditor = rgbSharedPreferences.edit();
@@ -143,12 +143,16 @@ public class SocketNewApConfigActivity extends BaseActivity {
 
 		ListView lvConfigList = (ListView) view.findViewById(R.id.lvConfigList);
 		lvConfigList.setAdapter(
-				new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new String[] { "a", "b" }));
+				new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, wifis));
 		lvConfigList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				ivConfigList.setImageResource(R.drawable.config_down);
+				popupWindow.dismiss();
+				bShow = false;
+				ssid.setText(wifis[arg2]);
+				password.setText(rgbSharedPreferences.getString(wifis[arg2], ""));
 			}
 		});
 
@@ -546,7 +550,15 @@ public class SocketNewApConfigActivity extends BaseActivity {
 
 		super.onCreate(paramBundle);
 		setContentView(R.layout.socketnewapconfig);
+		
 		findView();
+		Map<String, ?> all = rgbSharedPreferences.getAll();
+		wifis = new String[all.size()];
+		int i = 0;
+		for (String key : all.keySet()) {
+			wifis[i] = key;
+			i++;
+		}
 		initView();
 
 		progressDialog = new ProgressDialog(this);
@@ -557,11 +569,6 @@ public class SocketNewApConfigActivity extends BaseActivity {
 
 		mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		mWifiManager.getDhcpInfo();
-
-		Map<String, ?> all = rgbSharedPreferences.getAll();
-		for (String key : all.keySet()) {
-			Log.i(TAG, key + ":" + all.get(key));
-		}
 
 		if (ssid_data != null) {
 			ssid.setText(ssid_data);
