@@ -192,4 +192,5 @@
     
     <string name="timer_new">添加新闹钟</string>
     <string name="timer_switch">定时开关</string>
+    <string name="photo_select">选择设备头像</string>
 </resources>

@@ -46,6 +46,8 @@ public class SocketInfoActivity extends BaseActivity {
 	private ImageView p4;
 	private ImageView p5;
 	private ImageView p6;
+	private ImageView p7;
+	private ImageView p8;
 	private ImageView p9;
 	private ImageView detail;
 	private ImageView modify;
@@ -70,6 +72,8 @@ public class SocketInfoActivity extends BaseActivity {
 		p4 = (ImageView)findViewById(R.id.socketinfo_p4);
 		p5 = (ImageView)findViewById(R.id.socketinfo_p5);
 		p6 = (ImageView)findViewById(R.id.socketinfo_p6);
+		p7 = (ImageView)findViewById(R.id.socketinfo_p7);
+		p8 = (ImageView)findViewById(R.id.socketinfo_p8);
 		p9 = (ImageView)findViewById(R.id.socketinfo_p9);
 		detail = (ImageView)findViewById(R.id.socketinfo_detail);
 		modify = (ImageView)findViewById(R.id.socketinfo_modify);
@@ -118,31 +122,36 @@ public class SocketInfoActivity extends BaseActivity {
 		}
 		else{
 			if(dev_icon.equals("file:///android_asset/p1.png")){
-				detail.setImageResource(R.drawable.p1);
+				p1.setImageResource(R.drawable.p1s);
 			}
 			else if(dev_icon.equals("file:///android_asset/p2.png")){
-				detail.setImageResource(R.drawable.p2);
+				p2.setImageResource(R.drawable.p2s);
 			}
 			else if(dev_icon.equals("file:///android_asset/p3.png")){
-				detail.setImageResource(R.drawable.p3);
+				p3.setImageResource(R.drawable.p3s);
 			}
 			else if(dev_icon.equals("file:///android_asset/p4.png")){
-				detail.setImageResource(R.drawable.p4);
-			}
-			else if(dev_icon.equals("file:///android_asset/p5.png")){
-				detail.setImageResource(R.drawable.p5);
+				p4.setImageResource(R.drawable.p4s);
 			}
 			else if(dev_icon.equals("file:///android_asset/p6.png")){
-				detail.setImageResource(R.drawable.p6);
+				p6.setImageResource(R.drawable.p6s);
 			}
+			else if(dev_icon.equals("file:///android_asset/p7.png")){
+				p7.setImageResource(R.drawable.p7s);
+			}else if(dev_icon.equals("file:///android_asset/p8.png")){
+				p8.setImageResource(R.drawable.p8s);
+			}else if(dev_icon.equals("file:///android_asset/p9.png")){
+				p9.setImageResource(R.drawable.p9s);
+			}
+			
 		}
 		
 		p1.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				
-				detail.setImageResource(R.drawable.p1);
+				resetPhoto();
+				p1.setImageResource(R.drawable.p1s);
 				dev_icon = "file:///android_asset/p1.png";
 			}
 			
@@ -152,8 +161,8 @@ public class SocketInfoActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				
-				detail.setImageResource(R.drawable.p2);
+				resetPhoto();
+				p2.setImageResource(R.drawable.p2s);
 				dev_icon = "file:///android_asset/p2.png";
 			}
 			
@@ -163,8 +172,8 @@ public class SocketInfoActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				
-				detail.setImageResource(R.drawable.p3);
+				resetPhoto();
+				p3.setImageResource(R.drawable.p3s);
 				dev_icon = "file:///android_asset/p3.png";
 			}
 			
@@ -174,20 +183,9 @@ public class SocketInfoActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				
-				detail.setImageResource(R.drawable.p4);
+				resetPhoto();
+				p4.setImageResource(R.drawable.p4s);
 				dev_icon = "file:///android_asset/p4.png";
-			}
-			
-		});
-		
-		p5.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				
-				detail.setImageResource(R.drawable.p5);
-				dev_icon = "file:///android_asset/p5.png";
 			}
 			
 		});
@@ -196,9 +194,32 @@ public class SocketInfoActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				
-				detail.setImageResource(R.drawable.p6);
+				resetPhoto();
+				p6.setImageResource(R.drawable.p6s);
 				dev_icon = "file:///android_asset/p6.png";
+			}
+			
+		});
+		
+		
+		p7.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				resetPhoto();
+				p7.setImageResource(R.drawable.p7s);
+				dev_icon = "file:///android_asset/p7.png";
+			}
+			
+		});
+		
+		p8.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				resetPhoto();
+				p8.setImageResource(R.drawable.p8s);
+				dev_icon = "file:///android_asset/p8.png";
 			}
 			
 		});
@@ -247,6 +268,18 @@ public class SocketInfoActivity extends BaseActivity {
 				startActivityForResult(intent, capture);
 			}
 		});
+	}
+	
+	private void resetPhoto(){
+		p1.setImageResource(R.drawable.p1);
+		p2.setImageResource(R.drawable.p2);
+		p3.setImageResource(R.drawable.p3);
+		p4.setImageResource(R.drawable.p4);
+		p5.setImageResource(R.drawable.p5);
+		p6.setImageResource(R.drawable.p6);
+		p7.setImageResource(R.drawable.p7);
+		p8.setImageResource(R.drawable.p8);
+		p9.setImageResource(R.drawable.p9);
 	}
 	
 	class UpdateTask extends AsyncTask<Void, Void, Void>{

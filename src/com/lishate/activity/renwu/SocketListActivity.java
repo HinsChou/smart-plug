@@ -94,7 +94,6 @@ public class SocketListActivity extends FirstActivity {
 	
 	private static final String TAG = "SocketListActivity";
 	private ProgressBar mProgressBar;
-	private ImageButton mrefreshBtn;
 	private SwipeMenuListView mSocketList;
 	public TextView mNetworkView;
 	private SocketListAdapter mAdapter;
@@ -103,8 +102,6 @@ public class SocketListActivity extends FirstActivity {
 	public RefreshHandler handler;
 	private Thread refreshTrhead;
 	private boolean refreshrun = true;
-	private boolean isAllClose = false;
-	
 	private static final int typeOpen = 0;
 	private static final int typeClose = 1;
 	public int typeIsOpen = 0;
@@ -120,13 +117,11 @@ public class SocketListActivity extends FirstActivity {
 	
 	private boolean mScrollBusy = false;
 	
-	private Button editplug;
 	private ImageButton addplug_more;
 	private PopupWindow popup;
 	private PullToRefreshLayout mRefreshView;
 	private  PopupWindow popupseticon;
 	private String dev_pic = "";
-	private Bitmap myBitmap;
 	public final static int capture =1;
 	private static final int zoom = 2;
 	private static final int code = 3;
@@ -135,8 +130,6 @@ public class SocketListActivity extends FirstActivity {
 	private Handler myhander;
 	private Dao<DeviceItemModel, Integer> devicedatadao = null;
 	
-	private int timeCount = 7;
-	private DeviceItemModel dim;
 	private List<ConfigInfo> configinfos = new ArrayList<ConfigInfo>();
 	private boolean getconfig_suc = false;
 	//public ArrayList<ConfigInfo> configinfos = new ArrayList<ConfigInfo>();
@@ -238,6 +231,7 @@ public class SocketListActivity extends FirstActivity {
 					{
 						// 千万别忘了告诉控件刷新完毕了哦！
 						mRefreshView.refreshFinish(PullToRefreshLayout.SUCCEED);
+						mNetworkView.setVisibility(View.GONE);
 					}
 				}.sendEmptyMessageDelayed(0, 3000);
 			}
@@ -860,7 +854,6 @@ public class SocketListActivity extends FirstActivity {
 	
 	class GetConfigsToTask extends AsyncTask<DeviceItemModel, Integer, String>{
 
-		private ProgressDialog progressDialog;
 		private DeviceItemModel dim;
 		@Override
 		protected String doInBackground(DeviceItemModel... params) {
@@ -1000,7 +993,6 @@ public class SocketListActivity extends FirstActivity {
 	}
 	
 	private void UpdateLocalMessage(GetStatueRspMessage rspmsg, LocalIpInfo ip){
-		boolean isUpdate = false;
 		for(int i= 0; i < devlist.size(); i++){
 			DeviceItemModel dim = devlist.get(i);
 			String result = null;
@@ -1011,20 +1003,16 @@ public class SocketListActivity extends FirstActivity {
 					Log.e(TAG, "设备处于在线状态，哈哈");
 					GobalDef.Instance.getLocalList().putLocalInfo(dim.getDeviceId(), ip.ip);
 					if(dim.getOnline() != DeviceItemModel.Online_On){
-						//更新一下持久化数据库
-						isUpdate = true;
 					}
 					dim.setOnline(DeviceItemModel.Online_On);
 					if(rspmsg.getOpenClose() == 1){
 						if(dim.getOnoff() != DeviceItemModel.OnOff_On){
-							isUpdate = true;
 						}
 						dim.setOnoff(DeviceItemModel.OnOff_On);
 						Log.d(TAG, "rspmsg openclose true");
 					}
 					else{
 						if(dim.getOnoff() != DeviceItemModel.OnOff_Off){
-							isUpdate = true;
 						}
 						dim.setOnoff(DeviceItemModel.OnOff_Off);
 						Log.d(TAG, "rspmsg openclose false");
@@ -1061,14 +1049,12 @@ public class SocketListActivity extends FirstActivity {
 							if(ci.isenable)
 							{
 								if(dim.getSettime() != DeviceItemModel.SetTime_On){
-									isUpdate = true;
 								}
 								dim.setSettime(DeviceItemModel.SetTime_On);
 							}
 							else
 							{
 								if(dim.getSettime() != DeviceItemModel.SetTime_Off){
-									isUpdate = true;
 								}
 								dim.setSettime(DeviceItemModel.SetTime_Off);
 							}
@@ -1103,7 +1089,6 @@ public class SocketListActivity extends FirstActivity {
 	
 	private void RefreshAllDevice(){
 		Log.d(TAG, "refresh do background");
-		Void v = null;
 		GetStatueReqMessage orm = new GetStatueReqMessage();
 		ServerItemModel sim = new ServerItemModel();
 		sim.setIpaddress(GobalDef.SERVER_URL);
@@ -1859,8 +1844,6 @@ private class SaveConfigInfoTask extends  AsyncTask<DeviceItemModel,Integer, Int
 		
 		private static final String TAG = "SocketTaskEditActivity";
 		private ProgressDialog processDialog;
-		private int fail = 0;
-		private ConfigInfo tempci;
 		private DeviceItemModel dim;
 		private List<ConfigInfo> configslist = new ArrayList<ConfigInfo>();
 
@@ -1895,13 +1878,7 @@ private class SaveConfigInfoTask extends  AsyncTask<DeviceItemModel,Integer, Int
 				//configinfos.set(timeCount - 1, ci);
 			configslist.clear();
 			configslist.add(current_ci);
-//			}
-//			else if(timeCount == 0){
-//				//configinfos.add(ci);
-//				configinfos.set(0, current_ci);
-//			}
-			fail = 0;
-			processDialog = new ProgressDialog(SocketListActivity.this);
+processDialog = new ProgressDialog(SocketListActivity.this);
 			processDialog.setMessage(getString(R.string.loging));
 			processDialog.setCanceledOnTouchOutside(false);
 			processDialog.show();

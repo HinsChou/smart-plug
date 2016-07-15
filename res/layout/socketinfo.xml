@@ -13,12 +13,12 @@
 
         <ImageButton
             android:id="@+id/socketinfo_back"
-            android:layout_width="30.0dip"
-            android:layout_height="30.0dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10.0dip"
-            android:background="@drawable/back" />
+            android:background="@drawable/cancel" />
 
         <TextView
             android:id="@+id/socketdetail_name"
@@ -27,8 +27,9 @@
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:textColor="#ffffffff"
-            android:textSize="17.0dip" />
+            android:text="@string/photo_select"
+            android:textColor="@color/black"
+            android:textSize="18.0dip" />
 
         <ProgressBar
             android:id="@+id/socketinfo_refresjing"
@@ -45,8 +46,8 @@
 
         <ImageButton
             android:id="@+id/socketinfo_modify"
-            android:layout_width="30.0dip"
-            android:layout_height="30.0dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10.0dip"
@@ -111,77 +112,81 @@
             android:id="@+id/socketinfo_table"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey" >
+            android:background="@color/white" >
 
-            <TableRow>
+            <TableRow
+                android:padding="16dp">
 
                 <ImageView
                     android:id="@+id/socketinfo_p1"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/p1" />
 
                 <ImageView
                     android:id="@+id/socketinfo_p2"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/p2" />
 
                 <ImageView
                     android:id="@+id/socketinfo_p3"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/p3" />
             </TableRow>
 
-            <TableRow android:layout_marginTop="5.0dip" >
+            <TableRow  
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <ImageView
                     android:id="@+id/socketinfo_p4"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/p4" />
 
                 <ImageView
                     android:id="@+id/socketinfo_p5"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/p5" />
 
                 <ImageView
                     android:id="@+id/socketinfo_p6"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/p6" />
             </TableRow>
-            <TableRow android:layout_marginTop="5.0dip" >
+            <TableRow 
+                 android:padding="16dp" >
 
                 <ImageView
                     android:id="@+id/socketinfo_p7"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/p4" />
+                    android:src="@drawable/p7" />
 
                 <ImageView
                     android:id="@+id/socketinfo_p8"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/p5" />
+                    android:src="@drawable/p8" />
 
                 <ImageView
                     android:id="@+id/socketinfo_p9"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/p6" />
+                    android:src="@drawable/p9" />
             </TableRow>
         </TableLayout>
 
