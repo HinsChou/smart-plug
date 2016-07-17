@@ -1,21 +1,12 @@
 package com.lishate.activity;
 
-import java.sql.SQLException;
-
 import com.lishate.R;
-import com.lishate.data.dao.DeviceItemDao;
-
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class FirstActivity extends BaseActivity {
 
@@ -23,7 +14,7 @@ public class FirstActivity extends BaseActivity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
+		
 		if(keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0){
 			//Toast.makeText(this, "≤‚ ‘", Toast.LENGTH_LONG);
 			Log.i(TAG, "test");
@@ -34,12 +25,11 @@ public class FirstActivity extends BaseActivity {
 			
 			Button yes = (Button)dialog.findViewById(R.id.exitdialog_yes);
 			Button no = (Button)dialog.findViewById(R.id.exitdialog_no);
-			TextView text = (TextView)dialog.findViewById(R.id.exitdialog_text);
 			yes.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
+					
 					System.exit(1);
 				}
 			});
@@ -47,7 +37,7 @@ public class FirstActivity extends BaseActivity {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
+					
 					dialog.dismiss();
 				}
 				
@@ -63,7 +53,7 @@ public class FirstActivity extends BaseActivity {
 
 				@Override
 				public void onClick(DialogInterface arg0, int arg1) {
-					// TODO Auto-generated method stub
+					
 					System.exit(1);
 				}
 				

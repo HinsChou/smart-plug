@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="app_name">SmartPlug</string>
+    <string name="app_name">Smart Socket</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="text_lishate_load">loading</string>
@@ -10,10 +10,10 @@
     <string name="more">more</string>
     <string name="apkdownload">Updateing new apk</string>
     <string name="update_new">Foun new version</string>
-    <string name="yes">yes</string>
-    <string name="no">no</string>
+    <string name="yes">Yes</string>
+    <string name="no">Cancel</string>
     <string name="updatefail">Downlaod failed</string>
-    <string name="devicelist_title">device list</string>
+    <string name="devicelist_title">My device</string>
     <string name="netNoConnect">No network connection</string>
     <string name="device_name">name</string>
     <string name="config_title">Config</string>
@@ -21,7 +21,7 @@
     <string name="setTime">Setup time</string>
     <string name="pwd">PW</string>
     <string name="show_pass">Show password</string>
-    <string name="start_config">Config</string>
+    <string name="start_config">Start config</string>
     <string name="delayDo">Delay</string>
     <string name="unEnaable">unenable</string>
     <string name="notis">no is</string>
@@ -33,7 +33,7 @@
     <string name="m_90_min">90</string>
     <string name="m_120_min">120</string>
     <string name="min">minute</string>
-    <string name="device_new">New device</string>
+    <string name="device_new">Add device</string>
     <string name="unNetwork">No network connection</string>
     <string name="remove">pls check sd</string>
     <string name="rom">Rom storage</string>
@@ -144,7 +144,7 @@
    <string name="namesetting">ModifyDeviceName</string>
    <string name="deviceoffline">The Device is Offline</string>
    <string name="saving_data">saving data ...</string>
-   <string name="edittimer">EditTimer</string>
+   <string name="edittimer">Edit Timer</string>
    <string name="complete">Complete</string> 
    <string name="hour">H</string>
    <string name="minute">M</string>
@@ -152,43 +152,45 @@
    <string name="timerclose">Off</string>
    
    <string name="head">这里是HeadView</string>
-    <string name="pull_to_refresh">下拉刷新</string>
-    <string name="release_to_refresh">释放立即刷新</string>
-    <string name="refreshing">正在刷新...</string>
-    <string name="refresh_succeed">刷新成功</string>
-    <string name="refresh_fail">刷新失败</string>
+    <string name="pull_to_refresh">pull to refresh</string>
+    <string name="release_to_refresh">release to refresh</string>
+    <string name="refreshing">refreshing</string>
+    <string name="refresh_succeed">refresh succeed</string>
+    <string name="refresh_fail">refresh fail</string>
     <string name="pullup_to_load">上拉加载更多</string>
     <string name="release_to_load">释放立即加载</string>
     <string name="loading">正在加载...</string>
     <string name="load_succeed">加载成功</string>
     <string name="load_fail">加载失败</string>
     
-    <string name="device_new_power">确定设备已接入电源</string>
-    <string name="device_new_config">长按开关键5秒,当红灯开始慢闪,选择配置</string>
-    <string name="device_new_onekey">一键配置</string>
-    <string name="device_new_help">一键配置说明</string>
-    <string name="device_new_fail">如果配置失败,请点击</string>
-    <string name="device_new_ap">AP配置</string>
-    <string name="device_new_aphelp">AP配置说明</string>
+    <string name="device_new_power">Please confirm the device are in the config mode.</string>
+    <string name="device_new_config">Long press the socket button 5S, the indicator start to flicker slowly. release button ,select config.</string>
+    <string name="device_new_onekey">Smart config</string>
+    <string name="device_new_help">&#060;&#060;About smart config&#062;&#062;</string>
+    <string name="device_new_fail">If smart config fail, pls click</string>
+    <string name="device_new_ap">AP config</string>
     
-    <string name="help_title">使用说明书</string>
-    <string name="help_ap_title">AP配置为一种辅助配置, 如果一键配置失效, 请尝试以下方法进行配置.</string>
-    <string name="help_ap_one">(1) 在一键配置的基础上继续长按配置键5S, 指示灯进入更慢闪的状态. </string>
-    <string name="help_ap_two">(2) 现在手动跳转到设置的无线局域网界面, 手动连接上插座的SSID.</string>
-    <string name="help_ap_three">(3) 等手机正常连接到插座之后, 回到APP配置界面, 选择需要配置路由器的表项, 点击 "开始配置".</string>
-    <string name="help_ap_four">(4) 等待配置, 如果AP配置成功就跳转到主控界面.</string>
-    <string name="help_ok_h1">1. 添加配置</string>
-    <string name="help_ok_h1_one">(1) 手机连接路由器</string>
-    <string name="help_ok_h1_two">(2) 长按配置键5S, 指示灯开始闪烁, 进入智能配置模式.</string>
-    <string name="help_ok_h1_three">(3) 打开APP, 点击下方添加设备后, 选择 "一键配置" 进入一键配置界面.</string>
-    <string name="help_ok_h1_four">(4) 输入 当前手机连接的路由器的密码, 点击 "开始配置".</string>
-    <string name="help_ok_h1_five">(5) 等待配置成功</string>
-    <string name="help_ok_h2">2. 使用插座</string>
-    <string name="help_ok_h2_one">(1) 插座配置完成后会自动跳回到主控界面, 可以对添加成功的设备进行配置了.</string>
-    <string name="help_ok_h2_two">(2) 可以修改设备图片, 修改名称, 进行开关控制, 开启定时功能, 设置定时任务.</string>
-    <string name="help_ok_h3">3. AP配置</string>
-    <string name="help_ok_h3_one">(1) 如果一键配置失败, 请尝试选择AP配置.</string>
+    <string name="device_new_aphelp">AP config instruction</string>
+    <string name="help_ap_title">AP config is auxiliary config, if smart config failed, pls try the method below:</string>
+    <string name="help_ap_one">(1) On the basis of smart config, press the socket button 5s, release the button after the indicator start flicker slower</string>
+    <string name="help_ap_two">(2) Set the WIFI of your mobile to connect the socket SSID (SmartPlug).</string>
+    <string name="help_ap_three">(3) After success connect, back to AP config interface, select the right router SSID, click “start config”.</string>
+    <string name="help_ap_four">(4) Wait successful config, APP will return to main page automatically.</string>
     
-    <string name="timer_new">添加新闹钟</string>
-    <string name="timer_switch">定时开关</string>
+    <string name="help_title">Instruction manual</string>
+    <string name="help_ok_h1">1. Add device</string>
+    <string name="help_ok_h1_one">(1) Connect your mobile to WIFI router SSID</string>
+    <string name="help_ok_h1_two">(2) Long press the socket button 5S, the indicator start to flicker slowly, enter Smart Config mode, release button.</string>
+    <string name="help_ok_h1_three">(3) Open APP, clik “Add device”below, select “Smart Config”to enter the Smart Config interface.</string>
+    <string name="help_ok_h1_four">(4) Enter the password of mobile connected route, select “Start Config”.</string>
+    <string name="help_ok_h1_five">(5) Wait successful config, will return to main page automatically.</string>
+    <string name="help_ok_h2">2. Socket instrusctions</string>
+    <string name="help_ok_h2_one">(1) Click the device icon can chose your favourate icon, you also can select the icon from albums.</string>
+    <string name="help_ok_h2_two">(2) Click the device name can modify the name.</string>
+    <string name="help_ok_h2_three">(3) Click the switch botton can remote control the device</string>
+    <string name="help_ok_h2_four">(4) Click the clock icon can add timer</string>
+    
+    <string name="timer_new">Add timer</string>
+    <string name="timer_switch">Time switch</string>
+    <string name="photo_select">Select device photo</string>
 </resources>

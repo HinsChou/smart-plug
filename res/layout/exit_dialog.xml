@@ -41,7 +41,7 @@
             android:layout_width="100dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/exit_button"
+            android:background="@color/transprent"
             android:paddingBottom="10.0dip"
             android:paddingTop="10.0dip"
             android:text="@string/yes" />
@@ -59,7 +59,7 @@
             android:layout_width="100dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/exit_button"
+            android:background="@color/transprent"
             android:paddingBottom="10.0dip"
             android:paddingTop="10.0dip"
             android:text="@string/no" />

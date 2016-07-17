@@ -157,7 +157,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/repeat_circle" />
+        android:text="@string/repeat" />
 
     <LinearLayout
         android:layout_width="match_parent"

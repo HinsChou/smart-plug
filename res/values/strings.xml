@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="app_name">SmartPlug</string>
+    <string name="app_name">智能插座</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="text_lishate_load">loading</string>
@@ -9,11 +9,11 @@
     <string name="mode">mode</string>
     <string name="more">more</string>
     <string name="apkdownload">正在现在新的apk</string>
-    <string name="update_new">发现新版本，为不影响使用正在更新</string>
+    <string name="update_new">发现新版本, 为不影响使用正在更新</string>
     <string name="yes">确定</string>
     <string name="no">取消</string>
     <string name="updatefail">下载失败</string>
-    <string name="devicelist_title">设备列表</string>
+    <string name="devicelist_title">我的设备</string>
     <string name="netNoConnect">网络未连接</string>
     <string name="device_name">设备名称</string>
     <string name="config_title">配置</string>
@@ -33,17 +33,17 @@
     <string name="m_90_min">90分钟</string>
     <string name="m_120_min">120分钟</string>
     <string name="min">分钟</string>
+    <string name="device_new">添加设备</string>
 
-    <string name="device_new">添加新设备</string>
     <string name="unNetwork">网络未连接</string>
-    <string name="remove">SD无法读取，请检查SD</string>
+    <string name="remove">SD无法读取, 请检查SD</string>
     <string name="rom">使用ROM存储</string>
-    <string name="ssid_error">SSID错误，请检查</string>
+    <string name="ssid_error">SSID错误, 请检查</string>
     <string name="close">关闭</string>
     <string name="configing">配置中</string>
     <string name="wangt_del_device">想要删除该设备</string>
     <string name="loging">正在连接...</string>
-    <string name="timeout">网络延迟，请检查网络或重试</string>
+    <string name="timeout">网络延迟, 请检查网络或重试</string>
     <string name="timeTask">定时任务</string>
     <string name="deviceInfo">设备信息</string>
     <string name="open">打开</string>
@@ -68,7 +68,7 @@
     <string name="openTime">打开时间</string>
     <string name="CloseTime">关闭时间</string>
     <string name="name">名称</string>
-    <string name="repeat_circle">重复日期</string>
+    <string name="repeat_circle">重复周期</string>
     <string name="renwu_socket">插座</string>
     <string name="renwu_switch">开关</string>
     <string name="renwu_control">控制器</string>
@@ -98,8 +98,8 @@
     <string name="renwu_socket_task_opentime">开启时间</string>
     <string name="renwu_socket_task_closetime">关闭时间</string>
     <string name="renwu_socket_task_cyc">重复周期</string>
-    <string name="renwu_socketlist_send_fail">发生错误，请检查网络状况</string>
-    <string name="renwu_exit">确定退出?</string>
+    <string name="renwu_socketlist_send_fail">发生错误, 请检查网络状况</string>
+    <string name="renwu_exit">确定退出？</string>
     <string name="renwu_operation_fail">操作失败！</string>
     <string name="renwu_socket_detail_open">打开</string>
     <string name="renwu_socket_detail_close">关闭</string>
@@ -114,7 +114,7 @@
     <string name="renwu_config_password">密码</string>
     <string name="renwu_config_showpass">显示密码</string>
     <string name="renwu_config_config">配置</string>
-    <string name="renwu_config_back">配置中，不能返回</string>
+    <string name="renwu_config_back">配置中, 不能返回</string>
     <string name="renwu_config_delay_hour">小时</string>
     <string name="renwu_config_delay_min">分钟</string>
     <string name="renwu_config_delay_delay">延迟</string>
@@ -127,7 +127,7 @@
     <string name="renwu_config_newtask">新建任务</string>
     <string name="renwu_config_modifytask">修改任务</string>
     <string name="renwu_config_device">配置设备</string>
-    <string name="renwu_config_languagechange">语言切换，需下次打开应用才生效</string>
+    <string name="renwu_config_languagechange">语言切换, 需下次打开应用才生效</string>
     <string name="renwu_more_recv_sus">接收成功</string>
     <string name="renwu_more_recv_fail">接收失败</string>
     <string name="renwu_more_outdata">数据正在导出</string>
@@ -152,10 +152,10 @@
    <string name="timeropen">"开"</string>
    <string name="timerclose">"关"</string>
    
-    <string name="head">这里是HeadView</string>
+   <string name="head">这里是HeadView</string>
     <string name="pull_to_refresh">下拉刷新</string>
     <string name="release_to_refresh">释放立即刷新</string>
-    <string name="refreshing">正在刷新...</string>
+    <string name="refreshing">正在刷新</string>
     <string name="refresh_succeed">刷新成功</string>
     <string name="refresh_fail">刷新失败</string>
     <string name="pullup_to_load">上拉加载更多</string>
@@ -164,33 +164,34 @@
     <string name="load_succeed">加载成功</string>
     <string name="load_fail">加载失败</string>
     
-    <string name="device_new_power">确定设备已接入电源</string>
-    <string name="device_new_config">长按开关键5秒,当红灯开始慢闪,选择配置</string>
+    <string name="device_new_power">请确认设备进入配置状态</string>
+    <string name="device_new_config">长按按键5S, 指示灯慢闪, 松开按键, 选择配置</string>
     <string name="device_new_onekey">一键配置</string>
-    <string name="device_new_help">一键配置说明</string>
+    <string name="device_new_help">&#060;&#060;一键配置说明&#062;&#062;</string>
     <string name="device_new_fail">如果配置失败,请点击</string>
     <string name="device_new_ap">AP配置</string>
+    
     <string name="device_new_aphelp">AP配置说明</string>
+    <string name="help_ap_title">AP配置为一种辅助配置, 如果一键配置失效, 请尝试以下方法进行配置.</string>
+    <string name="help_ap_one">(1) 在一键配置的基础上继续长按插座按键5S, 指示灯进入更慢闪的状态松开按键</string>
+    <string name="help_ap_two">(2) 设置手机WIFI连接上插座的SSID</string>
+    <string name="help_ap_three">(3) 等待手机连接正常回到AP配置界面, 选择需要连接的路由器SSID, 点击开始配置.</string>
+    <string name="help_ap_four">(4) 等待配置成功, APP会自动跳转到主页面.</string>
     
     <string name="help_title">使用说明书</string>
-    <string name="help_ap_title">AP配置为一种辅助配置, 如果一键配置失效, 请尝试以下方法进行配置.</string>
-    <string name="help_ap_one">(1) 在一键配置的基础上继续长按配置键5S, 指示灯进入更慢闪的状态. </string>
-    <string name="help_ap_two">(2) 现在手动跳转到设置的无线局域网界面, 手动连接上插座的SSID.</string>
-    <string name="help_ap_three">(3) 等手机正常连接到插座之后, 回到APP配置界面, 选择需要配置路由器的表项, 点击 "开始配置".</string>
-    <string name="help_ap_four">(4) 等待配置, 如果AP配置成功就跳转到主控界面.</string>
     <string name="help_ok_h1">1. 添加配置</string>
-    <string name="help_ok_h1_one">(1) 手机连接路由器</string>
-    <string name="help_ok_h1_two">(2) 长按配置键5S, 指示灯开始闪烁, 进入智能配置模式.</string>
-    <string name="help_ok_h1_three">(3) 打开APP, 点击下方添加设备后, 选择 "一键配置" 进入一键配置界面.</string>
-    <string name="help_ok_h1_four">(4) 输入 当前手机连接的路由器的密码, 点击 "开始配置".</string>
-    <string name="help_ok_h1_five">(5) 等待配置成功</string>
-    <string name="help_ok_h2">2. 使用插座</string>
-    <string name="help_ok_h2_one">(1) 插座配置完成后会自动跳回到主控界面, 可以对添加成功的设备进行配置了.</string>
-    <string name="help_ok_h2_two">(2) 可以修改设备图片, 修改名称, 进行开关控制, 开启定时功能, 设置定时任务.</string>
-    <string name="help_ok_h3">3. AP配置</string>
-    <string name="help_ok_h3_one">(1) 如果一键配置失败, 请尝试选择AP配置.</string>
+    <string name="help_ok_h1_one">(1) 手机连接WIFI路由器SSID</string>
+    <string name="help_ok_h1_two">(2) 长按插座按键5S, 指示灯开始慢闪, 进入配置模式, 松开按键</string>
+    <string name="help_ok_h1_three">(3) 打开APP, 点击下方添加设备, 选择一键配置进入一键配置界面.</string>
+    <string name="help_ok_h1_four">(4) 输入当前手机连接的路由器SSID密码, 选择开始配置</string>
+    <string name="help_ok_h1_five">(5) 等待配置成功后会自动返回主页面</string>
+    <string name="help_ok_h2">2. 插座使用</string>
+    <string name="help_ok_h2_one">(1) 点击设备图标可以更换合适的图标, 也可以从相册选择图标</string>
+    <string name="help_ok_h2_two">(2) 点击设备名称可以对设备重命名</string>
+    <string name="help_ok_h2_three">(3) 点开关按钮可以对设备进行远程控制</string>
+    <string name="help_ok_h2_four">(4) 点定时图标可以添加定时任务</string>
     
-    <string name="timer_new">添加新闹钟</string>
+    <string name="timer_new">添加定时</string>
     <string name="timer_switch">定时开关</string>
     <string name="photo_select">选择设备头像</string>
 </resources>

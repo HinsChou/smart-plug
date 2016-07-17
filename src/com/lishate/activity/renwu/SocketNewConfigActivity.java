@@ -169,7 +169,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 				// TODO Auto-generated method stub
 				Intent mintent = new Intent(getApplicationContext(), SocketNewApConfigActivity.class);
 				startActivity(mintent);
-				finish();
+//				finish();
 			}
 		});
 		
@@ -505,7 +505,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 				
 				dim = new DeviceItemModel();
 				dim.setDeviceId(id);
-				dim.setDeviceName("²å×ù" +devlist.size() );
+				dim.setDeviceName(getString(R.string.renwu_socket) + devlist.size() );
 				dim.setParentId(0);
 				
 				//devlist.add(dim);
@@ -596,7 +596,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 										if(dim == null){
 											dim = new DeviceItemModel();
 											dim.setDeviceId(deviceid);
-											dim.setDeviceName("²å×ù" +devlist.size() );
+											dim.setDeviceName(getString(R.string.renwu_socket) +devlist.size() );
 											dim.setParentId(0);
 											//devlist.add(dim);
 											did.create(dim);

@@ -219,6 +219,7 @@ public class SocketListActivity extends FirstActivity {
 				if(Utility.CheckNetwork(SocketListActivity.this) == true){
 					mNetworkView.setVisibility(View.GONE);
 					new RefreshTask().execute(new Void[0]);
+//					UpdateLocalInfo();
 				}
 				else{
 					mNetworkView.setVisibility(View.VISIBLE);
