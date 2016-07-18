@@ -67,7 +67,6 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 	private final static int WIFI_CONNECT_START = 0;
 	private final static int WIFI_CONNECT_SELFAP = 1;
 	private final static int WIFI_CONNECT_WANTAP = 2;
-	private final static int WIFI_CONNECT_SELAPGO = 3;
 	private final static int WIFI_CONNECT_FAIL = 4;
 	private final static int ADDDEVICE = 6;
 	
@@ -96,7 +95,6 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 	private int selapflag = 0;
 	
 	private String currentSSid;
-	private String currentOnlySSid;
 	private static final String COMPARESSID = "Aura";
 	 private final static String SMARTCONFIGURATESSID = "\"" + "Aura" + "\"";
 	private int sendflag = 1;
@@ -105,17 +103,10 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 	private SharedPreferences.Editor rgbEditor;
 	
 	WifiManager mWifiManager;
-	private boolean reconnetfmlAPok =false;
-	private boolean isConnected;
 	private BroadcastReceiver wifiConnectReceiver;
-	private boolean canConnectable = false;
-	private boolean tplinkcanconnetable = false;
-	private boolean mincanconnetable = false;
-	
 	private esp8266smartconfig e8266config;
 	private String DEVICEID = "devid";
 	private int timeout_count;
-	private String migssid = null;
 	private void findView(){
 		rgbSharedPreferences = getSharedPreferences("SSIDPWD", MODE_PRIVATE);
 		rgbEditor = rgbSharedPreferences.edit();
@@ -135,7 +126,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				if(start.isEnabled() == true){
 					SocketNewConfigActivity.this.finish();
 				}
@@ -150,7 +141,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+				
 				Log.i(TAG, "password" + password.getInputType());
 				if(password.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD){
 					showpass.setImageResource(R.drawable.password_hide);
@@ -166,7 +157,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+				
 				Intent mintent = new Intent(getApplicationContext(), SocketNewApConfigActivity.class);
 				startActivity(mintent);
 //				finish();
@@ -178,7 +169,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				rgbEditor.putString(ssid.getText().toString(), password.getText().toString());
 				rgbEditor.commit();
 //				Intent wifiSettingsIntent = new Intent("android.settings.WIFI_SETTINGS");   
@@ -214,7 +205,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			showTask = new TimerTask() {
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
+					
 					Message msg = Message.obtain();
 //					msg.what = TIME_MSG;
 //					showHandler.sendMessage(msg);
@@ -261,7 +252,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			// TODO Auto-generated method stub
+			
 			String apSsid = params[0];
 			String apPassword = params[1];
 			e8266config = new esp8266smartconfig(apSsid,  apPassword);
@@ -274,20 +265,20 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 	}
 	@Override
 	public void isStartConfig() {
-		// TODO Auto-generated method stub
+		
 		Log.e(TAG, "isStartConfig");
 	}
 
 	@Override
 	public void isStopConfig() {
-		// TODO Auto-generated method stub
+		
 		Log.e(TAG, "isStopConfig");
 		
 	}
 
 	@Override
 	public void completeConfig(String parameter) {
-		// TODO Auto-generated method stub
+		
 		Log.d(TAG, "iscompleteConfig");
 		Message msg = Message.obtain();
 		msg.what = ADDDEVICE;
@@ -299,7 +290,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 	@Override
 	public void configtimeout() {
-		// TODO Auto-generated method stub
+		
 		showHandler.sendEmptyMessage(TIMEROUT);
 		
 	}
@@ -310,7 +301,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
+			
 			String action = intent.getAction();
 			if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
 				ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
@@ -322,7 +313,6 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 					System.out.println("currentWifiInfo.getSSID()----->"
 							+ currentWifiInfo.getSSID());
 					if (currentWifiInfo.getSSID().equals(currentSSid) || currentWifiInfo.getSSID().equals(SMARTCONFIGURATESSID)) {
-						isConnected = true;
 					}
 					Log.e(TAG, "ÇÐ»»µ½"+ currentWifiInfo.getSSID());
 				} else {
@@ -346,7 +336,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 		@Override
 		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
+			
 			super.handleMessage(msg);
 			switch(msg.what){
 			case TIME_MSG:
@@ -523,7 +513,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 		@Override
 		protected Integer doInBackground(Integer... arg0) {
-			// TODO Auto-generated method stub
+			
 			try{
 				
 				while(true){
@@ -642,7 +632,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 		@Override
 		protected void onPostExecute(Integer result) {
-			// TODO Auto-generated method stub
+			
 			super.onPostExecute(result);
 			sendflag = 1;
 			if(result == 1){
@@ -652,7 +642,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+			
 			super.onPreExecute();
 		}
 		
@@ -660,7 +650,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 	
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
+		
 		super.onDestroy();
 		if(handTimer != null){
 			handTimer.cancel();
@@ -671,7 +661,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 
 	@Override
 	protected void onCreate(Bundle paramBundle) {
-		// TODO Auto-generated method stub
+		
 		super.onCreate(paramBundle);
 		setContentView(R.layout.socketnewconfig);
 		findView();
@@ -704,7 +694,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 				}
 			}
 		}
-		DhcpInfo di = mWifiManager.getDhcpInfo();
+		mWifiManager.getDhcpInfo();
 		
 		wifiConnectReceiver = new WifiConnectReceiver();
 		IntentFilter filter = new IntentFilter();
@@ -718,7 +708,6 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 			}
 			
 			currentSSid = "\"" + ssid_data + "\"";
-			currentOnlySSid = ssid_data;
 		}
 		else{
 			Toast toast;
@@ -728,8 +717,6 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 		}
 		
 		wifi_connect_statue = WIFI_CONNECT_START;
-		migssid =  "\"" + COMPARESSID + "\"";
-		//handTimer.schedule(showTask, 10, 10000);
 	}
 	
 	

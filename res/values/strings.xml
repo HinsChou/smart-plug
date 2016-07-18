@@ -192,6 +192,6 @@
     <string name="help_ok_h2_four">(4) 点定时图标可以添加定时任务</string>
     
     <string name="timer_new">添加定时</string>
-    <string name="timer_switch">定时开关</string>
+    <string name="timer_switch">定时 开/关</string>
     <string name="photo_select">选择设备头像</string>
 </resources>

@@ -8,7 +8,6 @@
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_marginTop="8dp"
 	    android:orientation="horizontal"
 	    android:background="@color/white" >
 	    
@@ -19,7 +18,7 @@
 	        android:layout_gravity="center_vertical"
 	        android:layout_margin="16dp"
 	        android:background="@color/transprent"
-	        android:src="@drawable/setplugscene" />
+	        android:src="@drawable/socket" />
 	    
 	    <LinearLayout 
 	        android:layout_width="fill_parent"

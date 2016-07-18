@@ -191,6 +191,6 @@
     <string name="help_ok_h2_four">(4) Click the clock icon can add timer</string>
     
     <string name="timer_new">Add timer</string>
-    <string name="timer_switch">Time switch</string>
+    <string name="timer_switch">Timer On/Off</string>
     <string name="photo_select">Select device photo</string>
 </resources>

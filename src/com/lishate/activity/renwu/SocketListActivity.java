@@ -120,13 +120,13 @@ public class SocketListActivity extends FirstActivity {
 	private ImageButton addplug_more;
 	private PopupWindow popup;
 	private PullToRefreshLayout mRefreshView;
-	private  PopupWindow popupseticon;
+	private PopupWindow popupseticon;
 	private String dev_pic = "";
 	public final static int capture =1;
 	private static final int zoom = 2;
 	private static final int code = 3;
 	private Bitmap bmp = null;
-	private String    orginalUriStr = null;
+	private String orginalUriStr = null;
 	private Handler myhander;
 	private Dao<DeviceItemModel, Integer> devicedatadao = null;
 	
@@ -141,12 +141,13 @@ public class SocketListActivity extends FirstActivity {
 			
 			//DeviceItemDao did = new DeviceItemDao(getHelper());
 			result.clear();
-//			DeviceItemModel item = new DeviceItemModel();
+			
+			DeviceItemModel item = new DeviceItemModel();
 //			result.add(item);
+			
 			result.addAll(devicedatadao.queryForAll());
 			
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 		}
 		//Log.i(TAG, "获得的名字是: " + result.get(0).getDeviceName());
@@ -240,7 +241,6 @@ public class SocketListActivity extends FirstActivity {
 			@Override
 			public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
 				
-				
 				new Handler()
 				{
 					@Override
@@ -260,8 +260,7 @@ public class SocketListActivity extends FirstActivity {
 			@Override
 			public void create(SwipeMenu menu) {
 				// create "delete" item
-				SwipeMenuItem deleteItem = new SwipeMenuItem(
-						getApplicationContext());
+				SwipeMenuItem deleteItem = new SwipeMenuItem(getApplicationContext());
 				// set item background
 				deleteItem.setBackground(new ColorDrawable(getResources().getColor(R.color.red)));
 				// set item width
@@ -270,7 +269,6 @@ public class SocketListActivity extends FirstActivity {
 				deleteItem.setIcon(R.drawable.device_del);
 				// add to menu
 				menu.addMenuItem(deleteItem);
-				
 			}
 		};
 		mSocketList.setMenuCreator(creator);
