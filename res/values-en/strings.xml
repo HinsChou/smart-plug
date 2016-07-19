@@ -173,19 +173,19 @@
     <string name="device_new_aphelp">AP config instruction</string>
     <string name="help_ap_title">AP config is auxiliary config, if smart config failed, pls try the method below:</string>
     <string name="help_ap_one">(1) On the basis of smart config, press the socket button 5s, release the button after the indicator start flicker slower</string>
-    <string name="help_ap_two">(2) Set the WIFI of your mobile to connect the socket SSID (SmartPlug).</string>
-    <string name="help_ap_three">(3) After success connect, back to AP config interface, select the right router SSID, click “start config”.</string>
-    <string name="help_ap_four">(4) Wait successful config, APP will return to main page automatically.</string>
+    <string name="help_ap_two">(2) Set the WIFI of your mobile to connect the socket SSID (SmartPlug)</string>
+    <string name="help_ap_three">(3) After success connect, back to AP config interface, select the right router SSID, click “start config”</string>
+    <string name="help_ap_four">(4) Wait successful config, APP will return to main page automatically</string>
     
     <string name="help_title">Instruction manual</string>
     <string name="help_ok_h1">1. Add device</string>
     <string name="help_ok_h1_one">(1) Connect your mobile to WIFI router SSID</string>
-    <string name="help_ok_h1_two">(2) Long press the socket button 5S, the indicator start to flicker slowly, enter Smart Config mode, release button.</string>
-    <string name="help_ok_h1_three">(3) Open APP, clik “Add device”below, select “Smart Config”to enter the Smart Config interface.</string>
-    <string name="help_ok_h1_four">(4) Enter the password of mobile connected route, select “Start Config”.</string>
-    <string name="help_ok_h1_five">(5) Wait successful config, will return to main page automatically.</string>
+    <string name="help_ok_h1_two">(2) Long press the socket button 5S, the indicator start to flicker slowly, enter Smart Config mode, release button</string>
+    <string name="help_ok_h1_three">(3) Open APP, clik “Add device”below, select “Smart Config”to enter the Smart Config interface</string>
+    <string name="help_ok_h1_four">(4) Enter the password of mobile connected route, select “Start Config”</string>
+    <string name="help_ok_h1_five">(5) Wait successful config, will return to main page automatically</string>
     <string name="help_ok_h2">2. Socket instrusctions</string>
-    <string name="help_ok_h2_one">(1) Click the device icon can chose your favourate icon, you also can select the icon from albums.</string>
+    <string name="help_ok_h2_one">(1) Click the device icon can chose your favourate icon, you also can select the icon from albums</string>
     <string name="help_ok_h2_two">(2) Click the device name can modify the name.</string>
     <string name="help_ok_h2_three">(3) Click the switch botton can remote control the device</string>
     <string name="help_ok_h2_four">(4) Click the clock icon can add timer</string>

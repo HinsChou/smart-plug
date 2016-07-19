@@ -372,6 +372,9 @@ public class SocketInfoActivity extends BaseActivity {
 						photo.compress(Bitmap.CompressFormat.JPEG, 75, fs);
 						fs.flush();
 						fs.close();
+						resetPhoto();
+						Bitmap bitmap = BitmapFactory.decodeFile(dev_icon); 
+						p9.setImageBitmap(bitmap);
 //						SetDetailBitmap(photo);
 						//detail.setImageBitmap(photo);
 //						dev_icon = "dev_" + dim.getDeviceId();

@@ -143,9 +143,9 @@ public class SocketListActivity extends FirstActivity {
 			result.clear();
 			
 			DeviceItemModel item = new DeviceItemModel();
-			for (int i = 0; i < 8; i++) {
-				result.add(item);
-			}
+//			for (int i = 0; i < 8; i++) {
+//				result.add(item);
+//			}
 			result.addAll(devicedatadao.queryForAll());
 			
 		} catch (SQLException e) {
@@ -304,7 +304,6 @@ public class SocketListActivity extends FirstActivity {
 		        return false;
 		    }
 		});
-		
 		
 		mSocketList.setOnScrollListener(new OnScrollListener(){
 

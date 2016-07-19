@@ -1,7 +1,6 @@
 package com.lishate.activity.renwu;
 
 
-import com.aigestudio.wheelpicker.AbstractWheelPicker;
 import com.aigestudio.wheelpicker.AbstractWheelPicker.OnWheelChangeListener;
 import com.aigestudio.wheelpicker.WheelTimePicker;
 import com.lishate.R;
@@ -242,6 +241,7 @@ public class SetTimerSelectDay extends Activity implements OnScrollListener, For
 		}else if(view == complete){
 //			hour = Byte.parseByte((String) ((TextView) hourpick).getText());
 //			minute = Byte.parseByte((String) ((TextView) minutepick).getText());
+			mconfig.isenable = true;
 			mconfig.startenable = openofclose.isChecked();
 			mconfig.endenable = !openofclose.isChecked();
 			if(mconfig.startenable){

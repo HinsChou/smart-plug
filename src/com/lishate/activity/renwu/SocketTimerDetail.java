@@ -136,7 +136,7 @@ public class SocketTimerDetail extends Activity{
 	
 
 	protected boolean equalCurrenttimeWithLastTimer() {
-		// TODO Auto-generated method stub
+		
 		if(oldconfiginfos.size() != configinfos.size())
 			return true;
 		else{
@@ -155,7 +155,7 @@ public class SocketTimerDetail extends Activity{
 	}	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.socketimer);
 		switchApplication app = (switchApplication)getApplication();
@@ -169,7 +169,7 @@ public class SocketTimerDetail extends Activity{
 	}
 
 	private void SaveOldConfig() {
-		// TODO Auto-generated method stub
+		
 		oldconfiginfos.clear();
 		for(int i =0; i<configinfos.size(); i++){
 			ConfigInfo ci = new ConfigInfo();
@@ -187,13 +187,13 @@ public class SocketTimerDetail extends Activity{
 
 
 	private void initView() {
-		// TODO Auto-generated method stub
+		
 		
 		backkey.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				boolean ismodify =false;
 			
 //					ismodify = !Arrays.equals(dayschecked, days_week);
@@ -213,9 +213,6 @@ public class SocketTimerDetail extends Activity{
 //				else
 					finish();
 			}
-
-
-			
 		});
 //		device_name.setText(dim.getDeviceName());
 //		device_name.setFocusable(false);
@@ -231,14 +228,18 @@ public class SocketTimerDetail extends Activity{
 		addtask.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent mintent = new Intent();
-				mintent.setClass(getApplicationContext(), SetTimerSelectDay.class);
-				int reqcode = REQUESTADDTIMERTASK<<8;
-//				Bundle mBundle = new Bundle();
-//				mBundle.putSerializable("MODIFYTIMER", ci2);//帮当前要修改的时间参数传递进去
-//				mintent.putExtras(mBundle);
-				startActivityForResult(mintent, reqcode);
+				Log.i(TAG, "timer" + configinfos.size());
+				if(configinfos.size() < 7){
+					Intent mintent = new Intent();
+					mintent.setClass(getApplicationContext(), SetTimerSelectDay.class);
+					int reqcode = REQUESTADDTIMERTASK<<8;
+//					Bundle mBundle = new Bundle();
+//					mBundle.putSerializable("MODIFYTIMER", ci2);//帮当前要修改的时间参数传递进去
+//					mintent.putExtras(mBundle);
+					startActivityForResult(mintent, reqcode);
+				}else{
+					Toast.makeText(SocketTimerDetail.this, getString(R.string.renwu_socket_dtail_maxtime), Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 //		if(configinfos.size()>0)
@@ -280,7 +281,7 @@ public class SocketTimerDetail extends Activity{
 	}
 
 	private void findView() {
-		// TODO Auto-generated method stub
+		
 		backkey = (LinearLayout)findViewById(R.id.socketinfo_back);
 		addtask = (LinearLayout)findViewById(R.id.sockettimer_add);
 //		device_icon = (ImageView)findViewById(R.id.socketinfo_detail);
@@ -296,7 +297,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 
 		@Override
 		protected void onPostExecute(Integer result) {
-			// TODO Auto-generated method stub
+			
 			super.onPostExecute(result);
 			processDialog.dismiss();
 			if(result == 0){
@@ -320,7 +321,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+			
 			super.onPreExecute();
 //			if(timeCount > 0){
 //				tempci = configinfos.get(timeCount - 1);
@@ -341,7 +342,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 
 		@Override
 		protected Integer doInBackground(Void... arg0) {
-			// TODO Auto-generated method stub
+			
 			SetConfigReqMessage scrm = new SetConfigReqMessage();
 			ServerItemModel sim = new ServerItemModel();
 			sim.setIpaddress(GobalDef.SERVER_URL);
@@ -420,7 +421,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 	}
 
 	public void Update() {
-		// TODO Auto-generated method stub
+		
 		mtimeradapter.notifyDataSetChanged();
 		Log.e(TAG, "准备更新时间参数 有" + configinfos.size() + "项任务表");
 		timeCount = configinfos.size();
@@ -433,7 +434,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 
 
 	public void EditTaskReq(ConfigInfo ci2, int pos) {
-		// TODO Auto-generated method stub
+		
 		//Log.e(TAG, "准备修改时间参数");
 		
 		Intent mintent = new Intent(this, SetTimerSelectDay.class);
@@ -448,7 +449,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
+		
 		//super.onActivityResult(requestCode, resultCode, data);
 		Log.e(TAG, "处理返回参数RESULT_OK=" +resultCode );
 		ConfigInfo mconfig ;
@@ -479,7 +480,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 
 
 	private void AddTimerTask(ConfigInfo newconfig) {
-		// TODO Auto-generated method stub
+		
 		ConfigInfo mmconfig =new ConfigInfo();
 		mmconfig.endenable = newconfig.endenable;
 		mmconfig.startenable = newconfig.startenable;
@@ -497,7 +498,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 		
 		@Override
 		protected Integer doInBackground(DeviceItemModel... params) {
-			// TODO Auto-generated method stub
+			
 			
 			dim = params[0];
 			PublicTimezoneSetReqMessage  orm = null;
@@ -567,7 +568,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 
 
 	private void Refresh(ConfigInfo newconfig, int posion) {
-		// TODO Auto-generated method stub
+		
 		Log.e(TAG, "数组总长度是：" +timerdatatask.size() + "刷新数据位置是："+ posion);
 		
 		if(configinfos.size()>posion){
@@ -588,7 +589,7 @@ class SaveConfigInfoTask extends  AsyncTask<Void,Integer, Integer>{
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
+		
 		super.onResume();
 		mtimeradapter.notifyDataSetChanged();
 	}

@@ -48,7 +48,7 @@
             android:background="@color/grey"
             android:layout_toRightOf="@id/rename"
             android:textColor="#ff000000"
-            android:maxLength="8" />
+            android:maxLength="8"/>
     </RelativeLayout>
 
     <Button

@@ -172,17 +172,17 @@
     <string name="device_new_ap">AP配置</string>
     
     <string name="device_new_aphelp">AP配置说明</string>
-    <string name="help_ap_title">AP配置为一种辅助配置, 如果一键配置失效, 请尝试以下方法进行配置.</string>
+    <string name="help_ap_title">AP配置为一种辅助配置, 如果一键配置失败, 请尝试以下方法进行配置</string>
     <string name="help_ap_one">(1) 在一键配置的基础上继续长按插座按键5S, 指示灯进入更慢闪的状态松开按键</string>
     <string name="help_ap_two">(2) 设置手机WIFI连接上插座的SSID</string>
-    <string name="help_ap_three">(3) 等待手机连接正常回到AP配置界面, 选择需要连接的路由器SSID, 点击开始配置.</string>
-    <string name="help_ap_four">(4) 等待配置成功, APP会自动跳转到主页面.</string>
+    <string name="help_ap_three">(3) 等待手机连接正常回到AP配置界面, 选择需要连接的路由器SSID, 点击开始配置</string>
+    <string name="help_ap_four">(4) 等待配置成功, APP会自动跳转到主页面</string>
     
     <string name="help_title">使用说明书</string>
     <string name="help_ok_h1">1. 添加配置</string>
     <string name="help_ok_h1_one">(1) 手机连接WIFI路由器SSID</string>
     <string name="help_ok_h1_two">(2) 长按插座按键5S, 指示灯开始慢闪, 进入配置模式, 松开按键</string>
-    <string name="help_ok_h1_three">(3) 打开APP, 点击下方添加设备, 选择一键配置进入一键配置界面.</string>
+    <string name="help_ok_h1_three">(3) 打开APP, 点击下方添加设备, 选择一键配置进入一键配置界面</string>
     <string name="help_ok_h1_four">(4) 输入当前手机连接的路由器SSID密码, 选择开始配置</string>
     <string name="help_ok_h1_five">(5) 等待配置成功后会自动返回主页面</string>
     <string name="help_ok_h2">2. 插座使用</string>
