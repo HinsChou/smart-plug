@@ -103,7 +103,7 @@
     <string name="renwu_operation_fail">操作失败！</string>
     <string name="renwu_socket_detail_open">打开</string>
     <string name="renwu_socket_detail_close">关闭</string>
-    <string name="renwu_socket_dtail_maxtime">定时最大7个</string>
+    <string name="renwu_socket_dtail_maxtime">不能添加更多定时</string>
     <string name="renwu_socket_offline">设备断线</string>
     <string name="renwu_config_fail">配置失败</string>
     <string name="renwu_config_sus">配置成功</string>

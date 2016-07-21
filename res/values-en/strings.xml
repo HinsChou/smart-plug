@@ -102,7 +102,7 @@
     <string name="renwu_operation_fail">Operation failed！</string>
     <string name="renwu_socket_detail_open">&#160;Open</string>
     <string name="renwu_socket_detail_close">&#160;Close</string>
-    <string name="renwu_socket_dtail_maxtime">maximum 7</string>
+    <string name="renwu_socket_dtail_maxtime">Cannot add more timer</string>
     <string name="renwu_socket_offline">Device offline</string>
     <string name="renwu_config_fail">Setup failed</string>
     <string name="renwu_config_sus">Setup success</string>

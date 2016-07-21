@@ -183,7 +183,7 @@ public class SocketListAdapter extends BaseAdapter {
 
 				if (dim.getSettime() == DeviceItemModel.SetTime_On) {
 					viewHolder.timeronoff.setChecked(true);
-					viewHolder.switchLock.setImageResource(R.drawable.timer_on);
+					viewHolder.switchLock.setImageResource(R.drawable.timer_off);
 				} else {
 					viewHolder.timeronoff.setChecked(false);
 					viewHolder.switchLock.setImageResource(R.drawable.timer_off);
