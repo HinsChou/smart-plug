@@ -144,7 +144,7 @@ public class SocketListActivity extends FirstActivity {
 			
 			DeviceItemModel item = new DeviceItemModel();
 //			for (int i = 0; i < 8; i++) {
-//				result.add(item);
+				result.add(item);
 //			}
 			result.addAll(devicedatadao.queryForAll());
 			
