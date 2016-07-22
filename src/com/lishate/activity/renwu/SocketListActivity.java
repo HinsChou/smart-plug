@@ -138,16 +138,13 @@ public class SocketListActivity extends FirstActivity {
 	private List<DeviceItemModel> initDevList(){
 		List<DeviceItemModel> result = new ArrayList<DeviceItemModel>();
 		try {
-			
 			//DeviceItemDao did = new DeviceItemDao(getHelper());
 			result.clear();
-			
-			DeviceItemModel item = new DeviceItemModel();
-//			for (int i = 0; i < 8; i++) {
-//				result.add(item);
-//			}
-			result.addAll(devicedatadao.queryForAll());
-			
+			List<DeviceItemModel> list = devicedatadao.queryForAll();
+			for (int i = list.size() - 1; i >= 0; i--) {
+				result.add(list.get(i));
+			}
+//			result.addAll(devicedatadao.queryForAll());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -818,7 +815,7 @@ public class SocketListActivity extends FirstActivity {
 			super.onPostExecute(result);
 			progressDialog.dismiss();
 			if(result == null){//获取定时任务表失败
-				Toast.makeText(SocketListActivity.this, R.string.timeout, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(SocketListActivity.this, R.string.timeout, Toast.LENGTH_SHORT).show();
 				
 //				switchApplication app = (switchApplication)getApplication();
 //				app.SetDeviceItemModel(dim);
