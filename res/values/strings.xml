@@ -190,6 +190,10 @@
     <string name="help_ok_h2_two">(2) 点击设备名称可以对设备重命名</string>
     <string name="help_ok_h2_three">(3) 点开关按钮可以对设备进行远程控制</string>
     <string name="help_ok_h2_four">(4) 点定时图标可以添加定时任务</string>
+    <string name="help_ok_h3">3. 常见问题</string>
+    <string name="help_ok_h3_one">(1) 添加设备不成功\n确认设备是在配置状态，注意WIFI网络信号是否正常（目前设备不支持连接含汉字的WIFI热点）,如重试不成功请将设备断电退出APP再重新配置</string>
+    <string name="help_ok_h3_two">(2) 设置定时任务没有执行\n确认定时任务是否打开，有选择对应日期定时。为了降低功耗，设备会每隔一段时间和云服务器同步，定时任务会有几十秒钟延时</string>
+    <string name="help_ok_h3_three">(3) 设备不能远程控制\n下拉刷新获取当前设备状态，请确认手机端网络是否正常，检查设备连接的WIFI能否正常访问Internet</string>
     
     <string name="timer_new">添加定时</string>
     <string name="timer_switch">定时 开/关</string>

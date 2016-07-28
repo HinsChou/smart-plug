@@ -479,7 +479,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 										if (dim == null) {
 											dim = new DeviceItemModel();
 											dim.setDeviceId(deviceid);
-											dim.setDeviceName(getString(R.string.renwu_socket) + devlist.size());
+											dim.setDeviceName(getString(R.string.renwu_socket) + (devlist.size() + 1));
 											dim.setParentId(0);
 											// devlist.add(dim);
 											did.create(dim);

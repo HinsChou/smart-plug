@@ -189,7 +189,10 @@
     <string name="help_ok_h2_two">(2) Click the device name can modify the name.</string>
     <string name="help_ok_h2_three">(3) Click the switch botton can remote control the device</string>
     <string name="help_ok_h2_four">(4) Click the clock icon can add timer</string>
-    
+    <string name="help_ok_h3">3. FAQ</string>
+    <string name="help_ok_h3_one">(1) Failed add device\nMake sure device is under config condition, pay attention the WIFI sigal is ok or not (Currently, the device can’t support the WIFI hotspot with chinese charaters), if retry failed, pls cut off the power and exit the APP then try to add device again</string>
+    <string name="help_ok_h3_two">(2) Set timer tests, not executed\nConfirm the timer tests are open or not, have corresponding date timing. In order to save power, the device will synchronize with the cloud server every once in a while, there will be a few seconds delay for timed task to execution</string>
+    <string name="help_ok_h3_three">(3) Can’t remote control the device\nDrop-down the page refresh to get the device config condition, confirm the mobile’s network is normal, check the device connected WIFI can visit internet or not</string>
     <string name="timer_new">Add timer</string>
     <string name="timer_switch">Timer On/Off</string>
     <string name="photo_select">Select device photo</string>

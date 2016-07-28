@@ -495,7 +495,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 				
 				dim = new DeviceItemModel();
 				dim.setDeviceId(id);
-				dim.setDeviceName(getString(R.string.renwu_socket) + devlist.size() );
+				dim.setDeviceName(getString(R.string.renwu_socket) + (devlist.size() + 1));
 				dim.setParentId(0);
 				
 				//devlist.add(dim);
@@ -586,7 +586,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 										if(dim == null){
 											dim = new DeviceItemModel();
 											dim.setDeviceId(deviceid);
-											dim.setDeviceName(getString(R.string.renwu_socket) +devlist.size() );
+											dim.setDeviceName(getString(R.string.renwu_socket) + (devlist.size() + 1));
 											dim.setParentId(0);
 											//devlist.add(dim);
 											did.create(dim);

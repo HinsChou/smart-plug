@@ -140,11 +140,12 @@ public class SocketListActivity extends FirstActivity {
 		try {
 			//DeviceItemDao did = new DeviceItemDao(getHelper());
 			result.clear();
-			List<DeviceItemModel> list = devicedatadao.queryForAll();
-			for (int i = list.size() - 1; i >= 0; i--) {
-				result.add(list.get(i));
-			}
-//			result.addAll(devicedatadao.queryForAll());
+			DeviceItemModel dim = new DeviceItemModel();
+//			List<DeviceItemModel> list = devicedatadao.queryForAll();
+//			for (int i = list.size() - 1; i >= 0; i--) {
+//				result.add(list.get(i));
+//			}
+			result.addAll(devicedatadao.queryForAll());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
