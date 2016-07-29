@@ -55,7 +55,7 @@ import com.zxs.ptrmenulistview.CircleProgress;
 
 public class SocketNewApConfigActivity extends BaseActivity {
 
-	protected static final String TAG = "SocketConfigActivity";
+	protected static final String TAG = "SocketNewApConfigActivity";
 	private final static int TIME_MSG = 1;
 	private final static int TIME_OK = 2;
 	private final static int TIME_FAIL = 3;
@@ -65,7 +65,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 	private final static int WIFI_CONNECT_WANTAP = 2;
 	private final static int WIFI_CONNECT_FAIL = 4;
 
-	private final static int connect_times = 60;// 20;
+	private final static int connect_times = 60 * 25;// 20;
 
 	private int wifi_connect_statue = 0;
 	private LinearLayout back;
@@ -194,21 +194,32 @@ public class SocketNewApConfigActivity extends BaseActivity {
 
 				rgbEditor.putString(ssid.getText().toString(), password.getText().toString());
 				rgbEditor.commit();
-				Intent wifiSettingsIntent = new Intent("android.settings.WIFI_SETTINGS");
-				startActivity(wifiSettingsIntent);
-				start.setEnabled(false);
-				wifi_connect_statue = WIFI_CONNECT_START;
-				if (git != null) {
-					// git.loopflag = false;
-					git = new GetInfoTask();
+				WifiInfo info = mWifiManager.getConnectionInfo();
+				
+				if(info == null){
+					Intent wifiSettingsIntent = new Intent("android.settings.WIFI_SETTINGS");
+					startActivity(wifiSettingsIntent);
+				}else{
+					String tempssid = info.getSSID();
+					if (tempssid.startsWith("\"") && tempssid.endsWith("\"")) 
+						tempssid = tempssid.substring(1, tempssid.length() - 1);
+					
+					if(!tempssid.equals(COMPARESSID)){
+						Intent wifiSettingsIntent = new Intent("android.settings.WIFI_SETTINGS");
+						startActivity(wifiSettingsIntent);
+					}else{
+						start.setEnabled(false);
+						wifi_connect_statue = WIFI_CONNECT_START;
+						if (git != null) {
+							// git.loopflag = false;
+							git = new GetInfoTask();
+						}
+						// GetInfoTask git = new GetInfoTask();
+						git.execute(new Integer[0]);
+						timeout_count = 0;
+						StartTimer();
+					}
 				}
-				// GetInfoTask git = new GetInfoTask();
-				git.execute(new Integer[0]);
-				timeout_count = 0;
-				StartTimer();
-				progressDialog.setCanceledOnTouchOutside(false);
-				progressDialog.setMessage(SocketNewApConfigActivity.this.getString(R.string.renwu_config_finding));
-				progressDialog.show();
 			}
 
 		});
@@ -243,23 +254,22 @@ public class SocketNewApConfigActivity extends BaseActivity {
 			handTimer = new Timer();
 		}
 
-		if (showTask == null) {
+//		if (showTask == null) {
 			showTask = new TimerTask() {
 
 				@Override
 				public void run() {
 
 					timeout_count++;
-
+					pbStart.setProgress(timeout_count * 100f / connect_times);
 					Message msg = Message.obtain();
 					msg.what = TIME_MSG;
-					pbStart.setProgress(timeout_count * 100f / (25 * 60));
 					showHandler.sendMessage(msg);
 					// msg.what = TIME_MSG;
 					// testswitchssid.sendMessage(msg);
 				}
 			};
-		}
+//		}
 		if (handTimer != null && showTask != null)
 			handTimer.schedule(showTask, 0, 40);
 	}
@@ -294,23 +304,57 @@ public class SocketNewApConfigActivity extends BaseActivity {
 			super.handleMessage(msg);
 			switch (msg.what) {
 			case TIME_MSG:
-				Log.e(TAG,
-						"定时信息为timeout_count-----------" + timeout_count + "wifi_connect_statue=" + wifi_connect_statue);
-				if (timeout_count > 120) {
-
-					Log.e(TAG, "马上退出-----------");
+//				Log.i(TAG, "timeout_count: " + timeout_count + ",wifi_connect_statue: " + wifi_connect_statue);
+				if (timeout_count > connect_times) {
+					Log.w(TAG, "马上退出");
 					StopConfig();
 					Message tmsg = Message.obtain();
 					tmsg.what = TIME_FAIL;
 					showHandler.sendMessage(tmsg);
-
 				}
 				WifiInfo info = mWifiManager.getConnectionInfo();
-				// Log.d(TAG, "wifi_connect statue:" + wifi_connect_statue);
 				if (info != null) {
-					// Log.d(TAG, "info ssid " + info.getSSID());
-					if (wifi_connect_statue == WIFI_CONNECT_WANTAP) {
-						Log.d(TAG, "info ssid: " + info.getSSID() + " currentssid:" + currentSSid);
+					 if (wifi_connect_statue == WIFI_CONNECT_START) {
+						Log.i(TAG, "info ssid:" + info.getSSID());
+						String tempssid = info.getSSID();
+
+						if (tempssid.startsWith("\"") && tempssid.endsWith("\"")) {
+							tempssid = tempssid.substring(1, tempssid.length() - 1);
+						}
+						Log.i(TAG, "tempssid is: " + tempssid);
+						if (tempssid.equals(COMPARESSID)) {
+							Log.d(TAG, "tempssid startwith");
+							wifi_connect_statue = WIFI_CONNECT_SELFAP;
+							selapflag = 0;
+						}
+					} else if (wifi_connect_statue == WIFI_CONNECT_SELFAP) {
+						selapflag++;
+						if (selapflag >= connect_times) {
+							wifi_connect_statue = WIFI_CONNECT_FAIL;
+							selapflag = 0;
+							Message tmsg = Message.obtain();
+							tmsg.what = TIME_FAIL;
+							showHandler.sendMessage(tmsg);
+						} else {
+							List<ScanResult> wifiscanlist = mWifiManager.getScanResults();
+							boolean isfind = false;
+							for (ScanResult sr : wifiscanlist) {
+//								Log.i(TAG, "ssid: " + sr.SSID);
+								String wifitempssid = sr.SSID;
+								if (wifitempssid.startsWith("\"") && wifitempssid.endsWith("\"")) {
+									wifitempssid = wifitempssid.substring(1, wifitempssid.length() - 1);
+								}
+								if (wifitempssid.equals(COMPARESSID)) {
+									isfind = true;
+									break;
+								}
+							}
+							if (isfind == false && sendflag == 2) {
+								wifi_connect_statue = WIFI_CONNECT_WANTAP;
+							}
+						}
+					} else if (wifi_connect_statue == WIFI_CONNECT_WANTAP) {
+						Log.i(TAG, "info ssid: " + info.getSSID() + " currentssid:" + currentSSid);
 						// if(info.getSSID().equals(currentSSid) ){
 						if (compareSsid(info.getSSID(), currentSSid) == true) {
 							Message tmsg = Message.obtain();
@@ -326,49 +370,7 @@ public class SocketNewApConfigActivity extends BaseActivity {
 								}
 							}
 						}
-					} else if (wifi_connect_statue == WIFI_CONNECT_START) {
-						Log.d(TAG, "info ssid:" + info.getSSID());
-						// if(info.getSSID().length() > 3){
-						String tempssid = info.getSSID();
-
-						if (tempssid.startsWith("\"") && tempssid.endsWith("\"")) {
-							tempssid = tempssid.substring(1, tempssid.length() - 1);
-						}
-						// tempssid = tempssid.substring(0, 3);
-						Log.d(TAG, "tempssid is: " + tempssid);
-						if (tempssid.equals(COMPARESSID)) {
-							// if(tempssid.startsWith(COMPARESSID)){
-							Log.d(TAG, "tempssid startwith");
-							wifi_connect_statue = WIFI_CONNECT_SELFAP;
-							selapflag = 0;
-						}
-						// }
-					} else if (wifi_connect_statue == WIFI_CONNECT_SELFAP) {
-						selapflag++;
-						if (selapflag >= connect_times) {
-							wifi_connect_statue = WIFI_CONNECT_FAIL;
-							selapflag = 0;
-							Message tmsg = Message.obtain();
-							tmsg.what = TIME_FAIL;
-							showHandler.sendMessage(tmsg);
-						} else {
-							List<ScanResult> wifiscanlist = mWifiManager.getScanResults();
-							boolean isfind = false;
-							for (ScanResult sr : wifiscanlist) {
-								String wifitempssid = sr.SSID;
-								if (wifitempssid.startsWith("\"") && wifitempssid.endsWith("\"")) {
-									wifitempssid = wifitempssid.substring(1, wifitempssid.length() - 1);
-								}
-								if (wifitempssid.equals(COMPARESSID)) {
-									isfind = true;
-									break;
-								}
-							}
-							if (isfind == false && sendflag == 2) {
-								wifi_connect_statue = WIFI_CONNECT_WANTAP;
-							}
-						}
-					} else if (wifi_connect_statue == WIFI_CONNECT_FAIL) {
+					}else if (wifi_connect_statue == WIFI_CONNECT_FAIL) {
 						if (!info.getSSID().equals(currentSSid)) {
 							List<WifiConfiguration> wificonfigs = mWifiManager.getConfiguredNetworks();
 							for (int i = 0; i < wificonfigs.size(); i++) {
