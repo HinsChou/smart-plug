@@ -62,7 +62,7 @@
     <string name="sunday_mini">Sun</string>
     <string name="nerver">Nerver</string>
     <string name="error_max_7_count_list">Max 7</string>
-    <string name="deltask">Delete</string>
+    <string name="deltask">Delete timer?</string>
     <string name="repeat">Repeat</string>
     <string name="openTime">Open</string>
     <string name="CloseTime">Close</string>

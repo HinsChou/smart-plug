@@ -160,7 +160,7 @@ public class SocketNewConfigActivity extends BaseActivity implements configInter
 				
 				Intent mintent = new Intent(getApplicationContext(), SocketNewApConfigActivity.class);
 				startActivity(mintent);
-//				finish();
+				finish();
 			}
 		});
 		

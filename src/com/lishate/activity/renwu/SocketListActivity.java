@@ -793,7 +793,8 @@ public class SocketListActivity extends FirstActivity {
 			lrm.ToType = MessageDef.BASE_MSG_FT_HUB;
 			
 			ServerItemModel sim = new ServerItemModel();
-			sim.setIpaddress(GobalDef.SERVER_URL);
+//			sim.setIpaddress(GobalDef.SERVER_URL);
+			sim.setIpaddress(GobalDef.LOCAL_URL);
 			sim.setPort(GobalDef.SERVER_PORT);
 			bm = UdpProcess.GetMsgReturn(lrm, sim);
 			if(bm != null){

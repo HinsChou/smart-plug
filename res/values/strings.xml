@@ -63,7 +63,7 @@
     <string name="sunday_mini">日</string>
     <string name="nerver">从不</string>
     <string name="error_max_7_count_list">最多7个</string>
-    <string name="deltask">删除任务</string>
+    <string name="deltask">确定删除定时?</string>
     <string name="repeat">重复</string>
     <string name="openTime">打开时间</string>
     <string name="CloseTime">关闭时间</string>
